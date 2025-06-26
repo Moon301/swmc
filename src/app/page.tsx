@@ -1,11 +1,13 @@
 import Image from "next/image";
 import MainPage from "./components/MainPage";
+import Calendar from "./components/Calendar";
 
 export default function Home() {
   return (
     <div className="items-center justify-items-center min-h-screen p-8  font-[family-name:var(--font-geist-sans)]">
       성령대부흥성회 TEST PAGE
       <MainPage />
+      <Calendar/>
       
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a

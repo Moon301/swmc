@@ -18,3 +18,46 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+.calendar {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  margin: 0 auto;
+  max-width: 360px;
+  width: 100%;
+}
+
+.calendar table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.calendar td,
+.calendar th {
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 4px;
+  font-size: 14px;
+  font-family: 'Noto Serif KR', serif;
+  box-sizing: border-box;
+}
+
+.calendar th {
+  color: #c64a3f;
+  font-weight: 500;
+}
+
+.calendar td {
+  color: #4b4b4b;
+}
+
+.calendar td:first-child {
+  color: #c64a3f;
+}
+
