@@ -5,7 +5,7 @@ import Calendar from "./components/Calendar";
 export default function Home() {
   return ( 
     
-    <main className="items-center p-8 overflow-x-hidden">
+    <main className="items-center p-2 overflow-x-hidden">
       <MainPage />
       <Calendar/>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
