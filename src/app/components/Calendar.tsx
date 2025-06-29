@@ -23,12 +23,12 @@ export default function Calendar() {
     }, []);
 
     return (
-        <section className="flex flex-col items-center bg-[#fdf5ee] text-center py-10 text-gray-700 font-serif">
+        <section className="flex flex-col items-center bg-white text-center py-10 text-gray-700 font-serif">
             <h2 className="text-xl font-semibold mb-1">2025년 08월 15일 </h2>
             <p className="text-md mb-6">금요일 오전 11시</p>
 
             {/* 달력 */}
-            <div className="calendar bg-white rounded-xl shadow p-4 mb-6">
+            <div className="calendar bg-white rounded-xl shadow p-4 mb-6 mx-auto">
                 <table className="table-fixed text-sm w-full text-gray-700">
                     <thead>
                         <tr>

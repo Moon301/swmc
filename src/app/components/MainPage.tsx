@@ -10,10 +10,6 @@ export default function MainPage() {
                 <p className="text-sm sm:text-base text-gray-500 mb-3 tracking-wide">
                     회개 운동 · 성령 운동 · 신부 단장
                 </p>
-                {/* 메인 제목 */}
-                <h2 className="text-3xl sm:text-6xl font-extrabold text-[#a57e3f] mb-6">
-                    성령대부흥성회
-                </h2>
                 {/* 메인 이미지: 반응형 비율 유지 (16:9) */}
                 <div className="w-full aspect-video relative shadow-lg rounded-lg overflow-hidden mb-5">
                     <Image
