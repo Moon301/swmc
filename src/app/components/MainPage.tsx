@@ -18,11 +18,12 @@ export default function MainPage() {
             </section>
             <section className="w-full text-center px-4 sm:px-0">
 
-                {/* ✅ 모바일 전용 이미지 (세로 강조) */}
+                {/* 모바일 전용 이미지 (3:4 비율) */}
                 <div className="block sm:hidden">
                     <Link
                         href="https://www.seongeunch.com"
-                        className="w-full h-[60vh] relative rounded-lg overflow-hidden mb-6 link-hover-effect"
+                        className="relative w-full max-w-md mx-auto overflow-hidden rounded-lg mb-4 link-hover-effect"
+                        style={{ aspectRatio: '3 / 4' }} // 고정된 3:4 비율
                     >
                         <Image
                             src="/images/main_title.png"
@@ -35,11 +36,12 @@ export default function MainPage() {
                     </Link>
                 </div>
 
-                {/* ✅ 웹 전용 이미지 (16:9 비율) */}
+                {/* 웹 전용 이미지 (16:9 비율) */}
                 <div className="hidden sm:block">
                     <Link
                         href="https://www.seongeunch.com"
-                        className="w-full aspect-video max-w-3xl mx-auto relative rounded-lg overflow-hidden mb-6 link-hover-effect"
+                        className="w-full max-w-3xl mx-auto relative overflow-hidden rounded-lg mb-6 link-hover-effect"
+                        style={{ aspectRatio: '16 / 9' }} // 고정된 16:9 비율
                     >
                         <Image
                             src="/images/main_title.png"
