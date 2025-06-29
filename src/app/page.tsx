@@ -1,12 +1,14 @@
 import Image from "next/image";
 import MainPage from "./components/MainPage";
 import Calendar from "./components/Calendar";
+import MapSection from "./components/MapSection";
 
 export default function Home() {
   return ( 
     
     <main className="items-center p-2 overflow-x-hidden">
       <MainPage />
+      <MapSection/>
       <Calendar/>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
 
