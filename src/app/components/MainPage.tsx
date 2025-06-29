@@ -7,7 +7,7 @@ export default function MainPage() {
         <div className="min-h-screen flex flex-col items-center justify-center bg-white text-gray-800 ">
             {/* 컨텐츠 래퍼: 모바일(기본)~데스크탑까지 중앙 정렬 & 패딩 조정 */}
 
-            <section className="w-full text-center px-4 sm:px-6  mb-10">
+            <section className="w-full text-center px-4 sm:px-6  mb-5">
                 {/* 강조 문구 */}
                 <p className="text-[17px] sm:text-xl font-light text-gray-700 leading-relaxed tracking-wide">
                     마지막 때를 향한 <span className="font-semibold text-[#8b5c49]">하나님의 말씀,</span>
@@ -16,8 +16,8 @@ export default function MainPage() {
                     여러분을 초청합니다.
                 </p>
             </section>
-            <section className="w-full text-center px-4 sm:px-0">
 
+            <section className="w-full text-center px-4 sm:px-0">
                 {/* 모바일 전용 이미지 (3:4 비율) */}
                 <div className="block sm:hidden">
                     <Link
