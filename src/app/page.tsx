@@ -6,11 +6,8 @@ export default function Home() {
   return ( 
     
     <main className="items-center justify-items-center min-h-screen p-8 font-[family-name:var(--font-geist-sans)] overflow-x-hidden">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1"></meta>
-      성령대부흥성회 TEST PAGE
       <MainPage />
       <Calendar/>
-      
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
