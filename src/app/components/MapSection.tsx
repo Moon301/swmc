@@ -72,7 +72,7 @@ export default function MapSection() {
             </a>
 
             {/* 자동차 안내 */}
-            <div className="mt-12 text-center space-y-3">
+            <div className="mt-15 text-center space-y-3">
                 <h3 className="text-lg font-semibold">🚗 자동차나 택시를 이용해 오시나요?</h3>
                 <p className="text-sm text-gray-700">
                     강변북로를 이용하여 구리 방면으로 오시다가 <b>워커힐, 광장 사거리</b> 입구로 진입하시기 바랍니다.
@@ -87,13 +87,13 @@ export default function MapSection() {
             </div>
 
             {/* 지하철 안내 */}
-            <div className="mt-12 text-center space-y-3">
+            <div className="mt-15 text-center space-y-3">
                 <h3 className="text-lg font-semibold">🚇 지하철을 이용해 오시나요?</h3>
                 <p className="text-sm text-gray-700">
                     지하철을 타고 오시면, 다음 위치에서 워커힐 무료 셔틀버스를 이용하실 수 있습니다.
                 </p>
 
-                <div className="flex flex-col items-center sm:flex-row gap-4 justify-center mt-4">
+                <div className="flex flex-col items-center sm:flex-row gap-5 justify-center mt-6">
                     <Image
                         src="/images/fig_mapLine5.png"
                         alt="5호선 광나루역 셔틀버스 위치"

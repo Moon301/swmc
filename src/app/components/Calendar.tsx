@@ -62,7 +62,7 @@ export default function Calendar() {
                 </table>
             </div>
             
-            <p className="text-lm mt-10">
+            <p className="text-xl mt-10">
                 <span className="font-semibold "> 성회 일정까지 </span>
                 <span className="text-[#e87b6a] font-bold">{countdown.days}일</span> 남았습니다.
             </p>
