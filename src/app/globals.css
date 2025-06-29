@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
 @import "tailwindcss";
+
 
 :root {
   --background: #ffffff;
@@ -8,15 +10,15 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  
 }
 
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Noto Sans KR';
 }
 
 
@@ -39,12 +41,12 @@ body {
 .calendar td,
 .calendar th {
   width: 41px;
-  height: 41px;
+  height: 4px;
   text-align: center;
   vertical-align: middle;
   padding: 4px;
   font-size: 14px;
-  font-family: 'Noto Serif KR', serif;
+  font-family:'Noto Sans KR', serif;
   box-sizing: border-box;
 }
 
@@ -61,3 +63,14 @@ body {
   color: #c64a3f;
 }
 
+.link-hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  transform: scale(1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.link-hover-effect:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+}

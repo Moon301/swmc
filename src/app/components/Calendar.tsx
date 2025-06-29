@@ -23,7 +23,7 @@ export default function Calendar() {
     }, []);
 
     return (
-        <section className="flex flex-col items-center bg-white text-center py-10 text-gray-700 font-serif mx-auto">
+        <section className="flex flex-col items-center bg-white text-center py-10 text-gray-700 mx-auto">
             <h2 className="text-xl font-semibold mb-1">2025년 08월 15일 </h2>
             <p className="text-md mb-6">금요일 오전 11시</p>
 
