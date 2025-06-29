@@ -35,7 +35,7 @@ export default function YoutubeSection() {
                         날마다 죄를 대항하고 <span className="text-[#8b5c49]">매일 회개하는 삶</span>
                     </p>
                     <p className="text-base sm:text-lg font-semibold mt-1">
-                        성령의 역사가 일어나는 <b className=' text-indigo-700'>성회</b>
+                        성령의 역사가 일어나는 <b className=' text-[#8b5c49]'>성회</b>
                     </p>
                 </div>
 
