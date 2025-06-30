@@ -37,7 +37,7 @@ export default function PastorSection() {
             {speakers.map((speaker, index) => (
             <div
                 key={index}
-                className="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center text-center"
+                className="bg-white shadow-md border border-gray-200 rounded-2xl p-6 flex flex-col items-center text-center"
             >
                 <Image
                 src={speaker.image}
