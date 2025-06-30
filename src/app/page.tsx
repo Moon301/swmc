@@ -3,12 +3,14 @@ import Calendar from "./components/Calendar";
 import MapSection from "./components/MapSection";
 import YoutubeSection from "./components/YoutubeSection";
 import InfoSection from "./components/InfoSection";
+import PastorSection from "./components/PastorSection";
 
 export default function Home() {
   return ( 
     
     <main className="items-center p-2 overflow-x-hidden">
       <MainPage />
+      <PastorSection/>
       <YoutubeSection/>
       <MapSection/>
       <InfoSection/>
