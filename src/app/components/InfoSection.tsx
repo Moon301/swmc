@@ -29,7 +29,7 @@ export default function InfoSection() {
                     <span className="font-bold">무료</span> (헌금시간 있음)
                     </p>
                     <div className="text-sm text-gray-700 mt-1 flex justify-center items-center gap-2">
-                        성회 헌금 계좌 |
+                        헌금계좌 |
                         <span
                             onClick={copyAccount}
                             className="cursor-pointer font-bold hover:underline inline-flex items-center gap-1"
