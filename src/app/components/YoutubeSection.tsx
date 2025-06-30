@@ -32,10 +32,10 @@ export default function YoutubeSection() {
 
                 <div className='mb-6'>
                     <p className="text-base sm:text-lg font-semibold text-gray-800">
-                        날마다 죄를 대항하고 <span className="text-[#8b5c49]">매일 회개하는 삶</span>
+                        하니님의 구속 사역 <span className="text-[#8b5c49]">신부단장</span>
                     </p>
                     <p className="text-base sm:text-lg font-semibold mt-1">
-                        성령의 역사가 일어나는 <b className=' text-[#8b5c49]'>성회</b>
+                        은혜와 축복이 가득하고 성령의 역사가 일어나는 <b className=' text-[#8b5c49]'>성회</b>
                     </p>
                 </div>
 
