@@ -84,7 +84,7 @@ export default function MapSection() {
             </a>
 
             {/* 자동차 안내 */}
-            <div className="mt-15 text-center space-y-3">
+            <div className="mt-25 text-center space-y-3">
                 <h3 className="text-lg font-semibold">🚗 자동차나 택시를 이용해 오시나요?</h3>
                 <p className="text-sm text-gray-700">
                     강변북로를 이용하여 구리 방면으로 오시다가 <b>워커힐, 광장 사거리</b> 입구로 진입하시기 바랍니다.
