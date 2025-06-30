@@ -58,7 +58,7 @@ export default function MapSection() {
 
     return (
         <section className="w-full text-center px-4 sm:px-6 mt-20 mb-50">
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-8"> 오시는길 </h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-10"> 오시는길 </h2>
 
             <div id="map" className="w-full max-w-3xl mx-auto h-70 sm:h-96 rounded-lg shadow-md sm:mb-10 mb-5" />
 

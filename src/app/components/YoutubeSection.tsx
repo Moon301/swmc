@@ -15,7 +15,7 @@ export default function YoutubeSection() {
     return (
         <section className='min-h-screen flex flex-col items-center justify-center'>
             <div className=" w-full max-w-3xl mx-auto px-4 text-center mt-20 sm:mb-30 mb-20">
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-5"> 14차 성령대부흥 성회 </h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-10"> 14차 성령대부흥 성회 </h2>
 
 
 

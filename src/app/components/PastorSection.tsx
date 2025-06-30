@@ -30,7 +30,7 @@ export default function PastorSection() {
 
     return (
         <section className="w-full max-w-4xl mx-auto px-4 mt-30 mb-30">
-        <h2 className="text-xl sm:text-2xl font-bold text-center text-gray-800 mb-15">
+        <h2 className="text-xl sm:text-2xl font-bold text-center text-gray-800 mb-10">
             강사님 소개
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">

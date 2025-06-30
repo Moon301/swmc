@@ -18,7 +18,7 @@ export default function InfoSection() {
     return (
         <section className="w-full max-w-3xl mx-auto px-4 mt-20 space-y-6 mb-50 text-center">
 
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-8"> 안내・문의 </h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-10"> 안내・문의 </h2>
             {/* 회비 + 주관 카드 */}
             <div className="bg-white rounded-2xl shadow-md border border-gray-200 p-6 sm:p-8">
                 <div className="space-y-6 sm:space-y-0 sm:flex sm:justify-between sm:gap-8">
