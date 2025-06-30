@@ -38,7 +38,7 @@ export default function InfoSection() {
                 <p className="flex justify-center items-center gap-2">
                     <Phone className="w-4 h-4 text-blue-600" />
                     <a href="tel:0632242245" className="hover:underline">
-                        <b>전주 본교</b> 010-6458-8978
+                        <b>전주 본교</b> 063-224-2245, 8179
                     </a>
                 </p>
                 <p className="flex justify-center items-center gap-2">
