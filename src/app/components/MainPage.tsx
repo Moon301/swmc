@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function MainPage() {
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-white text-gray-800 ">
+        <div className="min-h-screen flex flex-col items-center justify-center text-gray-800 ">
             {/* 컨텐츠 래퍼: 모바일(기본)~데스크탑까지 중앙 정렬 & 패딩 조정 */}
 
             <section className="w-full text-center px-4 sm:px-6  mb-5">
