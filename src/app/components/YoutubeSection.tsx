@@ -1,6 +1,7 @@
 'use client';
 
 import YouTube from 'react-youtube';
+import Link from 'next/link';
 
 export default function YoutubeSection() {
     const opts = {
@@ -14,7 +15,10 @@ export default function YoutubeSection() {
     return (
         <section className='min-h-screen flex flex-col items-center justify-center'>
             <div className=" w-full max-w-3xl mx-auto px-4 text-center mt-20 sm:mb-30 mb-20">
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-10"> 14차 성령대부흥 성회 </h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-5"> 14차 성령대부흥 성회 </h2>
+
+
+
                 <blockquote className="italic text-sm leading-relaxed mb-10">
                     ”그에게 허락하사 빛나고 깨끗한 <b>세마포</b>를 입게 하셨은즉 <br />
                     이 세마포는 성도들의 <b>옳은 행실</b>이로다 하더라”
@@ -24,20 +28,33 @@ export default function YoutubeSection() {
                     </span>
                 </blockquote>
 
-                <div className="relative w-full pt-[56.25%] rounded-xl overflow-hidden shadow-lg mb-10">
+
+                <div className='mb-6'>
+                    <p className="text-sm sm:text-base font-semibold text-gray-800">
+                        하니님의 구속 사역, <span className="text-[#8b5c49]">신부단장</span>
+                    </p>
+                    <p className="text-lg sm:text-xl font-semibold mb-5">
+                        성령의 역사가 일어나는 <b className=' text-[#8b5c49]'>성회</b>
+                    </p>
+                </div>
+
+                <div className="relative w-full pt-[56.25%] rounded-xl overflow-hidden shadow-lg mb-5">
                     <div className="absolute inset-0">
                         <YouTube videoId="Pv4qSSNpUL4" opts={opts} className="w-full h-full" />
                     </div>
                 </div>
 
-                <div className='mb-6'>
-                    <p className="text-base sm:text-lg font-semibold text-gray-800">
-                        하니님의 구속 사역 <span className="text-[#8b5c49]">신부단장</span>
-                    </p>
-                    <p className="text-base sm:text-lg font-semibold mt-1">
-                        성령의 역사가 일어나는 <b className=' text-[#8b5c49]'>성회</b>
-                    </p>
-                </div>
+                {/* 유튜브 채널 바로가기 버튼 */}
+                <Link
+                    href="https://www.youtube.com/@HyunSookNa" // 유튜브 채널 URL로 수정
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-white border  border-[#fe0000] hover:bg-[#fe0000] hover:text-white text-black font-semibold py-2 px-6 rounded-full shadow transition-colors duration-200 text-sm mb-10"
+                >
+                    유튜브 채널 바로가기
+                </Link>
+
+
 
             </div>
         </section>
