@@ -49,7 +49,7 @@ export default function YoutubeSection() {
                     href="https://www.youtube.com/@HyunSookNa" // 유튜브 채널 URL로 수정
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block bg-white border  border-[#fe0000] hover:bg-[#fe0000] hover:text-white text-black font-semibold py-2 px-6 rounded-full shadow transition-colors duration-200 text-sm mb-10"
+                    className="inline-block bg-[#fffdf7] border  border-[#fe0000] hover:bg-[#fe0000] hover:text-white text-black font-semibold py-2 px-6 rounded-full shadow transition-colors duration-200 text-sm mb-10"
                 >
                     유튜브 채널 바로가기
                 </Link>
