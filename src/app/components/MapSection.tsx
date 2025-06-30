@@ -63,7 +63,7 @@ export default function MapSection() {
             <div id="map" className="w-full max-w-3xl mx-auto h-70 sm:h-96 rounded-lg shadow-md sm:mb-10 mb-7" />
 
             <a
-                href="https://map.kakao.com/link/map/그랜드 워커힐 서울 비스타홀 지하 2층 ,37.554189, 127.111164"
+                href={`https://map.kakao.com/link/map/${encodeURIComponent('그랜드 워커힐 서울 비스타홀 지하 2층 - 성령 대부흥 성회')},37.554189,127.111164`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-5 py-2 bg-[#FFCD00] hover:bg-[#f3ba00] text-black text-sm font-semibold rounded-full transition"
