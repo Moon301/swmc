@@ -98,20 +98,20 @@ export default function MapSection() {
                     지하철을 타고 오시면, 다음 위치에서 워커힐 무료 셔틀버스를 이용하실 수 있습니다.
                 </p>
 
-                <div className="flex flex-col items-center sm:flex-row gap-5 justify-center mt-6">
+                <div className="flex flex-col items-center sm:flex-row gap-5 justify-center mt-6  px-4 sm:px-8">
                     <Image
                         src="/images/fig_mapLine5.png"
                         alt="5호선 광나루역 셔틀버스 위치"
-                        width={300}
-                        height={200}
-                        className="rounded-lg shadow"
+                        width={400}
+                        height={280}
+                        className="rounded-lg shadow bg-white"
                     />
                     <Image
                         src="/images/fig_mapLine2.png"
                         alt="2호선 강변역 셔틀버스 위치"
-                        width={300}
-                        height={200}
-                        className="rounded-lg shadow"
+                        width={400}
+                        height={280}
+                        className="rounded-lg shadow bg-white"
                     />
                 </div>
             </div>
