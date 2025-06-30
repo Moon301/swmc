@@ -60,7 +60,19 @@ export default function MapSection() {
         <section className="w-full text-center px-4 sm:px-6 mt-20 mb-50">
             <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-8"> 오시는길 </h2>
 
-            <div id="map" className="w-full max-w-3xl mx-auto h-70 sm:h-96 rounded-lg shadow-md sm:mb-10 mb-7" />
+            <div id="map" className="w-full max-w-3xl mx-auto h-70 sm:h-96 rounded-lg shadow-md sm:mb-10 mb-5" />
+
+            <div className="mb-6 space-y-2">
+                <h3 className="text-lg font-semibold">그랜드 워커힐 서울,<span className="text-[#8b5c49]"> 비스타홀</span></h3>
+                <button
+                    onClick={copyAddress}
+                    className="flex items-center justify-center gap-2 bg-gray-100 px-4 py-1 rounded-lg text-sm hover:bg-gray-200 mx-auto"
+                >
+                    <Copy size={16} />
+                    서울특별시 광진구 워커힐로 177
+                </button>
+            </div>
+            
 
             <a
                 href={`https://map.kakao.com/link/map/${encodeURIComponent('그랜드 워커힐 서울 비스타홀 지하 2층 - 성령 대부흥 성회')},37.554189,127.111164`}
@@ -77,13 +89,6 @@ export default function MapSection() {
                 <p className="text-sm text-gray-700">
                     강변북로를 이용하여 구리 방면으로 오시다가 <b>워커힐, 광장 사거리</b> 입구로 진입하시기 바랍니다.
                 </p>
-                <button
-                    onClick={copyAddress}
-                    className="flex items-center justify-center gap-2 bg-gray-100 px-4 py-1 rounded-lg text-sm hover:bg-gray-200 mx-auto"
-                >
-                    <Copy size={16} />
-                    서울특별시 광진구 워커힐로 177
-                </button>
             </div>
 
             {/* 지하철 안내 */}
