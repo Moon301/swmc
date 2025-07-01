@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     siteName: "성령대부흥성회",
     images: [
       {
-        url: "https://swmc.vercel.app/images/main_title.png",
+        url: "https://swmc.vercel.app/images/web_main.png",
         width: 1200,
         height: 630,
         alt: "성령대부흥성회",
