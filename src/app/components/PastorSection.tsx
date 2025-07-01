@@ -7,7 +7,7 @@ export default function PastorSection() {
         {
         time: '1부 강사 (오전 11:00)',
         name: '나현숙 목사',
-        image: '/images/speaker.png', 
+        image: '/images/nhs.png', 
         description: [
             '성은세계선교교회 담임목사',
             '300명 세계선교사 총재',
@@ -20,7 +20,7 @@ export default function PastorSection() {
         {
         time: '2부 강사 (오후 4:00)',
         name: '진명석 목사',
-        image: '/images/speaker.png',
+        image: '/images/jms.png',
         description: [
             '장재침례교회 담임목사',
             '300명 세계선교사 고문',
@@ -42,8 +42,8 @@ export default function PastorSection() {
                 <Image
                 src={speaker.image}
                 alt={speaker.name}
-                width={140}
-                height={140}
+                width={90}
+                height={90}
                 className="rounded-full mb-4 object-cover"
                 />
                 <p className="text-sm text-gray-600 mb-1">{speaker.time}</p>

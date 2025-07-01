@@ -26,7 +26,7 @@ export default function MainPage() {
                         style={{ aspectRatio: '3 / 4' }} // 고정된 3:4 비율
                     >
                         <Image
-                            src="/images/main_title.png"
+                            src="/images/app_main.png"
                             alt="성령대부흥성회"
                             fill
                             sizes="100vw"
@@ -44,7 +44,7 @@ export default function MainPage() {
                         style={{ aspectRatio: '16 / 9' }} // 고정된 16:9 비율
                     >
                         <Image
-                            src="/images/main_title.png"
+                            src="/images/web_main.png"
                             alt="성령대부흥성회"
                             fill
                             sizes="(min-width: 768px) 768px"
