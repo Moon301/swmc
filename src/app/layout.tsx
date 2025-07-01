@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
+import { Analytics } from '@vercel/analytics/react';
+
 
 export const metadata: Metadata = {
   title: "성령 대부흥 성회",
@@ -39,6 +41,7 @@ export default function RootLayout({
         className={`antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
