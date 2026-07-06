@@ -101,7 +101,7 @@ export function Header() {
                         >
                           <span
                             className={cn(
-                              "block text-[15px] font-semibold leading-snug",
+                              "block text-[15px] font-semibold leading-snug transition-colors duration-150 group-hover:text-secondary",
                               pathname === child.href
                                 ? "text-secondary"
                                 : "text-gray-900"
