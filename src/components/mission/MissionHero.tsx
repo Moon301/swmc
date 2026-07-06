@@ -267,7 +267,7 @@ export function MissionHero() {
       </div>
 
       {/* Fade to light section below */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-white" />
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-background" />
     </section>
   );
 }
