@@ -40,7 +40,7 @@ export default async function RevivalInfoPage() {
           ].map((stat) => (
             <div key={stat.label} className="card-soft px-4 py-5 text-center">
               <p className="text-[22px] font-bold text-gray-900">{stat.value}</p>
-              <p className="mt-1 text-[12px] text-gray-500">{stat.label}</p>
+              <p className="mt-1 text-[13px] text-gray-500">{stat.label}</p>
             </div>
           ))}
         </div>

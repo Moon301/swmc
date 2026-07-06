@@ -41,18 +41,27 @@
 - **페이지 루트에 `bg-white`를 깔지 말 것** — 앰비언트가 가려진다. 콘텐츠 대비가 필요하면 카드(`card-soft`, 순백 카드)로 해결 — 아이보리 배경 위 흰 카드가 고급스러운 대비를 만든다
 - 헤더/전체 화면 오버레이는 `bg-background` 계열 사용 (`bg-white` 금지), 조정은 globals.css에서만
 
-## 타이포그래피
+## 타이포그래피 (토스뱅크 기준)
 
 폰트: Noto Sans KR (`next/font/google`), `letter-spacing: -0.01em` 전역 적용.
 
-| 용도 | 크기 |
-|---|---|
-| 히어로 헤드라인 | `text-[36px] sm:text-[52px] font-bold leading-[1.25] tracking-tight` |
-| 섹션 제목 | `text-[24px] sm:text-[30px] font-bold tracking-tight` |
-| 카드 제목 | `text-[15px]~[17px] font-bold` |
-| 본문 | `text-[14px]~[15px] leading-relaxed` |
-| 보조/캡션 | `text-[13px] text-gray-500` |
-| 칩/배지 | `text-[13px] font-semibold` + `rounded-full px-3.5 py-1.5` |
+**최소 글씨 크기: 13px.** 어떤 요소도 13px 미만 금지 (clamp의 하한값 포함). 토스뱅크도 13px 아래로 내려가지 않는다.
+
+| 영역 | 모바일 | 데스크톱 |
+|---|---|---|
+| 히어로 헤드라인 | 32~36px | 44~52px |
+| 섹션 제목 | 24px | 28~32px |
+| 카드/서브섹션 제목 | 17px | 17~20px |
+| 본문 | 15px | 15~16px |
+| 리스트 항목 제목 | 15px | 15~17px |
+| 네비게이션 메뉴 | 17px (모바일 메뉴) | 15px |
+| 드롭다운 제목/설명 | — | 15px / 13px |
+| 버튼 | 14px | 15~16px |
+| 보조 설명·캡션·칩 | 13~14px | 13~14px |
+| 푸터 정보·저작권 | 13px | 13px |
+
+- 배너 안 텍스트는 배너 크기에 비례(cqw clamp)하되, **clamp 하한은 헤드라인 24px / 본문 14px / 라벨 13px 이상**으로 잡는다
+- 강조가 필요하면 크기보다 `font-bold`/색으로. 크기 단계는 위 표 안에서만 고른다
 
 ## 레이아웃
 

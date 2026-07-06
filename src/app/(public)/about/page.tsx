@@ -47,7 +47,7 @@ export default async function AboutPage() {
             ].map((stat) => (
               <div key={stat.label} className="card-tinted px-4 py-4">
                 <p className="text-[20px] font-bold text-gray-900">{stat.value}</p>
-                <p className="mt-0.5 text-[12px] text-gray-500">{stat.label}</p>
+                <p className="mt-0.5 text-[13px] text-gray-500">{stat.label}</p>
               </div>
             ))}
           </div>

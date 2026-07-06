@@ -36,7 +36,7 @@ export function NewsPreview({ news }: NewsPreviewProps) {
                 className="flex items-center gap-3 py-4 transition-colors hover:bg-gray-50 -mx-3 px-3 rounded-lg"
               >
                 {cat && (
-                  <span className={`shrink-0 rounded px-2 py-0.5 text-[12px] font-medium ${
+                  <span className={`shrink-0 rounded px-2 py-0.5 text-[13px] font-medium ${
                     item.category === "notice"
                       ? "bg-primary/8 text-primary"
                       : "bg-gray-100 text-gray-600"

@@ -54,12 +54,12 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="mt-10 flex items-center justify-between border-t border-gray-100 pt-6">
-          <p className="text-[12px] text-gray-400">
+          <p className="text-[13px] text-gray-400">
             &copy; {new Date().getFullYear()} {SITE_NAME}
           </p>
           <Link
             href="/login"
-            className="text-[12px] text-gray-400 transition-colors hover:text-gray-600"
+            className="text-[13px] text-gray-400 transition-colors hover:text-gray-600"
           >
             관리자
           </Link>
