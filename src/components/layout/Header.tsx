@@ -78,13 +78,7 @@ export function Header() {
               >
                 <Link
                   href={item.href}
-                  className={cn(
-                    "block rounded-[10px] px-3.5 py-2 text-[15px] font-semibold transition-colors duration-150",
-                    pathname.startsWith(item.href)
-                      ? "text-gray-900"
-                      : "text-gray-700",
-                    "hover:bg-primary/[0.07] hover:text-gray-900"
-                  )}
+                  className="block rounded-[10px] px-3.5 py-2 text-[15px] font-semibold text-gray-800 transition-colors duration-150 hover:bg-primary/[0.07] hover:text-gray-900"
                 >
                   {item.label}
                 </Link>
