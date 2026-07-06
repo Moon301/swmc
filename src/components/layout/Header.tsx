@@ -55,7 +55,7 @@ export function Header() {
       className={cn(
         "sticky top-0 z-40 backdrop-blur-2xl backdrop-saturate-[1.8] transition-all duration-300",
         openDropdown ? "bg-background" : "bg-background/70",
-        scrolled
+        scrolled && !openDropdown
           ? "border-b border-primary/10 shadow-[0_4px_20px_rgba(43,87,151,0.07)]"
           : "border-b border-transparent"
       )}

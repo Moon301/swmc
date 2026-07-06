@@ -92,12 +92,11 @@
   animation: fadeUp 0.6s ease-out both;
 }
 
-/* Mega menu — subtle rise + fade, Toss-style */
+/* Mega menu — fade only. translateY를 쓰면 열리는 순간 헤더와 카드 사이에 틈이 보인다 */
 @keyframes dropdownIn {
-  from { opacity: 0; transform: translateY(6px) scale(0.98); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 .animate-dropdown-in {
-  animation: dropdownIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
-  transform-origin: top center;
+  animation: dropdownIn 0.15s ease-out both;
 }
