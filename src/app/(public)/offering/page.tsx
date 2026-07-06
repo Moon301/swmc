@@ -90,7 +90,7 @@ export default function OfferingPage() {
       {/* Hero — Toss product-page style */}
       <section className="bg-gradient-to-b from-[#f7f9fb] to-white">
         <div className="mx-auto max-w-[800px] px-5 pb-16 pt-20 text-center sm:pb-24 sm:pt-28">
-          <span className="inline-flex items-center rounded-full bg-[#e8f0fe] px-3.5 py-1.5 text-[13px] font-semibold text-[#2B5797]">
+          <span className="inline-flex items-center rounded-full bg-primary-light px-3.5 py-1.5 text-[13px] font-semibold text-secondary">
             온라인헌금
           </span>
           <h1 className="mt-5 text-[36px] font-bold leading-[1.25] tracking-tight text-gray-900 sm:text-[52px]">
@@ -108,13 +108,13 @@ export default function OfferingPage() {
         </h2>
         <div className="mt-8 space-y-4 sm:mt-10">
           {DOMESTIC_ACCOUNTS.map((item) => (
-            <div key={item.type} className="rounded-[24px] bg-[#f9fafb] p-7 sm:p-9">
-              <p className="text-[14px] font-semibold text-[#2B5797]">{item.type}</p>
+            <div key={item.type} className="rounded-[24px] bg-gray-50 p-7 sm:p-9">
+              <p className="text-[14px] font-semibold text-secondary">{item.type}</p>
               <ul className="mt-4 space-y-5">
                 {item.accounts.map((account) => (
                   <li key={account.number} className="flex items-start gap-4">
                     <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white shadow-[0_1px_4px_rgba(2,32,71,0.06)]">
-                      <Landmark className="h-5 w-5 text-[#2B5797]" />
+                      <Landmark className="h-5 w-5 text-secondary" />
                     </span>
                     <div>
                       <p className="text-[18px] font-bold leading-snug text-gray-900 sm:text-[20px]">
@@ -135,7 +135,7 @@ export default function OfferingPage() {
         <h2 className="text-center text-[24px] font-bold tracking-tight text-gray-900 sm:text-[30px]">
           선교 외환계좌 안내
         </h2>
-        <div className="mt-8 overflow-hidden rounded-[24px] bg-[#f9fafb] sm:mt-10">
+        <div className="mt-8 overflow-hidden rounded-[24px] bg-gray-50 sm:mt-10">
           <dl className="divide-y divide-gray-200/70">
             {FOREIGN_ACCOUNT.map((row) => (
               <div
@@ -148,7 +148,7 @@ export default function OfferingPage() {
                 <dd
                   className={
                     row.highlight
-                      ? "text-[15px] font-bold text-[#2B5797]"
+                      ? "text-[15px] font-bold text-secondary"
                       : "text-[15px] font-semibold text-gray-900"
                   }
                 >
@@ -169,9 +169,9 @@ export default function OfferingPage() {
           {OFFERING_TYPES.map((item) => {
             const Icon = item.icon;
             return (
-              <div key={item.name} className="rounded-[24px] bg-[#f9fafb] p-7">
+              <div key={item.name} className="rounded-[24px] bg-gray-50 p-7">
                 <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-[0_1px_4px_rgba(2,32,71,0.06)]">
-                  <Icon className="h-[22px] w-[22px] text-[#2B5797]" />
+                  <Icon className="h-[22px] w-[22px] text-secondary" />
                 </span>
                 <p className="mt-4 text-[17px] font-bold text-gray-900">{item.name}</p>
                 <p className="mt-1.5 text-[14px] leading-relaxed text-gray-500">

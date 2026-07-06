@@ -89,10 +89,10 @@ export function MissionHero() {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-[#0a1128]">
+    <section className="relative overflow-hidden bg-navy">
       {/* Ambient glow */}
-      <div className="pointer-events-none absolute left-1/2 top-[-200px] h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-[#2B5797]/30 blur-[140px]" />
-      <div className="pointer-events-none absolute bottom-[-100px] right-[-100px] h-[400px] w-[400px] rounded-full bg-[#C5973E]/15 blur-[120px]" />
+      <div className="pointer-events-none absolute left-1/2 top-[-200px] h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-primary/30 blur-[140px]" />
+      <div className="pointer-events-none absolute bottom-[-100px] right-[-100px] h-[400px] w-[400px] rounded-full bg-accent/15 blur-[120px]" />
 
       <div className="relative mx-auto max-w-[1100px] px-5 pb-16 pt-16 sm:pb-24 sm:pt-24">
         {/* Heading */}
@@ -101,9 +101,9 @@ export function MissionHero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[13px] font-semibold text-[#e3b96a] backdrop-blur"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[13px] font-semibold text-accent-light backdrop-blur"
           >
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#C5973E]" />
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
             World Mission
           </motion.span>
           <motion.h1
@@ -112,7 +112,7 @@ export function MissionHero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-5 text-[36px] font-bold leading-[1.25] tracking-tight text-white sm:text-[52px]"
           >
-            대한민국에서 <span className="bg-gradient-to-r from-[#e3b96a] via-[#C5973E] to-[#e3b96a] bg-clip-text text-transparent">땅끝까지</span>
+            대한민국에서 <span className="bg-gradient-to-r from-accent-light via-accent to-accent-light bg-clip-text text-transparent">땅끝까지</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 16 }}

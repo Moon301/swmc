@@ -55,10 +55,10 @@ export default async function MissionariesPage() {
             return (
               <div
                 key={card.title}
-                className="rounded-[24px] bg-[#f9fafb] p-7 transition-transform duration-300 hover:-translate-y-1"
+                className="rounded-[24px] bg-gray-50 p-7 transition-transform duration-300 hover:-translate-y-1"
               >
                 <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-[0_1px_4px_rgba(2,32,71,0.06)]">
-                  <Icon className="h-[22px] w-[22px] text-[#C5973E]" />
+                  <Icon className="h-[22px] w-[22px] text-accent" />
                 </span>
                 <p className="mt-4 text-[17px] font-bold text-gray-900">{card.title}</p>
                 <p className="mt-1.5 text-[14px] leading-relaxed text-gray-500">{card.body}</p>
@@ -83,8 +83,8 @@ export default async function MissionariesPage() {
 
       {/* CTA */}
       <section className="mx-auto max-w-[1100px] px-5 pb-20 sm:pb-28">
-        <div className="relative overflow-hidden rounded-[28px] bg-[#0a1128] px-7 py-14 text-center sm:py-16">
-          <div className="pointer-events-none absolute left-1/2 top-[-120px] h-[300px] w-[600px] -translate-x-1/2 rounded-full bg-[#C5973E]/25 blur-[100px]" />
+        <div className="relative overflow-hidden rounded-[28px] bg-navy px-7 py-14 text-center sm:py-16">
+          <div className="pointer-events-none absolute left-1/2 top-[-120px] h-[300px] w-[600px] -translate-x-1/2 rounded-full bg-accent/25 blur-[100px]" />
           <p className="relative text-[24px] font-bold text-white sm:text-[30px]">
             선교 후원에 동참해 주세요
           </p>
@@ -93,7 +93,7 @@ export default async function MissionariesPage() {
           </p>
           <Link
             href="/offering"
-            className="relative mt-7 inline-block rounded-full bg-gradient-to-r from-[#C5973E] to-[#e3b96a] px-8 py-3.5 text-[15px] font-semibold text-white shadow-[0_8px_24px_rgba(197,151,62,0.35)] transition-transform hover:scale-[1.03]"
+            className="relative mt-7 inline-block rounded-full bg-gradient-to-r from-accent to-accent-light px-8 py-3.5 text-[15px] font-semibold text-white shadow-[0_8px_24px_rgba(197,151,62,0.35)] transition-transform hover:scale-[1.03]"
           >
             후원하기
           </Link>
