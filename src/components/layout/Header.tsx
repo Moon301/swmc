@@ -55,7 +55,7 @@ export function Header() {
       className={cn(
         "sticky top-0 z-40 bg-background/70 backdrop-blur-2xl backdrop-saturate-[1.8] transition-all duration-300",
         scrolled
-          ? "border-b border-gray-200/60 shadow-[0_4px_20px_rgba(2,32,71,0.05)]"
+          ? "border-b border-primary/10 shadow-[0_4px_20px_rgba(43,87,151,0.07)]"
           : "border-b border-transparent"
       )}
     >
@@ -82,7 +82,7 @@ export function Header() {
                     pathname.startsWith(item.href)
                       ? "text-gray-900"
                       : "text-gray-700",
-                    "hover:bg-gray-500/10 hover:text-gray-900"
+                    "hover:bg-primary/[0.07] hover:text-gray-900"
                   )}
                 >
                   {item.label}
@@ -95,14 +95,14 @@ export function Header() {
                     onMouseEnter={() => handleMouseEnter(item.label)}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <div className="animate-dropdown-in w-[280px] rounded-b-[20px] bg-background/80 p-2 shadow-[0_0_1px_rgba(2,32,71,0.16),0_12px_40px_rgba(2,32,71,0.12)] backdrop-blur-2xl backdrop-saturate-[1.8]">
+                    <div className="animate-dropdown-in w-[280px] rounded-b-[20px] bg-background/80 p-2 ring-1 ring-primary/10 shadow-[0_0_1px_rgba(43,87,151,0.2),0_12px_40px_rgba(43,87,151,0.14)] backdrop-blur-2xl backdrop-saturate-[1.8]">
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
                           target={child.href.startsWith("http") ? "_blank" : undefined}
                           rel={child.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="group block rounded-[14px] px-4 py-3 transition-colors duration-150 hover:bg-gray-500/10"
+                          className="group block rounded-[14px] px-4 py-3 transition-colors duration-150 hover:bg-primary/[0.06]"
                         >
                           <span
                             className={cn(
@@ -132,7 +132,7 @@ export function Header() {
                   pathname.startsWith(item.href)
                     ? "text-gray-900"
                     : "text-gray-700",
-                  "hover:bg-gray-500/10 hover:text-gray-900"
+                  "hover:bg-primary/[0.07] hover:text-gray-900"
                 )}
               >
                 {item.label}
@@ -188,7 +188,7 @@ export function Header() {
                           onClick={() => setMobileOpen(false)}
                           target={child.href.startsWith("http") ? "_blank" : undefined}
                           rel={child.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="-mx-2 block rounded-[14px] px-2 py-2.5 transition-colors active:bg-gray-500/10"
+                          className="-mx-2 block rounded-[14px] px-2 py-2.5 transition-colors active:bg-primary/[0.06]"
                         >
                           <span
                             className={cn(
