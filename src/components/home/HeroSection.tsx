@@ -154,7 +154,7 @@ export function HeroSection({ banners }: HeroSectionProps) {
   /* Default slides carousel */
   if (banners.length === 0) {
     return (
-      <section className="mx-auto max-w-[1100px] px-5 pt-6 sm:pt-8">
+      <section className="mx-auto max-w-[1100px] px-5 pt-6 sm:pt-8 lg:max-w-[min(1100px,calc((100svh-340px)*1.7778))]">
         <div className="relative overflow-hidden rounded-2xl">
           <div ref={emblaRef} className="overflow-hidden">
             <div className="flex">
@@ -181,7 +181,7 @@ export function HeroSection({ banners }: HeroSectionProps) {
   if (banners.length === 1) {
     const banner = banners[0];
     return (
-      <section className="mx-auto max-w-[1100px] px-5 pt-6 sm:pt-8">
+      <section className="mx-auto max-w-[1100px] px-5 pt-6 sm:pt-8 lg:max-w-[min(1100px,calc((100svh-340px)*1.7778))]">
         <div className="relative overflow-hidden rounded-2xl">
           {banner.link_url ? (
             <Link href={banner.link_url}>
@@ -197,7 +197,7 @@ export function HeroSection({ banners }: HeroSectionProps) {
 
   /* Multiple DB banners */
   return (
-    <section className="mx-auto max-w-[1100px] px-5 pt-6 sm:pt-8">
+    <section className="mx-auto max-w-[1100px] px-5 pt-6 sm:pt-8 lg:max-w-[min(1100px,calc((100svh-340px)*1.7778))]">
       <div className="relative overflow-hidden rounded-2xl">
         <div ref={emblaRef} className="overflow-hidden">
           <div className="flex">

@@ -26,7 +26,7 @@
   --color-navy: oklch(18.6% 0.048 268.7);
 
   /* Semantic */
-  --color-background: oklch(98.6% 0.007 92);
+  --color-background: oklch(97.5% 0.016 92);
   --color-foreground: oklch(24% 0.012 84);
   --color-card: #ffffff;
   --color-muted: oklch(98% 0.005 84);
@@ -39,11 +39,11 @@
 @layer base {
   body {
     background-color: var(--color-background);
-    /* 샴페인 골드 앰비언트 — 빛이 내려앉는 듯한 따뜻한 톤, 에메랄드는 하단에 아주 옅게 */
+    /* 샴페인 골드 앰비언트 — 빛이 내려앉는 듯한 따뜻한 톤, 에메랄드는 하단에 옅게 */
     background-image:
-      radial-gradient(90rem 60rem at 85% -12%, oklch(85% 0.09 88 / 0.2), transparent 62%),
-      radial-gradient(75rem 50rem at -12% 25%, oklch(88% 0.06 95 / 0.14), transparent 60%),
-      radial-gradient(80rem 55rem at 50% 118%, oklch(76% 0.09 168 / 0.05), transparent 60%);
+      radial-gradient(90rem 60rem at 85% -12%, oklch(84% 0.1 88 / 0.45), transparent 65%),
+      radial-gradient(75rem 50rem at -12% 25%, oklch(86% 0.08 92 / 0.3), transparent 62%),
+      radial-gradient(80rem 55rem at 50% 118%, oklch(78% 0.09 168 / 0.14), transparent 60%);
     background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);

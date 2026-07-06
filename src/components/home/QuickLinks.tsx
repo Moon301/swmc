@@ -31,15 +31,15 @@ const links = [
 
 export function QuickLinks() {
   return (
-    <section className="py-10 sm:py-14">
-      <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-3 px-5 sm:gap-4 lg:grid-cols-4">
+    <section className="py-10 sm:py-14 lg:py-8">
+      <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-3 px-5 sm:gap-4 lg:grid-cols-4 lg:max-w-[min(1100px,calc((100svh-340px)*1.7778))]">
         {links.map((link) => (
           <Link
             key={link.href}
             href={link.href}
             target={link.external ? "_blank" : undefined}
             rel={link.external ? "noopener noreferrer" : undefined}
-            className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-900 bg-cover bg-center"
+            className="group relative aspect-[4/3] lg:aspect-auto lg:h-[160px] overflow-hidden rounded-xl bg-gray-900 bg-cover bg-center"
             style={{ backgroundImage: `url(${link.image})` }}
           >
             <div className="absolute inset-0 bg-black/45 transition-colors duration-300 group-hover:bg-black/30" />
