@@ -53,7 +53,7 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 bg-white/60 backdrop-blur-2xl backdrop-saturate-[1.8] transition-all duration-300",
+        "sticky top-0 z-40 bg-background/70 backdrop-blur-2xl backdrop-saturate-[1.8] transition-all duration-300",
         scrolled
           ? "border-b border-gray-200/60 shadow-[0_4px_20px_rgba(2,32,71,0.05)]"
           : "border-b border-transparent"
@@ -153,7 +153,7 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 top-16 z-50 bg-white lg:hidden sm:top-[68px]">
+        <div className="fixed inset-0 top-16 z-50 bg-background lg:hidden sm:top-[68px]">
           <nav className="h-full overflow-y-auto px-5 pb-12 pt-2">
             {NAV_ITEMS.map((item) =>
               hasChildren(item) ? (

@@ -3,17 +3,17 @@
 @theme inline {
   --font-sans: "Noto Sans KR", sans-serif;
 
-  /* Toss/Kakao-inspired neutral palette — OKLCH로 정의해 디스플레이 간 색 일관성 유지 */
-  --color-gray-50: oklch(98.5% 0.002 247.8);
-  --color-gray-100: oklch(96.6% 0.003 247.9);
-  --color-gray-200: oklch(93% 0.005 247.9);
-  --color-gray-300: oklch(87.4% 0.009 247.9);
-  --color-gray-400: oklch(77.9% 0.016 251.2);
-  --color-gray-500: oklch(66.6% 0.021 252.9);
-  --color-gray-600: oklch(56.2% 0.025 254.5);
-  --color-gray-700: oklch(46% 0.028 256.2);
-  --color-gray-800: oklch(35.7% 0.028 256.8);
-  --color-gray-900: oklch(23.7% 0.02 258.4);
+  /* 웜 그레이지 뉴트럴 — 샴페인·아이보리 무드, OKLCH로 디스플레이 간 색 일관성 유지 */
+  --color-gray-50: oklch(98% 0.005 84);
+  --color-gray-100: oklch(96.2% 0.006 84);
+  --color-gray-200: oklch(92.8% 0.008 84);
+  --color-gray-300: oklch(87.4% 0.008 84);
+  --color-gray-400: oklch(77.9% 0.01 84);
+  --color-gray-500: oklch(66.6% 0.012 84);
+  --color-gray-600: oklch(56.2% 0.014 84);
+  --color-gray-700: oklch(46% 0.014 84);
+  --color-gray-800: oklch(35.7% 0.014 84);
+  --color-gray-900: oklch(24% 0.012 84);
 
   /* Brand */
   --color-primary: oklch(45.9% 0.115 257.9);
@@ -26,12 +26,12 @@
   --color-navy: oklch(18.6% 0.048 268.7);
 
   /* Semantic */
-  --color-background: #ffffff;
-  --color-foreground: oklch(23.7% 0.02 258.4);
+  --color-background: oklch(98.6% 0.007 92);
+  --color-foreground: oklch(24% 0.012 84);
   --color-card: #ffffff;
-  --color-muted: oklch(98.5% 0.002 247.8);
-  --color-border: oklch(93% 0.005 247.9);
-  --color-muted-foreground: oklch(56.2% 0.025 254.5);
+  --color-muted: oklch(98% 0.005 84);
+  --color-border: oklch(92.8% 0.008 84);
+  --color-muted-foreground: oklch(56.2% 0.014 84);
   --color-secondary: oklch(45.9% 0.115 257.9);
   --color-secondary-hover: oklch(41.2% 0.11 257.1);
 }
@@ -39,11 +39,11 @@
 @layer base {
   body {
     background-color: var(--color-background);
-    /* 은은한 골드·에메랄드 앰비언트 — 채도와 투명도를 낮게 유지해 고급스러운 톤 */
+    /* 샴페인 골드 앰비언트 — 빛이 내려앉는 듯한 따뜻한 톤, 에메랄드는 하단에 아주 옅게 */
     background-image:
-      radial-gradient(90rem 60rem at 88% -12%, oklch(80.7% 0.109 82 / 0.12), transparent 62%),
-      radial-gradient(80rem 55rem at -15% 45%, oklch(76% 0.09 168 / 0.1), transparent 60%),
-      radial-gradient(70rem 50rem at 108% 108%, oklch(76% 0.09 168 / 0.08), transparent 60%);
+      radial-gradient(90rem 60rem at 85% -12%, oklch(85% 0.09 88 / 0.2), transparent 62%),
+      radial-gradient(75rem 50rem at -12% 25%, oklch(88% 0.06 95 / 0.14), transparent 60%),
+      radial-gradient(80rem 55rem at 50% 118%, oklch(76% 0.09 168 / 0.05), transparent 60%);
     background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
@@ -57,7 +57,7 @@
   }
 
   ::selection {
-    background-color: rgba(43, 87, 151, 0.12);
+    background-color: oklch(80.7% 0.109 82 / 0.25);
   }
 }
 
