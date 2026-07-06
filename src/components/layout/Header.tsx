@@ -72,7 +72,7 @@ export function Header() {
             className="h-6 w-6 object-contain sm:h-7 sm:w-7"
             priority
           />
-          <span className="text-[15px] font-semibold tracking-[-0.02em] text-gray-800 sm:text-[16px]">
+          <span className="text-[17px] font-bold tracking-[-0.01em] text-gray-900 sm:text-[18px]">
             {SITE_NAME}
           </span>
         </Link>
