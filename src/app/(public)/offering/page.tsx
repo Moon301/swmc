@@ -1,3 +1,12 @@
+import {
+  Heart,
+  Coins,
+  Gift,
+  Calendar,
+  Building2,
+  Globe,
+  Landmark,
+} from "lucide-react";
 import { generatePageMetadata } from "@/lib/seo";
 
 export const metadata = generatePageMetadata({
@@ -10,13 +19,15 @@ const DOMESTIC_ACCOUNTS = [
   {
     type: "선교헌금 계좌",
     accounts: [
-      "농협은행 355-0034-9990-13 (예금주: 성은세계선교교회)",
-      "KEB 하나은행 162-890030-81204 (예금주: 성은세계선교교회)",
+      { bank: "농협은행", number: "355-0034-9990-13", holder: "예금주: 성은세계선교교회" },
+      { bank: "KEB 하나은행", number: "162-890030-81204", holder: "예금주: 성은세계선교교회" },
     ],
   },
   {
     type: "일반헌금 계좌",
-    accounts: ["농협은행 355-0034-9992-93 (예금주: 성은세계선교교회)"],
+    accounts: [
+      { bank: "농협은행", number: "355-0034-9992-93", holder: "예금주: 성은세계선교교회" },
+    ],
   },
 ];
 
@@ -41,92 +52,104 @@ const FOREIGN_ACCOUNT = [
 const OFFERING_TYPES = [
   {
     name: "주일/감사헌금",
+    icon: Heart,
     description:
       "주일에 드리는 헌금과 내 삶속에서 인도하시는 하나님의 은혜와 기쁨에 감사를 표현하는 헌금",
   },
   {
     name: "십일조헌금",
+    icon: Coins,
     description:
       "모든 것이 하나님이 공급하시는 것을 인정하며 주님이 주시는 축복의 약속과 성경 계명에 있는 소득의 십분의 일을 드리는 헌금",
   },
   {
     name: "감사헌금",
+    icon: Gift,
     description: "하나님의 사랑과 돌보심에 대한 감사의 표시로 드리는 헌금",
   },
   {
     name: "절기헌금",
+    icon: Calendar,
     description: "각 절기나 특별 주일의 경우 드리는 절기 헌금(부활절헌금, 추수감사헌금, 성탄절헌금 등)",
   },
   {
     name: "건축헌금",
+    icon: Building2,
     description: "주님의 성전을 지을때나 선교지 성전건축을 지을때 내는 주님이 기뻐하시는 헌금",
   },
   {
     name: "선교헌금",
+    icon: Globe,
     description: "파송선교사 사역지원과 국내/국외 교회지원으로 사용되는 헌금",
   },
 ];
 
 export default function OfferingPage() {
   return (
-    <div>
-      <div className="border-b border-gray-200 bg-white">
-        <div className="mx-auto max-w-[1100px] px-5 py-12 sm:py-16">
-          <p className="text-[13px] font-medium text-primary">Offering</p>
-          <h1 className="mt-2 text-[36px] font-bold text-gray-900 sm:text-[44px]">온라인헌금</h1>
-          <p className="mt-3 text-[16px] text-gray-500">
-            감사와 사랑의 마음을 헌금으로 드립니다
-          </p>
+    <div className="bg-white">
+      {/* Hero — Toss product-page style */}
+      <section className="bg-gradient-to-b from-[#f7f9fb] to-white">
+        <div className="mx-auto max-w-[800px] px-5 pb-16 pt-20 text-center sm:pb-24 sm:pt-28">
+          <span className="inline-flex items-center rounded-full bg-[#e8f0fe] px-3.5 py-1.5 text-[13px] font-semibold text-[#2B5797]">
+            온라인헌금
+          </span>
+          <h1 className="mt-5 text-[36px] font-bold leading-[1.25] tracking-tight text-gray-900 sm:text-[52px]">
+            감사와 사랑의 마음을
+            <br />
+            헌금으로 드립니다
+          </h1>
         </div>
-      </div>
+      </section>
 
-      <div className="mx-auto max-w-[800px] px-5 py-12 sm:py-16">
-        {/* 온라인헌금 국내계좌 안내 */}
-        <section>
-          <h2 className="flex items-center gap-2.5 text-[22px] font-bold text-gray-900">
-            <span className="h-2.5 w-2.5 rounded-[3px] bg-[#2B5797]" />
-            온라인헌금 국내계좌 안내
-          </h2>
-          <div className="mt-6 space-y-3">
-            {DOMESTIC_ACCOUNTS.map((item) => (
-              <div
-                key={item.type}
-                className="flex flex-col overflow-hidden rounded-2xl bg-gray-50 sm:flex-row"
-              >
-                <div className="flex items-center justify-center bg-gray-100 px-6 py-4 sm:w-[200px] sm:shrink-0">
-                  <p className="text-[15px] font-bold text-gray-900">{item.type}</p>
-                </div>
-                <ul className="flex flex-1 flex-col justify-center gap-2 px-6 py-4">
-                  {item.accounts.map((account) => (
-                    <li key={account} className="flex items-start gap-2 text-[15px] font-medium text-gray-800">
-                      <span className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-[#2B5797]" />
-                      {account}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
+      {/* 온라인헌금 국내계좌 안내 */}
+      <section className="mx-auto max-w-[800px] px-5 py-14 sm:py-20">
+        <h2 className="text-center text-[24px] font-bold tracking-tight text-gray-900 sm:text-[30px]">
+          온라인헌금 국내계좌 안내
+        </h2>
+        <div className="mt-8 space-y-4 sm:mt-10">
+          {DOMESTIC_ACCOUNTS.map((item) => (
+            <div key={item.type} className="rounded-[24px] bg-[#f9fafb] p-7 sm:p-9">
+              <p className="text-[14px] font-semibold text-[#2B5797]">{item.type}</p>
+              <ul className="mt-4 space-y-5">
+                {item.accounts.map((account) => (
+                  <li key={account.number} className="flex items-start gap-4">
+                    <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white shadow-[0_1px_4px_rgba(2,32,71,0.06)]">
+                      <Landmark className="h-5 w-5 text-[#2B5797]" />
+                    </span>
+                    <div>
+                      <p className="text-[18px] font-bold leading-snug text-gray-900 sm:text-[20px]">
+                        {account.bank} {account.number}
+                      </p>
+                      <p className="mt-0.5 text-[14px] text-gray-500">({account.holder})</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
 
-        {/* 선교 외환계좌 안내 */}
-        <section className="mt-14">
-          <h2 className="flex items-center gap-2.5 text-[22px] font-bold text-gray-900">
-            <span className="h-2.5 w-2.5 rounded-[3px] bg-[#2B5797]" />
-            선교 외환계좌 안내
-          </h2>
-          <dl className="mt-6 space-y-6">
+      {/* 선교 외환계좌 안내 */}
+      <section className="mx-auto max-w-[800px] px-5 py-14 sm:py-20">
+        <h2 className="text-center text-[24px] font-bold tracking-tight text-gray-900 sm:text-[30px]">
+          선교 외환계좌 안내
+        </h2>
+        <div className="mt-8 overflow-hidden rounded-[24px] bg-[#f9fafb] sm:mt-10">
+          <dl className="divide-y divide-gray-200/70">
             {FOREIGN_ACCOUNT.map((row) => (
-              <div key={row.label}>
-                <dt className="flex items-start gap-2 text-[15px] font-semibold text-gray-900">
-                  <span className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-[#2B5797]" />
+              <div
+                key={row.label}
+                className="flex flex-col gap-1 px-7 py-5 sm:flex-row sm:items-center sm:gap-6 sm:px-9"
+              >
+                <dt className="text-[14px] font-medium text-gray-500 sm:w-[300px] sm:shrink-0">
                   {row.label}
                 </dt>
                 <dd
                   className={
                     row.highlight
-                      ? "mt-1 pl-3 text-[15px] font-medium text-[#2B5797]"
-                      : "mt-1 pl-3 text-[15px] text-gray-600"
+                      ? "text-[15px] font-bold text-[#2B5797]"
+                      : "text-[15px] font-semibold text-gray-900"
                   }
                 >
                   {row.value}
@@ -134,29 +157,31 @@ export default function OfferingPage() {
               </div>
             ))}
           </dl>
-        </section>
+        </div>
+      </section>
 
-        {/* 온라인헌금 안내 */}
-        <section className="mt-14">
-          <h2 className="flex items-center gap-2.5 text-[22px] font-bold text-gray-900">
-            <span className="h-2.5 w-2.5 rounded-[3px] bg-[#2B5797]" />
-            온라인헌금 안내
-          </h2>
-          <ul className="mt-6 space-y-6">
-            {OFFERING_TYPES.map((item) => (
-              <li key={item.name}>
-                <p className="flex items-start gap-2 text-[15px] font-semibold text-gray-900">
-                  <span className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-[#2B5797]" />
-                  {item.name}
-                </p>
-                <p className="mt-1 pl-3 text-[15px] leading-relaxed text-gray-600">
+      {/* 온라인헌금 안내 */}
+      <section className="mx-auto max-w-[800px] px-5 py-14 pb-24 sm:py-20 sm:pb-32">
+        <h2 className="text-center text-[24px] font-bold tracking-tight text-gray-900 sm:text-[30px]">
+          온라인헌금 안내
+        </h2>
+        <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2">
+          {OFFERING_TYPES.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div key={item.name} className="rounded-[24px] bg-[#f9fafb] p-7">
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-[0_1px_4px_rgba(2,32,71,0.06)]">
+                  <Icon className="h-[22px] w-[22px] text-[#2B5797]" />
+                </span>
+                <p className="mt-4 text-[17px] font-bold text-gray-900">{item.name}</p>
+                <p className="mt-1.5 text-[14px] leading-relaxed text-gray-500">
                   {item.description}
                 </p>
-              </li>
-            ))}
-          </ul>
-        </section>
-      </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
     </div>
   );
 }
