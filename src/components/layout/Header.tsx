@@ -66,12 +66,12 @@ export function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden h-full items-center gap-1 lg:flex">
           {NAV_ITEMS.map((item) =>
             hasChildren(item) ? (
               <div
                 key={item.label}
-                className="relative"
+                className="relative flex h-full items-center"
                 onMouseEnter={() => handleMouseEnter(item.label)}
                 onMouseLeave={handleMouseLeave}
               >
@@ -91,7 +91,7 @@ export function Header() {
                 {/* Mega menu — Toss-style card */}
                 {openDropdown === item.label && (
                   <div
-                    className="absolute left-0 top-full z-50 pt-2"
+                    className="absolute left-0 top-full z-50"
                     onMouseEnter={() => handleMouseEnter(item.label)}
                     onMouseLeave={handleMouseLeave}
                   >
