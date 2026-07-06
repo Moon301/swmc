@@ -1,46 +1,65 @@
 import type { Metadata } from "next";
+import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
+import { SupabaseProvider } from "@/components/providers/SupabaseProvider";
+import { AuthProvider } from "@/components/providers/AuthProvider";
+import { ToastProvider } from "@/components/providers/ToastProvider";
+import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
 
+const notoSansKR = Noto_Sans_KR({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
-  title: "성령 대부흥 성회",
-  description: "회개운동・성령운동・신부단장 마지막 때를 향한 하나님의 말씀",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  keywords: [
+    "성은세계선교교회",
+    "전주교회",
+    "장로교회",
+    "대한예수교장로회",
+    "전주시교회",
+    "완산구교회",
+  ],
   openGraph: {
-    title: "성령 대부흥 성회에 여러분을 초청합니다.",
-    description: "회개운동・성령운동・신부단장 마지막 때를 향한 하나님의 말씀",
-    url: "https://swmc.vercel.app",
-    siteName: "성령대부흥성회",
-    images: [
-      {
-        url: "https://swmc.vercel.app/images/web_main.png",
-        width: 1200,
-        height: 630,
-        alt: "성령대부흥성회",
-      },
-    ],
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    locale: "ko_KR",
     type: "website",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={notoSansKR.variable}>
       <head>
         <Script
           src={`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_API_KEY}&autoload=false`}
           strategy="beforeInteractive"
         />
       </head>
-      <body
-        className={`antialiased`}
-      >
-        {children}
+      <body className="font-sans antialiased">
+        <SupabaseProvider>
+          <AuthProvider>
+            {children}
+            <ToastProvider />
+          </AuthProvider>
+        </SupabaseProvider>
         <Analytics />
       </body>
     </html>
