@@ -53,10 +53,10 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 transition-all duration-300",
+        "sticky top-0 z-40 bg-white/60 backdrop-blur-2xl backdrop-saturate-[1.8] transition-all duration-300",
         scrolled
-          ? "bg-white/70 backdrop-blur-xl backdrop-saturate-150 shadow-[0_1px_0_rgba(0,0,0,0.05)]"
-          : "bg-white"
+          ? "border-b border-gray-200/60 shadow-[0_4px_20px_rgba(2,32,71,0.05)]"
+          : "border-b border-transparent"
       )}
     >
       <div className="mx-auto flex h-16 max-w-[1100px] items-center justify-between px-5 sm:h-[68px]">
@@ -82,7 +82,7 @@ export function Header() {
                     pathname.startsWith(item.href)
                       ? "text-gray-900"
                       : "text-gray-700",
-                    "hover:bg-[#f2f4f6] hover:text-gray-900"
+                    "hover:bg-gray-500/10 hover:text-gray-900"
                   )}
                 >
                   {item.label}
@@ -95,12 +95,12 @@ export function Header() {
                     onMouseEnter={() => handleMouseEnter(item.label)}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <div className="animate-dropdown-in w-[300px] rounded-[20px] bg-white p-2 shadow-[0_0_1px_rgba(2,32,71,0.08),0_12px_40px_rgba(2,32,71,0.12)]">
+                    <div className="animate-dropdown-in w-[300px] rounded-[20px] border border-white/60 bg-white/80 p-2 shadow-[0_0_1px_rgba(2,32,71,0.08),0_12px_40px_rgba(2,32,71,0.12)] backdrop-blur-2xl backdrop-saturate-[1.8]">
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
-                          className="group block rounded-[14px] px-4 py-3 transition-colors duration-150 hover:bg-[#f2f4f6]"
+                          className="group block rounded-[14px] px-4 py-3 transition-colors duration-150 hover:bg-gray-500/10"
                         >
                           <span
                             className={cn(
@@ -130,7 +130,7 @@ export function Header() {
                   pathname.startsWith(item.href)
                     ? "text-gray-900"
                     : "text-gray-700",
-                  "hover:bg-[#f2f4f6] hover:text-gray-900"
+                  "hover:bg-gray-500/10 hover:text-gray-900"
                 )}
               >
                 {item.label}
@@ -184,7 +184,7 @@ export function Header() {
                           key={child.href}
                           href={child.href}
                           onClick={() => setMobileOpen(false)}
-                          className="-mx-2 block rounded-[14px] px-2 py-2.5 transition-colors active:bg-[#f2f4f6]"
+                          className="-mx-2 block rounded-[14px] px-2 py-2.5 transition-colors active:bg-gray-500/10"
                         >
                           <span
                             className={cn(
