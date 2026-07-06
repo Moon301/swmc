@@ -27,15 +27,15 @@ function DefaultSlide1() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-black/65" />
       <div className="absolute inset-0 z-10 flex items-center justify-center px-6 text-center text-white sm:px-12">
         <div>
-          <p className="text-[12px] font-medium tracking-[0.2em] text-accent sm:text-[14px]">
+          <p className="text-[clamp(10px,1.4cqw,14px)] font-medium tracking-[0.2em] text-accent">
             2026
           </p>
-          <h2 className="mt-3 text-[26px] font-bold leading-[1.2] drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)] sm:mt-5 sm:text-[44px] lg:text-[56px]">
+          <h2 className="mt-3 text-[clamp(20px,4.6cqw,52px)] font-bold leading-[1.2] drop-shadow-[0_2px_12px_rgba(0,0,0,0.4)] sm:mt-5">
             하나님의 복을 받아
             <br />
             모두 복의 근원
           </h2>
-          <p className="mt-4 text-[14px] text-white/80 sm:mt-6 sm:text-[18px]">
+          <p className="mt-4 text-[clamp(12px,1.7cqw,18px)] text-white/80 sm:mt-6">
             익은 열매는 절대배가
           </p>
         </div>
@@ -56,21 +56,21 @@ function DefaultSlide2() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/20" />
       <div className="absolute inset-0 z-10 flex items-center px-6 sm:px-14 lg:px-20">
         <div className="max-w-[640px]">
-          <p className="text-[12px] font-medium tracking-[0.15em] text-accent sm:text-[14px]">
+          <p className="text-[clamp(10px,1.4cqw,14px)] font-medium tracking-[0.15em] text-accent">
             BOOK
           </p>
-          <p className="mt-3 text-[13px] text-white/80 sm:text-[15px]">
+          <p className="mt-3 text-[clamp(11px,1.4cqw,15px)] text-white/80">
             나현숙 담임목사님 저서
           </p>
-          <h2 className="mt-2 text-[28px] font-bold leading-[1.15] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] sm:mt-3 sm:text-[44px] lg:text-[56px]">
+          <h2 className="mt-2 text-[clamp(20px,4.6cqw,52px)] font-bold leading-[1.15] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] sm:mt-3">
             아름다운 영의 나라
           </h2>
-          <p className="mt-4 hidden text-[15px] leading-relaxed text-white/75 sm:block sm:text-[17px]">
+          <p className="mt-4 hidden text-[clamp(12px,1.6cqw,17px)] leading-relaxed text-white/75 sm:block">
             하나님의 나라를 향한 깊은 묵상과 은혜의 이야기
           </p>
           <Link
             href="/pastor"
-            className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/60 px-5 py-2 text-[13px] font-medium text-white transition-colors hover:border-white hover:bg-white/10 sm:mt-7 sm:px-6 sm:py-3 sm:text-[14px]"
+            className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/60 px-5 py-2 text-[clamp(11px,1.3cqw,14px)] font-medium text-white transition-colors hover:border-white hover:bg-white/10 sm:mt-7"
           >
             자세히 보기
             <span aria-hidden>→</span>
@@ -93,26 +93,26 @@ function DefaultSlide3() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
       <div className="absolute inset-0 z-10 flex items-center px-6 sm:px-14 lg:px-20">
         <div className="max-w-[680px]">
-          <p className="text-[12px] font-medium tracking-[0.15em] text-accent sm:text-[14px]">
+          <p className="text-[clamp(10px,1.4cqw,14px)] font-medium tracking-[0.15em] text-accent">
             BRANCH
           </p>
-          <h2 className="mt-3 text-[28px] font-bold leading-[1.15] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] sm:mt-4 sm:text-[44px] lg:text-[56px]">
+          <h2 className="mt-3 text-[clamp(20px,4.6cqw,52px)] font-bold leading-[1.15] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] sm:mt-4">
             서울 지성전 안내
           </h2>
           <div className="mt-6 grid grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-8">
             <div>
-              <p className="text-[15px] font-semibold text-white sm:text-[17px]">
+              <p className="text-[clamp(12px,1.6cqw,17px)] font-semibold text-white">
                 영등포 지성전
               </p>
-              <p className="mt-1 text-[13px] text-white/70 sm:text-[14px]">
+              <p className="mt-1 text-[clamp(11px,1.3cqw,14px)] text-white/70">
                 서울 영등포구 당산로 123
               </p>
             </div>
             <div>
-              <p className="text-[15px] font-semibold text-white sm:text-[17px]">
+              <p className="text-[clamp(12px,1.6cqw,17px)] font-semibold text-white">
                 서초 지성전
               </p>
-              <p className="mt-1 text-[13px] text-white/70 sm:text-[14px]">
+              <p className="mt-1 text-[clamp(11px,1.3cqw,14px)] text-white/70">
                 서울 서초구 서초대로 456
               </p>
             </div>
@@ -155,7 +155,7 @@ export function HeroSection({ banners }: HeroSectionProps) {
   if (banners.length === 0) {
     return (
       <section className="mx-auto max-w-[1100px] px-5 pt-6 sm:pt-8 lg:max-w-[min(1100px,calc((100svh-340px)*1.7778))]">
-        <div className="relative overflow-hidden rounded-2xl">
+        <div className="@container relative overflow-hidden rounded-2xl">
           <div ref={emblaRef} className="overflow-hidden">
             <div className="flex">
               {DEFAULT_SLIDES.map((Slide, i) => (
@@ -182,7 +182,7 @@ export function HeroSection({ banners }: HeroSectionProps) {
     const banner = banners[0];
     return (
       <section className="mx-auto max-w-[1100px] px-5 pt-6 sm:pt-8 lg:max-w-[min(1100px,calc((100svh-340px)*1.7778))]">
-        <div className="relative overflow-hidden rounded-2xl">
+        <div className="@container relative overflow-hidden rounded-2xl">
           {banner.link_url ? (
             <Link href={banner.link_url}>
               <BannerImage banner={banner} />
@@ -198,7 +198,7 @@ export function HeroSection({ banners }: HeroSectionProps) {
   /* Multiple DB banners */
   return (
     <section className="mx-auto max-w-[1100px] px-5 pt-6 sm:pt-8 lg:max-w-[min(1100px,calc((100svh-340px)*1.7778))]">
-      <div className="relative overflow-hidden rounded-2xl">
+      <div className="@container relative overflow-hidden rounded-2xl">
         <div ref={emblaRef} className="overflow-hidden">
           <div className="flex">
             {banners.map((banner) => (

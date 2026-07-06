@@ -39,12 +39,12 @@ export function QuickLinks() {
             href={link.href}
             target={link.external ? "_blank" : undefined}
             rel={link.external ? "noopener noreferrer" : undefined}
-            className="group relative aspect-[4/3] lg:aspect-auto lg:h-[160px] overflow-hidden rounded-xl bg-gray-900 bg-cover bg-center"
+            className="@container group relative aspect-[4/3] lg:aspect-auto lg:h-[160px] overflow-hidden rounded-xl bg-gray-900 bg-cover bg-center"
             style={{ backgroundImage: `url(${link.image})` }}
           >
             <div className="absolute inset-0 bg-black/45 transition-colors duration-300 group-hover:bg-black/30" />
             <div className="relative z-10 flex h-full items-center justify-center">
-              <p className="text-[22px] font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] sm:text-[26px] lg:text-[28px]">
+              <p className="text-[clamp(16px,11cqw,26px)] font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
                 {link.label}
               </p>
             </div>
