@@ -28,7 +28,7 @@ export default async function DepartmentsPage() {
 
   return (
     <div>
-      <div className="border-b border-gray-200 bg-white">
+      <div className="border-b border-gray-200/70">
         <div className="mx-auto max-w-[1100px] px-5 py-12 sm:py-16">
           <p className="text-[13px] font-medium text-primary">Departments</p>
           <h1 className="mt-2 text-[36px] font-bold text-gray-900 sm:text-[44px]">부서소개</h1>

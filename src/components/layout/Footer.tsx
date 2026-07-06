@@ -11,7 +11,7 @@ const QUICK_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="bg-white">
+    <footer className="border-t border-gray-200/60">
       <div className="mx-auto max-w-[1100px] px-5 py-16 sm:py-20">
         {/* Identity */}
         <p className="text-[20px] font-bold tracking-tight text-gray-900 sm:text-[22px]">

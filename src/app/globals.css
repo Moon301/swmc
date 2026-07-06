@@ -22,6 +22,7 @@
   --color-accent: oklch(70.3% 0.119 81);
   --color-accent-hover: oklch(66% 0.118 79.9);
   --color-accent-light: oklch(80.7% 0.109 82);
+  --color-emerald: oklch(76% 0.09 168);
   --color-navy: oklch(18.6% 0.048 268.7);
 
   /* Semantic */
@@ -38,6 +39,12 @@
 @layer base {
   body {
     background-color: var(--color-background);
+    /* 은은한 골드·에메랄드 앰비언트 — 채도와 투명도를 낮게 유지해 고급스러운 톤 */
+    background-image:
+      radial-gradient(90rem 60rem at 88% -12%, oklch(80.7% 0.109 82 / 0.12), transparent 62%),
+      radial-gradient(80rem 55rem at -15% 45%, oklch(76% 0.09 168 / 0.1), transparent 60%),
+      radial-gradient(70rem 50rem at 108% 108%, oklch(76% 0.09 168 / 0.08), transparent 60%);
+    background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;

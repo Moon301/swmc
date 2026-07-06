@@ -40,7 +40,7 @@ export default async function MissionariesPage() {
     .single();
 
   return (
-    <div className="bg-white">
+    <div>
       <MissionHero />
 
       {/* Vision cards */}

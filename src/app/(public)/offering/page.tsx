@@ -86,9 +86,9 @@ const OFFERING_TYPES = [
 
 export default function OfferingPage() {
   return (
-    <div className="bg-white">
+    <div>
       {/* Hero — Toss product-page style */}
-      <section className="bg-gradient-to-b from-[#f7f9fb] to-white">
+      <section>
         <div className="mx-auto max-w-[800px] px-5 pb-16 pt-20 text-center sm:pb-24 sm:pt-28">
           <span className="inline-flex items-center rounded-full bg-primary-light px-3.5 py-1.5 text-[13px] font-semibold text-secondary">
             온라인헌금
