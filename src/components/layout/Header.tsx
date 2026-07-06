@@ -95,14 +95,14 @@ export function Header() {
                     onMouseEnter={() => handleMouseEnter(item.label)}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <div className="animate-dropdown-in w-[280px] rounded-b-[20px] bg-white p-2 shadow-[0_0_1px_rgba(2,32,71,0.16),0_12px_40px_rgba(2,32,71,0.14)]">
+                    <div className="animate-dropdown-in w-[280px] rounded-b-[20px] bg-background/80 p-2 shadow-[0_0_1px_rgba(2,32,71,0.16),0_12px_40px_rgba(2,32,71,0.12)] backdrop-blur-2xl backdrop-saturate-[1.8]">
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
                           target={child.href.startsWith("http") ? "_blank" : undefined}
                           rel={child.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="group block rounded-[14px] px-4 py-3 transition-colors duration-150 hover:bg-gray-100"
+                          className="group block rounded-[14px] px-4 py-3 transition-colors duration-150 hover:bg-gray-500/10"
                         >
                           <span
                             className={cn(

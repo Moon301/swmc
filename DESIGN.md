@@ -81,8 +81,8 @@
 
 ## 헤더 / 메가 메뉴
 
-- 헤더: 글래스모피즘 — `bg-white/60 backdrop-blur-2xl backdrop-saturate-[1.8]`, 스크롤 시 `border-b + shadow`
-- 글래스는 **네비 바에만**. 드롭다운 카드는 **불투명 흰색** (토스 방식 — 가독성)
+- 헤더: 글래스모피즘 — `bg-background/70 backdrop-blur-2xl backdrop-saturate-[1.8]`, 스크롤 시 `border-b + shadow`
+- 드롭다운 카드는 헤더와 **같은 유리 재질**(`bg-background/80` + 같은 blur/saturate)로 통일 — 재질이 다르면 따로 논다. 불투명도 80% 이상 유지해 가독성 확보
 - 드롭다운은 헤더 하단선에서 시작 (아이템 래퍼 `h-full` + `top-full`), 항목은 제목+설명 2줄 구조
 - 메뉴 데이터는 `src/lib/constants.ts`의 `NAV_ITEMS` (label/href/description)
 
@@ -109,5 +109,5 @@
 - 컴포넌트에 hex 하드코딩 (`text-[#2B5797]` ❌ → `text-secondary` ✅)
 - 페이지 루트 `bg-white` (앰비언트 그라데이션 차단)
 - 검정 그림자 (`rgba(0,0,0,…)` 대신 네이비 계열)
-- 드롭다운에 반투명/블러 (가독성 저하)
+- 드롭다운 불투명도를 80% 미만으로 낮추는 것 (가독성 저하)
 - 새 라이브러리 추가 전 기존 스택 확인: framer-motion, lucide-react, dotted-map, embla-carousel
