@@ -63,16 +63,16 @@ export function Header() {
     >
       <div className="mx-auto flex h-16 max-w-[1100px] items-center justify-between px-5 sm:h-[68px]">
         {/* Logo + wordmark */}
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href="/" className="flex items-center gap-2">
           <Image
             src="/images/logo.png"
             alt={`${SITE_NAME} 로고`}
-            width={40}
-            height={40}
-            className="h-9 w-9 object-contain sm:h-10 sm:w-10"
+            width={28}
+            height={28}
+            className="h-6 w-6 object-contain sm:h-7 sm:w-7"
             priority
           />
-          <span className="text-[17px] font-bold tracking-tight text-gray-900 sm:text-[18px]">
+          <span className="text-[15px] font-semibold tracking-[-0.02em] text-gray-800 sm:text-[16px]">
             {SITE_NAME}
           </span>
         </Link>
