@@ -82,3 +82,13 @@
 .animate-fade-up {
   animation: fadeUp 0.6s ease-out both;
 }
+
+/* Mega menu — subtle rise + fade, Toss-style */
+@keyframes dropdownIn {
+  from { opacity: 0; transform: translateY(6px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-dropdown-in {
+  animation: dropdownIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: top center;
+}

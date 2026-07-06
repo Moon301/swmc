@@ -46,7 +46,7 @@ export function Header() {
     timeoutRef.current = setTimeout(() => setOpenDropdown(null), 150);
   };
 
-  const hasChildren = (item: NavItem): item is NavItem & { children: readonly { label: string; href: string }[] } => {
+  const hasChildren = (item: NavItem): item is NavItem & { children: readonly { label: string; href: string; description: string }[] } => {
     return "children" in item && !!item.children;
   };
 
@@ -66,7 +66,7 @@ export function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden items-center gap-9 lg:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {NAV_ITEMS.map((item) =>
             hasChildren(item) ? (
               <div
@@ -78,35 +78,43 @@ export function Header() {
                 <Link
                   href={item.href}
                   className={cn(
-                    "py-6 text-[15px] font-medium transition-colors",
+                    "block rounded-[10px] px-3.5 py-2 text-[15px] font-semibold transition-colors duration-150",
                     pathname.startsWith(item.href)
                       ? "text-gray-900"
-                      : "text-gray-600 hover:text-gray-900"
+                      : "text-gray-700",
+                    "hover:bg-[#f2f4f6] hover:text-gray-900"
                   )}
                 >
                   {item.label}
                 </Link>
 
-                {/* Dropdown — light, minimal */}
+                {/* Mega menu — Toss-style card */}
                 {openDropdown === item.label && (
                   <div
-                    className="absolute left-1/2 top-full -translate-x-1/2"
+                    className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2"
                     onMouseEnter={() => handleMouseEnter(item.label)}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <div className="mt-1 min-w-[160px] overflow-hidden rounded-2xl bg-white py-2 shadow-[0_8px_24px_rgba(0,0,0,0.08)] ring-1 ring-gray-100">
+                    <div className="animate-dropdown-in w-[300px] rounded-[20px] bg-white p-2 shadow-[0_0_1px_rgba(2,32,71,0.08),0_12px_40px_rgba(2,32,71,0.12)]">
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
-                          className={cn(
-                            "block px-5 py-2.5 text-[14px] transition-colors",
-                            pathname === child.href
-                              ? "font-medium text-gray-900"
-                              : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
-                          )}
+                          className="group block rounded-[14px] px-4 py-3 transition-colors duration-150 hover:bg-[#f2f4f6]"
                         >
-                          {child.label}
+                          <span
+                            className={cn(
+                              "block text-[15px] font-semibold leading-snug",
+                              pathname === child.href
+                                ? "text-[#2B5797]"
+                                : "text-gray-900"
+                            )}
+                          >
+                            {child.label}
+                          </span>
+                          <span className="mt-0.5 block text-[13px] leading-snug text-gray-500">
+                            {child.description}
+                          </span>
                         </Link>
                       ))}
                     </div>
@@ -118,10 +126,11 @@ export function Header() {
                 key={item.label}
                 href={item.href}
                 className={cn(
-                  "py-6 text-[15px] font-medium transition-colors",
+                  "block rounded-[10px] px-3.5 py-2 text-[15px] font-semibold transition-colors duration-150",
                   pathname.startsWith(item.href)
                     ? "text-gray-900"
-                    : "text-gray-600 hover:text-gray-900"
+                    : "text-gray-700",
+                  "hover:bg-[#f2f4f6] hover:text-gray-900"
                 )}
               >
                 {item.label}
@@ -169,20 +178,27 @@ export function Header() {
                     />
                   </button>
                   {mobileExpanded === item.label && (
-                    <div className="pb-4">
+                    <div className="pb-3">
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
                           onClick={() => setMobileOpen(false)}
-                          className={cn(
-                            "block py-3 text-[15px] transition-colors",
-                            pathname === child.href
-                              ? "font-medium text-gray-900"
-                              : "text-gray-500"
-                          )}
+                          className="-mx-2 block rounded-[14px] px-2 py-2.5 transition-colors active:bg-[#f2f4f6]"
                         >
-                          {child.label}
+                          <span
+                            className={cn(
+                              "block text-[15px] leading-snug",
+                              pathname === child.href
+                                ? "font-semibold text-[#2B5797]"
+                                : "font-medium text-gray-800"
+                            )}
+                          >
+                            {child.label}
+                          </span>
+                          <span className="mt-0.5 block text-[13px] leading-snug text-gray-400">
+                            {child.description}
+                          </span>
                         </Link>
                       ))}
                     </div>
