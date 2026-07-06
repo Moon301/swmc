@@ -82,7 +82,7 @@
 ## 헤더 / 메가 메뉴
 
 - 헤더: 글래스모피즘 — `bg-background/70 backdrop-blur-2xl backdrop-saturate-[1.8]`, 스크롤 시 `border-b + shadow`
-- 드롭다운 카드는 헤더와 **같은 유리 재질**(`bg-background/80` + 같은 blur/saturate)로 통일 — 재질이 다르면 따로 논다. 불투명도 80% 이상 유지해 가독성 확보
+- 드롭다운 카드는 **불투명 `bg-background`** + 블루 헤어라인 링(`ring-primary/10`) + 블루 계열 그림자. 반투명으로 하면 페이지마다(어두운 배너 위 vs 밝은 본문 위) 카드 색이 달라져 일관성이 깨진다 — 헤더와의 통일감은 같은 배경 색조와 블루 액센트로 만든다
 - 드롭다운은 헤더 하단선에서 시작 (아이템 래퍼 `h-full` + `top-full`), 항목은 제목+설명 2줄 구조
 - 메뉴 데이터는 `src/lib/constants.ts`의 `NAV_ITEMS` (label/href/description)
 

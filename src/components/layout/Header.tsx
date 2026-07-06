@@ -95,7 +95,7 @@ export function Header() {
                     onMouseEnter={() => handleMouseEnter(item.label)}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <div className="animate-dropdown-in w-[280px] rounded-b-[20px] bg-background/80 p-2 ring-1 ring-primary/10 shadow-[0_0_1px_rgba(43,87,151,0.2),0_12px_40px_rgba(43,87,151,0.14)] backdrop-blur-2xl backdrop-saturate-[1.8]">
+                    <div className="animate-dropdown-in w-[280px] rounded-b-[20px] bg-background p-2 ring-1 ring-primary/10 shadow-[0_0_1px_rgba(43,87,151,0.2),0_12px_40px_rgba(43,87,151,0.14)]">
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
