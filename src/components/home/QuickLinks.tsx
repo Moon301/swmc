@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { CHURCH_INFO } from "@/lib/constants";
 
 const links = [
   {
     label: "주일말씀",
-    href: "/sermons",
+    href: CHURCH_INFO.youtube,
+    external: true,
     image:
       "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=800&q=80&auto=format&fit=crop",
   },
@@ -35,6 +37,8 @@ export function QuickLinks() {
           <Link
             key={link.href}
             href={link.href}
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener noreferrer" : undefined}
             className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-900 bg-cover bg-center"
             style={{ backgroundImage: `url(${link.image})` }}
           >

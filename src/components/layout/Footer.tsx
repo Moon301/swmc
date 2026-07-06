@@ -4,7 +4,7 @@ import { SITE_NAME, CHURCH_INFO } from "@/lib/constants";
 const QUICK_LINKS = [
   { label: "교회소개", href: "/about" },
   { label: "예배안내", href: "/worship" },
-  { label: "설교영상", href: "/sermons" },
+  { label: "설교영상", href: CHURCH_INFO.youtube },
   { label: "성회안내", href: "/revival-info" },
   { label: "오시는길", href: "/directions" },
 ];

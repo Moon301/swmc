@@ -91,16 +91,18 @@ export function Header() {
                 {/* Mega menu — Toss-style card */}
                 {openDropdown === item.label && (
                   <div
-                    className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2"
+                    className="absolute left-0 top-full z-50 pt-2"
                     onMouseEnter={() => handleMouseEnter(item.label)}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <div className="animate-dropdown-in w-[300px] rounded-[20px] border border-white/60 bg-white/80 p-2 shadow-[0_0_1px_rgba(2,32,71,0.08),0_12px_40px_rgba(2,32,71,0.12)] backdrop-blur-2xl backdrop-saturate-[1.8]">
+                    <div className="animate-dropdown-in w-[280px] rounded-[20px] bg-white p-2 shadow-[0_0_1px_rgba(2,32,71,0.16),0_12px_40px_rgba(2,32,71,0.14)]">
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
-                          className="group block rounded-[14px] px-4 py-3 transition-colors duration-150 hover:bg-gray-500/10"
+                          target={child.href.startsWith("http") ? "_blank" : undefined}
+                          rel={child.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="group block rounded-[14px] px-4 py-3 transition-colors duration-150 hover:bg-[#f2f4f6]"
                         >
                           <span
                             className={cn(
@@ -184,6 +186,8 @@ export function Header() {
                           key={child.href}
                           href={child.href}
                           onClick={() => setMobileOpen(false)}
+                          target={child.href.startsWith("http") ? "_blank" : undefined}
+                          rel={child.href.startsWith("http") ? "noopener noreferrer" : undefined}
                           className="-mx-2 block rounded-[14px] px-2 py-2.5 transition-colors active:bg-gray-500/10"
                         >
                           <span

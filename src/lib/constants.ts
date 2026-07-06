@@ -17,10 +17,10 @@ export const NAV_ITEMS = [
   },
   {
     label: "교회사역",
-    href: "/sermons",
+    href: "/bulletin",
     children: [
       { label: "금주단상", href: "/bulletin", description: "금주의 말씀과 주보" },
-      { label: "설교말씀", href: "/sermons", description: "설교 영상과 말씀" },
+      { label: "설교말씀", href: "https://www.youtube.com/@HyunSookNa", description: "설교 영상과 말씀" },
       { label: "갤러리", href: "/gallery", description: "교회 활동 사진" },
     ],
   },
