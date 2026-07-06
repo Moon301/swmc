@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SITE_NAME, CHURCH_INFO } from "@/lib/constants";
 
 const QUICK_LINKS = [
@@ -14,9 +15,18 @@ export function Footer() {
     <footer className="border-t border-gray-200/60">
       <div className="mx-auto max-w-[1100px] px-5 py-16 sm:py-20">
         {/* Identity */}
-        <p className="text-[20px] font-bold tracking-tight text-gray-900 sm:text-[22px]">
-          {SITE_NAME}
-        </p>
+        <div className="flex items-center gap-3">
+          <Image
+            src="/images/logo.png"
+            alt={`${SITE_NAME} 로고`}
+            width={44}
+            height={44}
+            className="h-11 w-11 object-contain"
+          />
+          <p className="text-[20px] font-bold tracking-tight text-gray-900 sm:text-[22px]">
+            {SITE_NAME}
+          </p>
+        </div>
 
         {/* Quick links row */}
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">

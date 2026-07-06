@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -61,9 +62,19 @@ export function Header() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-[1100px] items-center justify-between px-5 sm:h-[68px]">
-        {/* Wordmark logo */}
-        <Link href="/" className="text-[17px] font-bold tracking-tight text-gray-900 sm:text-[18px]">
-          {SITE_NAME}
+        {/* Logo + wordmark */}
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image
+            src="/images/logo.png"
+            alt={`${SITE_NAME} 로고`}
+            width={40}
+            height={40}
+            className="h-9 w-9 object-contain sm:h-10 sm:w-10"
+            priority
+          />
+          <span className="text-[17px] font-bold tracking-tight text-gray-900 sm:text-[18px]">
+            {SITE_NAME}
+          </span>
         </Link>
 
         {/* Desktop Nav */}
