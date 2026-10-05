@@ -175,6 +175,22 @@ export default function BridePage() {
             성회 일정 보기
           </Link>
         </div>
+
+        {/* 신부단장 말씀 영상 — 제14차 성령대부흥성회 중 1:08:40(4120초) 지점부터 재생 (사용자 지정) */}
+        <section className="mt-14 sm:mt-20">
+          <h2 className="text-[24px] font-bold text-gray-900 sm:text-[28px]">신부단장 말씀 영상</h2>
+          <p className="mt-2 text-[15px] text-gray-500">제14차 성령대부흥성회, 신부단장 말씀 부분부터 이어서 재생됩니다.</p>
+          <div className="mt-6 aspect-video overflow-hidden rounded-[24px] bg-gray-900 shadow-feature">
+            <iframe
+              src="https://www.youtube.com/embed/Pv4qSSNpUL4?start=4120&list=PLQL8jJfV5wb0M0-wk1NskGEQ2PrnC4AiX"
+              title="제14차 성령대부흥성회 신부단장 말씀 (1:08:40부터)"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+              className="h-full w-full"
+            />
+          </div>
+        </section>
       </div>
     </div>
   );
