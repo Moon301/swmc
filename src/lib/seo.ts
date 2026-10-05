@@ -18,7 +18,9 @@ export function generatePageMetadata({
   const url = `${SITE_URL}${path}`;
 
   return {
-    title: fullTitle,
+    /* <title>은 루트 레이아웃의 템플릿("%s | 교회명")이 교회명을 붙이므로 페이지 제목만 넘긴다.
+       (두 곳에서 붙여 "오시는길 | 교회명 | 교회명"으로 중복되던 버그 수정) */
+    title: title ?? { absolute: SITE_NAME },
     description,
     openGraph: {
       title: fullTitle,
