@@ -5,6 +5,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { BRANCHES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import type { Banner } from "@/types";
 
@@ -109,22 +110,13 @@ function DefaultSlide3() {
             서울 지성전 안내
           </h2>
           <div className="mt-4 grid grid-cols-1 gap-3 sm:mt-8 sm:grid-cols-2 sm:gap-8">
-            <div>
-              <p className="text-[clamp(16px,2cqw,22px)] font-semibold text-white">
-                영등포 지성전
-              </p>
-              <p className="mt-1 text-[clamp(14px,1.6cqw,18px)] text-white/70">
-                서울 영등포구 당산로 123
-              </p>
-            </div>
-            <div>
-              <p className="text-[clamp(16px,2cqw,22px)] font-semibold text-white">
-                서초 지성전
-              </p>
-              <p className="mt-1 text-[clamp(14px,1.6cqw,18px)] text-white/70">
-                서울 서초구 서초대로 456
-              </p>
-            </div>
+            {BRANCHES.map((b) => (
+              <div key={b.name}>
+                <p className="text-[clamp(16px,2cqw,22px)] font-semibold text-white">{b.short}</p>
+                <p className="mt-1 text-[clamp(14px,1.6cqw,18px)] text-white/80">{b.address}</p>
+                <p className="mt-0.5 text-[clamp(13px,1.4cqw,16px)] text-white/60">{b.subway}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

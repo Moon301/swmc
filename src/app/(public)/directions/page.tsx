@@ -3,7 +3,8 @@
 import { Copy } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { toast } from "sonner";
-import { CHURCH_INFO } from "@/lib/constants";
+import { CHURCH_INFO, BRANCHES } from "@/lib/constants";
+import { GlassTable } from "@/components/ui/GlassTable";
 import { KakaoMap } from "@/components/ui/KakaoMap";
 
 export default function DirectionsPage() {
@@ -70,6 +71,38 @@ export default function DirectionsPage() {
             </div>
           ))}
         </div>
+
+        {/* 서울 지성전 — 원본 사이트 '수도권' 안내 */}
+        <h2 className="mt-16 text-[22px] font-bold text-gray-900">서울 지성전</h2>
+        <GlassTable className="mt-9 sm:mt-10">
+          {BRANCHES.map((b) => (
+            <div key={b.name} className="grid gap-4 px-6 py-6 sm:grid-cols-[170px_1fr] sm:gap-8 sm:px-7">
+              <div>
+                <p className="text-[17px] font-bold text-gray-900">{b.name}</p>
+                <a
+                  href={`https://map.kakao.com/link/search/${encodeURIComponent(b.address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-block rounded-full bg-[#FFCD00] px-4 py-1.5 text-[13px] font-medium text-black transition-colors hover:bg-[#f3ba00]"
+                >
+                  카카오맵
+                </a>
+              </div>
+              <dl className="grid gap-y-2 text-[14px] sm:grid-cols-[72px_1fr] sm:gap-x-5">
+                <dt className="font-semibold text-gray-500">주소</dt>
+                <dd className="text-gray-800">
+                  ({b.zip}) {b.address} <span className="text-gray-500">{b.addressDetail}</span>
+                </dd>
+                <dt className="font-semibold text-gray-500">대표번호</dt>
+                <dd className="text-gray-800">{b.phones.join("  |  ")}</dd>
+                <dt className="font-semibold text-gray-500">목사</dt>
+                <dd className="text-gray-800">{b.pastors}</dd>
+                <dt className="font-semibold text-gray-500">전철역</dt>
+                <dd className="text-gray-800">{b.subway}</dd>
+              </dl>
+            </div>
+          ))}
+        </GlassTable>
       </div>
     </div>
   );
