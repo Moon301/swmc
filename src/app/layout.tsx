@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Noto_Sans_KR } from "next/font/google";
+import { Noto_Sans_KR, Noto_Serif_KR } from "next/font/google";
 import "./globals.css";
-import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SupabaseProvider } from "@/components/providers/SupabaseProvider";
 import { AuthProvider } from "@/components/providers/AuthProvider";
@@ -13,6 +12,14 @@ const notoSansKR = Noto_Sans_KR({
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
   variable: "--font-sans",
+});
+
+/* 명조 — 성회 배너 등 품격이 필요한 타이틀 전용 */
+const notoSerifKR = Noto_Serif_KR({
+  subsets: ["latin"],
+  weight: ["600", "700", "900"],
+  display: "swap",
+  variable: "--font-serif",
 });
 
 export const metadata: Metadata = {
@@ -46,13 +53,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko" className={notoSansKR.variable}>
-      <head>
-        <Script
-          src={`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_API_KEY}&autoload=false`}
-          strategy="beforeInteractive"
-        />
-      </head>
+    <html lang="ko" className={`${notoSansKR.variable} ${notoSerifKR.variable}`}>
       <body className="font-sans antialiased">
         <SupabaseProvider>
           <AuthProvider>

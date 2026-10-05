@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import { createClient } from "@/lib/supabase/server";
 import { NewsList } from "./NewsList";
 import { generatePageMetadata } from "@/lib/seo";
+import { PageHero } from "@/components/layout/PageHero";
 
 export const metadata = generatePageMetadata({
   title: "교회소식",
@@ -21,15 +22,14 @@ export default async function NewsPage() {
 
   return (
     <div>
-      <div className="border-b border-gray-200/70">
-        <div className="mx-auto max-w-[1100px] px-5 py-12 sm:py-16">
-          <p className="text-[13px] font-medium text-primary">News</p>
-          <h1 className="mt-2 text-[36px] font-bold text-gray-900 sm:text-[44px]">교회소식</h1>
-          <p className="mt-3 text-[16px] text-gray-500">
+      <PageHero
+        title="교회소식"
+        description={
+          <>
             성은세계선교교회의 소식과 공지사항
-          </p>
-        </div>
-      </div>
+          </>
+        }
+      />
       <div className="mx-auto max-w-[1100px] px-5 py-12 sm:py-16">
         <NewsList initialNews={news ?? []} />
       </div>

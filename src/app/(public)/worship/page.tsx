@@ -2,7 +2,8 @@ export const dynamic = "force-dynamic";
 
 import { createClient } from "@/lib/supabase/server";
 import { generatePageMetadata } from "@/lib/seo";
-import { CHURCH_INFO } from "@/lib/constants";
+import { PageHero } from "@/components/layout/PageHero";
+import { CHURCH_INFO, WORSHIP_TIMES } from "@/lib/constants";
 
 export const metadata = generatePageMetadata({
   title: "예배안내",
@@ -17,46 +18,74 @@ export default async function WorshipPage() {
     .select("*")
     .order("display_order");
 
-  const fallback = [
-    { name: "주일낮예배", time: "매주 일요일 오전 11:00", location: "본당" },
-    { name: "주일저녁예배", time: "매주 일요일 오후 7:00", location: "본당" },
-    { name: "수요예배", time: "매주 수요일 오후 7:30", location: "본당" },
-    { name: "금요기도회", time: "매주 금요일 오후 9:00", location: "본당" },
-    { name: "새벽기도회", time: "매일 오전 5:00", location: "본당" },
-    { name: "특별새벽기도회", time: "매일 오전 4:00~7:00", location: "본당" },
-  ];
-
-  const list = services && services.length > 0
-    ? services.map((s) => ({ name: s.name, time: `${s.day_of_week} ${s.time}`, location: s.location }))
-    : fallback;
+  const hasDb = services && services.length > 0;
 
   return (
     <div>
-      <div className="border-b border-gray-200/70">
-        <div className="mx-auto max-w-[1100px] px-5 py-12 sm:py-16">
-          <p className="text-[13px] font-medium text-primary">Worship</p>
-          <h1 className="mt-2 text-[36px] font-bold text-gray-900 sm:text-[44px]">예배안내</h1>
-          <p className="mt-3 text-[16px] text-gray-500">
-            하나님을 예배하는 거룩한 시간에 함께해 주세요
-          </p>
-        </div>
-      </div>
+      <PageHero
+        title="예배안내"
+        description={
+          <>
+            하나님은 영이시니 예배하는 자가 신령과 진정으로 예배할지니라
+            <span className="ml-2 text-[14px] text-gray-400">요한복음 4:24</span>
+          </>
+        }
+      />
 
       <div className="mx-auto max-w-[800px] px-5 py-12 sm:py-16">
-        <div className="grid gap-3 sm:grid-cols-2">
-          {list.map((service, i) => (
-            <div
-              key={i}
-              className="card-soft card-soft-hover px-6 py-5"
-            >
-              <p className="text-[15px] font-bold text-gray-900">{service.name}</p>
-              <p className="mt-2 text-[14px] text-gray-600">{service.time}</p>
-              {service.location && (
-                <p className="mt-0.5 text-[13px] text-gray-400">{service.location}</p>
-              )}
-            </div>
-          ))}
-        </div>
+        {hasDb ? (
+          <div className="grid gap-3 sm:grid-cols-2">
+            {services.map((service) => (
+              <div key={service.id} className="card-soft card-soft-hover px-6 py-5">
+                <p className="text-[15px] font-bold text-gray-900">{service.name}</p>
+                <p className="mt-2 text-[14px] text-gray-600">
+                  {service.day_of_week} {service.time}
+                </p>
+                {service.location && (
+                  <p className="mt-0.5 text-[13px] text-gray-400">{service.location}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="space-y-10">
+            {[
+              { title: "주일 예배시간", rows: WORSHIP_TIMES.sunday },
+              { title: "주중 예배시간", rows: WORSHIP_TIMES.weekday },
+            ].map((group) => (
+              <section key={group.title}>
+                <h2 className="text-[20px] font-bold text-gray-900">{group.title}</h2>
+                <div className="card-soft mt-4 overflow-hidden">
+                  <table className="w-full text-left">
+                    <thead>
+                      <tr className="bg-primary text-white">
+                        <th className="px-5 py-3 text-[14px] font-semibold sm:px-6">예배</th>
+                        <th className="px-5 py-3 text-[14px] font-semibold sm:px-6">시간</th>
+                        <th className="px-5 py-3 text-[14px] font-semibold sm:px-6">장소</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {group.rows.map((row) => (
+                        <tr key={row.name}>
+                          <td className="px-5 py-3.5 text-[14px] font-medium text-gray-900 sm:px-6">
+                            {row.name}
+                          </td>
+                          <td className="px-5 py-3.5 text-[14px] text-gray-600 sm:px-6">
+                            {row.time}
+                          </td>
+                          <td className="px-5 py-3.5 text-[14px] text-gray-500 sm:px-6">
+                            {row.location}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            ))}
+            <p className="text-[14px] text-gray-500">{WORSHIP_TIMES.note}</p>
+          </div>
+        )}
 
         {/* YouTube */}
         <div className="mt-10 card-soft p-6 text-center sm:p-8">

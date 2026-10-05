@@ -8,6 +8,8 @@ import {
   Landmark,
 } from "lucide-react";
 import { generatePageMetadata } from "@/lib/seo";
+import { PageHero } from "@/components/layout/PageHero";
+import { OFFERING_ACCOUNTS } from "@/lib/constants";
 
 export const metadata = generatePageMetadata({
   title: "온라인헌금",
@@ -15,19 +17,15 @@ export const metadata = generatePageMetadata({
   path: "/offering",
 });
 
+/* 원본 온라인헌금 페이지 그대로 — 선교헌금 1계좌, 일반헌금 2계좌 */
 const DOMESTIC_ACCOUNTS = [
   {
     type: "선교헌금 계좌",
-    accounts: [
-      { bank: "농협은행", number: "355-0034-9990-13", holder: "예금주: 성은세계선교교회" },
-      { bank: "KEB 하나은행", number: "162-890030-81204", holder: "예금주: 성은세계선교교회" },
-    ],
+    accounts: OFFERING_ACCOUNTS.mission.map((a) => ({ ...a, holder: "예금주: 성은세계선교교회" })),
   },
   {
     type: "일반헌금 계좌",
-    accounts: [
-      { bank: "농협은행", number: "355-0034-9992-93", holder: "예금주: 성은세계선교교회" },
-    ],
+    accounts: OFFERING_ACCOUNTS.general.map((a) => ({ ...a, holder: "예금주: 성은세계선교교회" })),
   },
 ];
 
@@ -87,22 +85,20 @@ const OFFERING_TYPES = [
 export default function OfferingPage() {
   return (
     <div>
-      {/* Hero — Toss product-page style */}
-      <section>
-        <div className="mx-auto max-w-[800px] px-5 pb-16 pt-20 text-center sm:pb-24 sm:pt-28">
-          <span className="inline-flex items-center rounded-full bg-primary-light px-3.5 py-1.5 text-[13px] font-semibold text-secondary">
-            온라인헌금
-          </span>
-          <h1 className="mt-5 text-[36px] font-bold leading-[1.25] tracking-tight text-gray-900 sm:text-[52px]">
-            감사와 사랑의 마음을
-            <br />
-            헌금으로 드립니다
-          </h1>
-        </div>
-      </section>
+      {/* 원본과 같이 제목 + 고린도후서 9:7 — 다른 상세 페이지와 같은 공용 히어로 */}
+      <PageHero
+        title="온라인헌금"
+        description={
+          <>
+            각각 그 마음에 정한 대로 할 것이요 인색함으로나 억지로 하지 말지니
+            하나님은 즐겨 내는 자를 사랑하시느니라
+            <span className="ml-2 text-[14px] text-gray-400">고린도후서 9:7</span>
+          </>
+        }
+      />
 
       {/* 온라인헌금 국내계좌 안내 */}
-      <section className="mx-auto max-w-[800px] px-5 py-14 sm:py-20">
+      <section className="mx-auto max-w-[800px] px-5 pb-14 pt-12 sm:pb-20 sm:pt-16">
         <h2 className="text-center text-[24px] font-bold tracking-tight text-gray-900 sm:text-[30px]">
           온라인헌금 국내계좌 안내
         </h2>

@@ -1,48 +1,61 @@
 import { generatePageMetadata } from "@/lib/seo";
-import { CHURCH_INFO } from "@/lib/constants";
+import { PageHero } from "@/components/layout/PageHero";
 
 export const metadata = generatePageMetadata({
-  title: "건축지원",
-  description: "성은세계선교교회 건축 후원 안내",
+  title: "해외 성전건축",
+  description: "성은세계선교교회 해외 성전건축 지원 현황",
   path: "/building",
 });
+
+/* 원본 사이트의 국가별 지원 현황 — 총 5개국 6개 성전 */
+const SUPPORTED = [
+  { country: "베트남", count: 2 },
+  { country: "필리핀", count: 1 },
+  { country: "미얀마", count: 1 },
+  { country: "페루", count: 1 },
+  { country: "이스라엘", count: 1 },
+];
 
 export default function BuildingPage() {
   return (
     <div>
-      <div className="border-b border-gray-200/70">
-        <div className="mx-auto max-w-[1100px] px-5 py-12 sm:py-16">
-          <p className="text-[13px] font-medium text-primary">Building</p>
-          <h1 className="mt-2 text-[36px] font-bold text-gray-900 sm:text-[44px]">건축지원</h1>
-          <p className="mt-3 text-[16px] text-gray-500">
-            하나님의 집을 세우는 사역에 동참해 주세요
-          </p>
-        </div>
-      </div>
+      <PageHero
+        title="해외 성전건축"
+        description={
+          <>
+            네가 이제 이 전을 건축하니 네가 만일 내 법도를 따르며 내 율례를 행하며
+            나의 모든 계명을 지켜 그대로 행하면 내가 네 아비 다윗에게 한 말을 네게 확실히 이룰 것이요
+            <span className="ml-2 text-[14px] text-gray-400">열왕기상 6:12</span>
+          </>
+        }
+      />
 
-      <div className="mx-auto max-w-[640px] px-5 py-12 sm:py-16">
-        <div className="card-soft p-6 sm:p-8">
-          <p className="text-[15px] font-bold text-gray-900">건축헌금 안내</p>
-          <p className="mt-3 text-[14px] leading-relaxed text-gray-500">
-            {CHURCH_INFO.name}의 성전 건축을 위해 기도와 후원으로 동참해 주시기 바랍니다.
-            자세한 내용은 교회 사무실로 문의해 주세요.
-          </p>
-          <div className="mt-4 space-y-1 text-[13px] text-gray-500">
-            <p>전화: {CHURCH_INFO.phone} / {CHURCH_INFO.phone2}</p>
-            <p>핸드폰: {CHURCH_INFO.mobile}</p>
-          </div>
+      <div className="mx-auto max-w-[800px] px-5 py-12 sm:py-16">
+        <h2 className="text-[22px] font-bold leading-snug text-gray-900 sm:text-[26px]">
+          땅 끝까지 하나님의 복음이 전파되도록
+        </h2>
+        <p className="mt-4 text-[15px] leading-[1.9] text-gray-600">
+          우리 교회는 현재까지 총 5개국의 나라에 6개의 성전이 건축될 수 있도록
+          건축비를 지원하였습니다.
+        </p>
+
+        {/* 해외 성전건축 지원 — 원본의 다섯 나라 */}
+        <h3 className="mt-12 text-[20px] font-bold text-gray-900">해외 성전건축 지원</h3>
+        <p className="mt-3 text-[16px] font-semibold text-gray-800 sm:text-[17px]">
+          {SUPPORTED.map((s) => s.country).join("  ·  ")}
+        </p>
+
+        {/* 국가별 지원 현황 */}
+        <h3 className="mt-12 text-[20px] font-bold text-gray-900">국가별 지원 현황</h3>
+        <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-5">
+          {SUPPORTED.map((item) => (
+            <div key={item.country} className="card-soft px-5 py-6 text-center">
+              <p className="text-[26px] font-bold text-secondary">{item.count}</p>
+              <p className="mt-1 text-[14px] font-medium text-gray-700">{item.country}</p>
+            </div>
+          ))}
         </div>
 
-        <div className="mt-6 card-tinted p-6 sm:p-8">
-          <blockquote className="text-[15px] leading-relaxed text-gray-700 italic">
-            &ldquo;각각 그 마음에 정한 대로 할 것이요
-            인색함으로나 억지로 하지 말지니
-            하나님은 즐겨 내는 자를 사랑하시느니라&rdquo;
-          </blockquote>
-          <cite className="mt-3 block text-[13px] text-gray-500 not-italic">
-            고린도후서 9:7
-          </cite>
-        </div>
       </div>
     </div>
   );

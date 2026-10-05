@@ -1,43 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
 import { Copy } from "lucide-react";
+import { PageHero } from "@/components/layout/PageHero";
 import { toast } from "sonner";
 import { CHURCH_INFO } from "@/lib/constants";
+import { KakaoMap } from "@/components/ui/KakaoMap";
 
 export default function DirectionsPage() {
-  useEffect(() => {
-    const initMap = () => {
-      window.kakao.maps.load(() => {
-        const container = document.getElementById("map");
-        if (!container) return;
-
-        const lat = CHURCH_INFO.lat;
-        const lng = CHURCH_INFO.lng;
-        const options = {
-          center: new window.kakao.maps.LatLng(lat, lng),
-          level: 4,
-        };
-
-        const map = new window.kakao.maps.Map(container, options);
-        const marker = new kakao.maps.Marker({
-          position: new window.kakao.maps.LatLng(lat, lng),
-          clickable: true,
-        });
-        marker.setMap(map);
-
-        const iw = new kakao.maps.InfoWindow({
-          content: `<div style="padding:5px 10px;font-size:13px;white-space:nowrap">${CHURCH_INFO.name}</div>`,
-          removable: true,
-        });
-        kakao.maps.event.addListener(marker, "click", () => iw.open(map, marker));
-        iw.open(map, marker);
-      });
-    };
-
-    if (window.kakao && window.kakao.maps) initMap();
-  }, []);
-
   const copyAddress = () => {
     navigator.clipboard.writeText(`${CHURCH_INFO.address} ${CHURCH_INFO.addressDetail}`);
     toast.success("주소가 복사되었습니다");
@@ -45,15 +14,15 @@ export default function DirectionsPage() {
 
   return (
     <div>
-      <div className="border-b border-gray-200/70">
-        <div className="mx-auto max-w-[1100px] px-5 py-12 sm:py-16">
-          <p className="text-[13px] font-medium text-primary">Directions</p>
-          <h1 className="mt-2 text-[36px] font-bold text-gray-900 sm:text-[44px]">오시는길</h1>
-        </div>
-      </div>
+      <PageHero title="오시는길" />
 
       <div className="mx-auto max-w-[800px] px-5 py-12 sm:py-16">
-        <div id="map" className="h-72 w-full overflow-hidden rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] sm:h-[400px]" />
+        <KakaoMap
+          lat={CHURCH_INFO.lat}
+          lng={CHURCH_INFO.lng}
+          label={CHURCH_INFO.name}
+          className="h-72 w-full overflow-hidden rounded-2xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] sm:h-[400px]"
+        />
 
         <div className="mt-6 text-center">
           <p className="text-[18px] font-bold text-gray-900">{CHURCH_INFO.name}</p>

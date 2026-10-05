@@ -1,4 +1,5 @@
 import { Header } from "@/components/layout/Header";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export default function PublicLayout({
   children,
@@ -8,7 +9,9 @@ export default function PublicLayout({
   return (
     <>
       <Header />
-      <main className="min-h-[calc(100vh-4rem)]">{children}</main>
+      <main className="min-h-[calc(100vh-4rem)]">
+        <ScrollReveal>{children}</ScrollReveal>
+      </main>
     </>
   );
 }

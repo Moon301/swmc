@@ -12,8 +12,7 @@ export function WorshipSchedule({ services }: WorshipScheduleProps) {
     <section className="py-16 sm:py-24">
       <div className="mx-auto max-w-[1100px] px-5">
         <div className="text-center">
-          <p className="text-[13px] font-medium text-primary">Worship</p>
-          <h2 className="mt-2 text-[28px] font-bold text-gray-900">예배안내</h2>
+          <h2 className="text-[28px] font-bold text-gray-900">예배안내</h2>
         </div>
 
         <div className="mx-auto mt-10 grid max-w-[800px] gap-3 sm:grid-cols-2">

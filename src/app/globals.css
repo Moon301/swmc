@@ -2,51 +2,54 @@
 
 @theme inline {
   --font-sans: "Noto Sans KR", sans-serif;
+  --font-serif: var(--font-serif), "Noto Serif KR", serif;
 
-  /* 웜 그레이지 뉴트럴 — 샴페인·아이보리 무드, OKLCH로 디스플레이 간 색 일관성 유지 */
-  --color-gray-50: oklch(98% 0.005 84);
-  --color-gray-100: oklch(96.2% 0.006 84);
-  --color-gray-200: oklch(92.8% 0.008 84);
-  --color-gray-300: oklch(87.4% 0.008 84);
-  --color-gray-400: oklch(77.9% 0.01 84);
-  --color-gray-500: oklch(66.6% 0.012 84);
-  --color-gray-600: oklch(56.2% 0.014 84);
-  --color-gray-700: oklch(46% 0.014 84);
-  --color-gray-800: oklch(35.7% 0.014 84);
-  --color-gray-900: oklch(24% 0.012 84);
+  /* 쿨 뉴트럴 — hue 264 블루-그레이. 브랜드 블루와 같은 계열이라 섞여도 탁해지지 않는다 */
+  --color-gray-50: oklch(98.4% 0.002 264);
+  --color-gray-100: oklch(96.7% 0.004 264);
+  --color-gray-200: oklch(92.8% 0.006 264);
+  --color-gray-300: oklch(87.2% 0.01 264);
+  --color-gray-400: oklch(70.7% 0.022 264);
+  --color-gray-500: oklch(55.1% 0.027 264);
+  --color-gray-600: oklch(44.6% 0.03 262);
+  --color-gray-700: oklch(37.3% 0.034 260);
+  --color-gray-800: oklch(27.8% 0.033 257);
+  --color-gray-900: oklch(21% 0.034 264);
 
-  /* Brand */
-  --color-primary: oklch(45.9% 0.115 257.9);
-  --color-primary-hover: oklch(41.2% 0.11 257.1);
-  --color-primary-light: oklch(95.3% 0.021 261.8);
-  --color-accent: oklch(70.3% 0.119 81);
-  --color-accent-hover: oklch(66% 0.118 79.9);
-  --color-accent-light: oklch(80.7% 0.109 82);
-  --color-emerald: oklch(76% 0.09 168);
-  --color-navy: oklch(18.6% 0.048 268.7);
+  /* Brand — 토스 블루 계열. 골드는 쿨톤 전환으로 폐기하고 accent를 스카이로 재정의 */
+  --color-primary: oklch(56.5% 0.186 258);
+  --color-primary-hover: oklch(50.4% 0.18 258);
+  --color-primary-light: oklch(96.4% 0.019 255);
+  --color-accent: oklch(72.5% 0.133 232);
+  --color-accent-hover: oklch(66.5% 0.136 232);
+  --color-accent-light: oklch(83.5% 0.093 225);
+  --color-emerald: oklch(76% 0.09 205);
+  --color-navy: oklch(17.5% 0.045 266);
 
   /* Semantic */
-  --color-background: oklch(98.8% 0.005 92);
-  --color-foreground: oklch(24% 0.012 84);
+  --color-background: oklch(98.6% 0.003 255);
+  --color-foreground: oklch(21% 0.034 264);
   --color-card: #ffffff;
-  --color-muted: oklch(98% 0.005 84);
-  --color-border: oklch(92.8% 0.008 84);
-  --color-muted-foreground: oklch(56.2% 0.014 84);
-  --color-secondary: oklch(45.9% 0.115 257.9);
-  --color-secondary-hover: oklch(41.2% 0.11 257.1);
+  --color-muted: oklch(98.4% 0.002 264);
+  --color-border: oklch(92.8% 0.006 264);
+  --color-muted-foreground: oklch(55.1% 0.027 264);
+  --color-secondary: oklch(56.5% 0.186 258);
+  --color-secondary-hover: oklch(50.4% 0.18 258);
 }
 
 @layer base {
   body {
     background-color: var(--color-background);
-    /* 배경은 거의 화이트, 따뜻함은 상단 골드 글로우에만 — 카카오뱅크/토스식 절제 */
+    /* 토스식 절제 — 바탕은 거의 화이트, 상단에만 블루가 아주 옅게 내려앉는다 */
     background-image:
-      radial-gradient(70rem 42rem at 82% -14%, oklch(86% 0.09 88 / 0.22), transparent 58%),
-      radial-gradient(55rem 36rem at -8% 8%, oklch(89% 0.06 95 / 0.1), transparent 55%),
-      radial-gradient(70rem 45rem at 55% 120%, oklch(80% 0.08 168 / 0.07), transparent 58%);
+      radial-gradient(70rem 40rem at 70% -18%, oklch(75% 0.11 240 / 0.1), transparent 60%),
+      radial-gradient(56rem 36rem at -10% 4%, oklch(72% 0.1 260 / 0.06), transparent 58%);
     background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    /* 한글은 어절 단위로만 줄바꿈 — 단어 중간이 끊기지 않게 (전 페이지 공통) */
+    word-break: keep-all;
+    overflow-wrap: break-word;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     letter-spacing: -0.01em;
@@ -57,7 +60,7 @@
   }
 
   ::selection {
-    background-color: oklch(80.7% 0.109 82 / 0.25);
+    background-color: oklch(56.5% 0.186 258 / 0.18);
   }
 }
 
@@ -67,23 +70,85 @@
 .prose img { border-radius: 16px; }
 .prose a { text-decoration: underline; text-underline-offset: 2px; }
 
-/* Soft card — kakao-bank inspired, borderless on subtle bg with micro-shadow */
+/* ── 카드 ────────────────────────────────────────────── */
+
+/* 넓고 옅은 확산 그림자. 검정 대신 네이비 틴트라 쿨 배경 위에서 탁해지지 않는다 */
+.shadow-feature {
+  box-shadow:
+    0 2px 36px 0 rgba(23, 37, 84, 0.06),
+    0 4px 15px 0 rgba(23, 37, 84, 0.03);
+}
+
 .card-soft {
   background-color: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+  box-shadow:
+    0 1px 3px rgba(23, 37, 84, 0.05),
+    0 1px 2px rgba(23, 37, 84, 0.03);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .card-soft-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 12px 32px rgba(23, 37, 84, 0.09),
+    0 2px 6px rgba(23, 37, 84, 0.04);
 }
 .card-tinted {
-  background-color: #f9fafb;
+  background-color: var(--color-gray-50);
   border-radius: 16px;
 }
 
-/* Motion — fade in + slide up on first paint */
+/* ── 글래스 ──────────────────────────────────────────── */
+
+/* 떠 있는 패널(헤더 캡슐 등). 스크롤된 콘텐츠 위에서도 글자가 읽히도록 채도를 올린다 */
+.glass-panel {
+  background-color: color-mix(in oklch, var(--color-background) 72%, transparent);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset,
+    0 1px 2px rgba(23, 37, 84, 0.04),
+    0 8px 28px rgba(23, 37, 84, 0.08);
+}
+/* 모바일은 캡슐이 어두운 섹션(선교·배너) 위를 자주 지나가고 뒤 글자가 비쳐 보여서 더 불투명하게 */
+@media (max-width: 639px) {
+  .glass-panel {
+    background-color: color-mix(in oklch, var(--color-background) 92%, transparent);
+  }
+}
+
+/* 상세 페이지 히어로 하단 페이드 — 히어로가 낮아서 짧게 */
+.page-hero-fade::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 4.5rem;
+  pointer-events: none;
+  background-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--color-background) 100%
+  );
+}
+
+/* 하늘 → 본문 배경으로 떨어지는 페이드. 섹션 경계선을 지운다 */
+.sky-fade::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 10rem;
+  pointer-events: none;
+  background-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--color-background) 100%
+  );
+}
+
+/* ── 모션 ────────────────────────────────────────────── */
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -99,4 +164,54 @@
 }
 .animate-dropdown-in {
   animation: dropdownIn 0.15s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up {
+    animation: none;
+  }
+}
+
+/* ScrollReveal(ui/ScrollReveal.tsx) 첫 페인트 — 섹션이 번쩍 보였다가 숨는 걸 막는다.
+   하이드레이션 후 GSAP가 인라인 opacity로 넘겨받는다. 모션 축소 환경은 제외 */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal-pending] > div > .mx-auto > *,
+  [data-reveal-pending] > .mx-auto > *,
+  [data-reveal-pending] [data-reveal] {
+    opacity: 0;
+  }
+}
+
+/* ── 편지지 (담임목사 인사말) ───────────────────────────
+   아주 옅은 종이색 + 안쪽 가는 테두리(::before). 괘선은 테두리 상자 안에만 그린다 —
+   종이 가장자리나 테두리를 넘지 않고, 좌우도 테두리에서 12px 들여서 끝난다.
+   본문은 font-serif, 줄 높이 32px. --letter-offset은 테두리 상자(inset 14px) 기준 */
+.letter-paper {
+  position: relative;
+  background-color: oklch(99.1% 0.006 95);
+  border-radius: 20px;
+  /* 카드처럼 또렷하게 떠 보이는 그림자 — 다른 카드(.shadow-feature)보다 한 단계 깊게 */
+  box-shadow:
+    0 0 0 1px rgba(23, 37, 84, 0.04),
+    0 2px 6px rgba(23, 37, 84, 0.06),
+    0 18px 48px rgba(23, 37, 84, 0.14);
+}
+.letter-paper::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid oklch(80% 0.03 255 / 0.55);
+  border-radius: 10px;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    oklch(80% 0.03 250 / 0.75) 31px,
+    oklch(80% 0.03 250 / 0.75) 32px
+  );
+  background-size: calc(100% - 24px) 32px;
+  background-position: 12px var(--letter-offset, 0);
+  background-repeat: repeat-y;
+  background-clip: padding-box;
 }

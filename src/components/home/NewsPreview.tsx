@@ -15,8 +15,7 @@ export function NewsPreview({ news }: NewsPreviewProps) {
       <div className="mx-auto max-w-[1100px] px-5">
         <div className="flex items-end justify-between">
           <div>
-            <p className="text-[13px] font-medium text-primary">News</p>
-            <h2 className="mt-2 text-[28px] font-bold text-gray-900">교회소식</h2>
+            <h2 className="text-[28px] font-bold text-gray-900">교회소식</h2>
           </div>
           <Link
             href="/news"

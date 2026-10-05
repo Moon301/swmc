@@ -51,166 +51,95 @@ export function Header() {
     return "children" in item && !!item.children;
   };
 
+  /* 캡슐은 최상단에서 투명 — 히어로 하늘 위에 그대로 얹힌다.
+     스크롤·드롭다운·모바일 메뉴가 열리면 유리 패널로 떠오른다 */
+  const raised = scrolled || !!openDropdown || mobileOpen;
+
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-40 backdrop-blur-2xl backdrop-saturate-[1.8] transition-all duration-300",
-        openDropdown ? "bg-background" : "bg-background/70",
-        scrolled && !openDropdown
-          ? "border-b border-primary/10 shadow-[0_4px_20px_rgba(43,87,151,0.07)]"
-          : "border-b border-transparent"
-      )}
-    >
-      <div className="mx-auto flex h-16 max-w-[1100px] items-center justify-between px-5 sm:h-[68px]">
-        {/* Logo + wordmark */}
-        <Link href="/" className="flex items-center gap-2">
-          <Image
-            src="/images/logo.png"
-            alt={`${SITE_NAME} 로고`}
-            width={28}
-            height={28}
-            className="h-6 w-6 object-contain sm:h-7 sm:w-7"
-            priority
-          />
-          <span className="text-[17px] font-bold tracking-[-0.01em] text-gray-900 sm:text-[18px]">
-            {SITE_NAME}
-          </span>
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav className="hidden h-full items-center gap-1 lg:flex">
-          {NAV_ITEMS.map((item) =>
-            hasChildren(item) ? (
-              <div
-                key={item.label}
-                className="relative flex h-full items-center"
-                onMouseEnter={() => handleMouseEnter(item.label)}
-                onMouseLeave={handleMouseLeave}
-              >
-                <Link
-                  href={item.href}
-                  className="block rounded-[10px] px-3.5 py-2 text-[15px] font-semibold text-gray-800 transition-colors duration-150 hover:bg-primary/[0.07] hover:text-gray-900"
-                >
-                  {item.label}
-                </Link>
-
-                {/* Mega menu — Toss-style card */}
-                {openDropdown === item.label && (
-                  <div
-                    className="absolute left-0 top-full z-50"
-                    onMouseEnter={() => handleMouseEnter(item.label)}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <div className="animate-dropdown-in w-[280px] rounded-b-[20px] bg-background p-2 shadow-[0_16px_40px_-8px_rgba(43,87,151,0.18)]">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          target={child.href.startsWith("http") ? "_blank" : undefined}
-                          rel={child.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="group block rounded-[14px] px-4 py-3 transition-colors duration-150 hover:bg-primary/[0.06]"
-                        >
-                          <span
-                            className={cn(
-                              "block text-[15px] font-semibold leading-snug transition-colors duration-150 group-hover:text-secondary",
-                              pathname === child.href
-                                ? "text-secondary"
-                                : "text-gray-900"
-                            )}
-                          >
-                            {child.label}
-                          </span>
-                          <span className="mt-0.5 block text-[13px] leading-snug text-gray-500">
-                            {child.description}
-                          </span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <Link
-                key={item.label}
-                href={item.href}
-                className={cn(
-                  "block rounded-[10px] px-3.5 py-2 text-[15px] font-semibold transition-colors duration-150",
-                  pathname.startsWith(item.href)
-                    ? "text-gray-900"
-                    : "text-gray-700",
-                  "hover:bg-primary/[0.07] hover:text-gray-900"
-                )}
-              >
-                {item.label}
-              </Link>
-            )
+    <header className="sticky top-0 z-50">
+      <div className="mx-auto max-w-[1140px] px-4 pb-2 pt-3 sm:px-5">
+        <div
+          className={cn(
+            "flex h-14 items-center justify-between rounded-[18px] pl-4 pr-2 transition-all duration-300 sm:h-[60px] sm:pl-5 sm:pr-3",
+            raised ? "glass-panel" : "bg-transparent"
           )}
-        </nav>
-
-        {/* Mobile toggle */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="flex h-10 w-10 items-center justify-center -mr-2 text-gray-900 lg:hidden"
-          aria-label="메뉴"
         >
-          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
-      </div>
+          {/* Logo + wordmark */}
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/images/logo.png"
+              alt={`${SITE_NAME} 로고`}
+              width={28}
+              height={28}
+              className="h-6 w-6 object-contain sm:h-7 sm:w-7"
+              priority
+            />
+            <span className="text-[17px] font-bold tracking-[-0.01em] text-gray-900 sm:text-[18px]">
+              {SITE_NAME}
+            </span>
+          </Link>
 
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="fixed inset-0 top-16 z-50 bg-background lg:hidden sm:top-[68px]">
-          <nav className="h-full overflow-y-auto px-5 pb-12 pt-2">
+          {/* Desktop Nav */}
+          <nav className="hidden h-full items-center gap-1 lg:flex">
             {NAV_ITEMS.map((item) =>
               hasChildren(item) ? (
-                <div key={item.label} className="border-b border-gray-100">
-                  <button
-                    onClick={() =>
-                      setMobileExpanded(
-                        mobileExpanded === item.label ? null : item.label
-                      )
-                    }
+                <div
+                  key={item.label}
+                  className="relative flex h-full items-center"
+                  onMouseEnter={() => handleMouseEnter(item.label)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <Link
+                    href={item.href}
                     className={cn(
-                      "flex w-full items-center justify-between py-5 text-[17px] font-semibold transition-colors",
-                      pathname.startsWith(item.href)
-                        ? "text-gray-900"
-                        : "text-gray-700"
+                      "flex items-center gap-1 rounded-full px-3.5 py-2 text-[15px] font-semibold transition-colors duration-150",
+                      openDropdown === item.label
+                        ? "bg-primary/[0.08] text-gray-900"
+                        : "text-gray-800 hover:bg-primary/[0.07] hover:text-gray-900"
                     )}
                   >
                     {item.label}
                     <ChevronDown
                       className={cn(
-                        "h-5 w-5 text-gray-400 transition-transform",
-                        mobileExpanded === item.label && "rotate-180"
+                        "h-3.5 w-3.5 text-gray-400 transition-transform duration-200",
+                        openDropdown === item.label && "rotate-180"
                       )}
+                      strokeWidth={2.5}
                     />
-                  </button>
-                  {mobileExpanded === item.label && (
-                    <div className="pb-3">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          onClick={() => setMobileOpen(false)}
-                          target={child.href.startsWith("http") ? "_blank" : undefined}
-                          rel={child.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="-mx-2 block rounded-[14px] px-2 py-2.5 transition-colors active:bg-primary/[0.06]"
-                        >
-                          <span
-                            className={cn(
-                              "block text-[15px] leading-snug",
-                              pathname === child.href
-                                ? "font-semibold text-secondary"
-                                : "font-medium text-gray-800"
-                            )}
+                  </Link>
+
+                  {/* Mega menu — 캡슐에서 떨어져 나온 독립 카드 */}
+                  {openDropdown === item.label && (
+                    <div
+                      className="absolute left-0 top-full z-50 pt-2"
+                      onMouseEnter={() => handleMouseEnter(item.label)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <div className="animate-dropdown-in w-[290px] rounded-[20px] bg-background p-2 ring-1 ring-primary/10 shadow-[0_16px_44px_-10px_rgba(23,37,84,0.22)]">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            target={child.href.startsWith("http") ? "_blank" : undefined}
+                            rel={child.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                            className="group block rounded-[14px] px-4 py-3 transition-colors duration-150 hover:bg-primary/[0.06]"
                           >
-                            {child.label}
-                          </span>
-                          <span className="mt-0.5 block text-[13px] leading-snug text-gray-400">
-                            {child.description}
-                          </span>
-                        </Link>
-                      ))}
+                            <span
+                              className={cn(
+                                "block text-[15px] font-semibold leading-snug transition-colors duration-150 group-hover:text-secondary",
+                                pathname === child.href
+                                  ? "text-secondary"
+                                  : "text-gray-900"
+                              )}
+                            >
+                              {child.label}
+                            </span>
+                            <span className="mt-0.5 block text-[13px] leading-snug text-gray-500">
+                              {child.description}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -218,12 +147,12 @@ export function Header() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  onClick={() => setMobileOpen(false)}
                   className={cn(
-                    "block border-b border-gray-100 py-5 text-[17px] font-semibold transition-colors",
+                    "block rounded-full px-3.5 py-2 text-[15px] font-semibold transition-colors duration-150",
                     pathname.startsWith(item.href)
                       ? "text-gray-900"
-                      : "text-gray-700"
+                      : "text-gray-700",
+                    "hover:bg-primary/[0.07] hover:text-gray-900"
                   )}
                 >
                   {item.label}
@@ -231,8 +160,95 @@ export function Header() {
               )
             )}
           </nav>
+
+          {/* Mobile toggle */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="flex h-10 w-10 items-center justify-center rounded-full text-gray-900 transition-colors hover:bg-primary/[0.07] lg:hidden"
+            aria-label="메뉴"
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
-      )}
+
+        {/* Mobile menu — 캡슐 아래에 붙는 카드 */}
+        {mobileOpen && (
+          <div className="animate-dropdown-in mt-2 max-h-[calc(100svh-5.5rem)] overflow-y-auto rounded-[20px] bg-background px-5 py-2 ring-1 ring-primary/10 shadow-[0_16px_44px_-10px_rgba(23,37,84,0.22)] lg:hidden">
+            <nav>
+              {NAV_ITEMS.map((item) =>
+                hasChildren(item) ? (
+                  <div key={item.label} className="border-b border-gray-100 last:border-0">
+                    <button
+                      onClick={() =>
+                        setMobileExpanded(
+                          mobileExpanded === item.label ? null : item.label
+                        )
+                      }
+                      className={cn(
+                        "flex w-full items-center justify-between py-4 text-[17px] font-semibold transition-colors",
+                        pathname.startsWith(item.href)
+                          ? "text-gray-900"
+                          : "text-gray-700"
+                      )}
+                    >
+                      {item.label}
+                      <ChevronDown
+                        className={cn(
+                          "h-5 w-5 text-gray-400 transition-transform",
+                          mobileExpanded === item.label && "rotate-180"
+                        )}
+                      />
+                    </button>
+                    {mobileExpanded === item.label && (
+                      <div className="pb-3">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            onClick={() => setMobileOpen(false)}
+                            target={child.href.startsWith("http") ? "_blank" : undefined}
+                            rel={child.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                            className="-mx-2 block rounded-[14px] px-2 py-2.5 transition-colors active:bg-primary/[0.06]"
+                          >
+                            <span
+                              className={cn(
+                                "block text-[15px] leading-snug",
+                                pathname === child.href
+                                  ? "font-semibold text-secondary"
+                                  : "font-medium text-gray-800"
+                              )}
+                            >
+                              {child.label}
+                            </span>
+                            <span className="mt-0.5 block text-[13px] leading-snug text-gray-400">
+                              {child.description}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={cn(
+                      "block border-b border-gray-100 py-4 text-[17px] font-semibold transition-colors last:border-0",
+                      pathname.startsWith(item.href)
+                        ? "text-gray-900"
+                        : "text-gray-700"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
+            </nav>
+          </div>
+        )}
+      </div>
     </header>
   );
 }

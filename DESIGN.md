@@ -2,11 +2,13 @@
 
 모든 UI 작업은 이 문서를 기준으로 한다. 새 페이지·컴포넌트를 만들 때 임의의 색상/스타일을 추가하지 말고 여기 정의된 토큰과 패턴을 사용할 것.
 
-## 디자인 방향
+## 디자인 방향 (2026-10 쿨톤 리뉴얼)
 
-- **레퍼런스**: 토스뱅크(tossbank.com)의 레이아웃 문법 — 넉넉한 여백, 큰 타이포, 큰 라운드 카드
-- **톤**: 따뜻한 샴페인·아이보리 무드. 빛이 은은하게 내려앉는 고급스러운 느낌 (수련회 포스터 무드 참고)
-- **원칙**: 색은 포인트로만. 본문은 웜 그레이지 스케일, 강조는 브랜드 컬러 1~2곳
+- **레퍼런스**: 토스/토스플레이스/카카오의 절제된 문법 — 넉넉한 여백, 큰 타이포, 큰 라운드 카드, 플랫한 배경. 히어로 하늘 그라데이션과 플로팅 헤더 캡슐은 saasly.demos.tailgrids.com 참고
+- **톤**: 쿨 스카이 블루. 바탕은 거의 화이트, 상단에만 블루가 옅게 내려앉는다
+- **원칙**: 색은 포인트로만. 본문은 쿨 블루-그레이 스케일, 강조는 브랜드 블루
+- **금지**: 장식용 발광(glow) 그림자, 떠다니는 블러 오브/유리 타일, 그라데이션 텍스트 남용, 노이즈 텍스처 — "AI가 만든 랜딩" 느낌의 주범. 밝기 차와 여백으로만 위계를 만든다
+- **예외 (사용자 지정)**: 홈 히어로 배경의 `.sky-aurora` 3블롭(블루·골드·화이트)은 명시 요청으로 추가된 유일한 모션 배경 — 하늘색과 황금빛이 느리게 섞이고 반짝인다. 다른 곳에 복제하지 말 것
 
 ## 색상 (OKLCH)
 
@@ -15,35 +17,37 @@
 
 ### 브랜드 컬러
 
-| 토큰 | OKLCH | 참고 hex | 용도 |
-|---|---|---|---|
-| `primary` / `secondary` | `oklch(45.9% 0.115 257.9)` | #2B5797 | 브랜드 블루. 링크, 활성 상태, 아이콘, 강조 텍스트 |
-| `primary-hover` / `secondary-hover` | `oklch(41.2% 0.11 257.1)` | #1F4A85 | 블루 호버 |
-| `primary-light` | `oklch(95.3% 0.021 261.8)` | #e8f0fe | 블루 칩/배지 배경 |
-| `accent` | `oklch(70.3% 0.119 81)` | #C5973E | 브랜드 골드. 라이트 배경 위 포인트 전용 (다크 배경에는 블루 사용) |
-| `accent-hover` | `oklch(66% 0.118 79.9)` | #B8892F | 골드 호버 |
-| `accent-light` | `oklch(80.7% 0.109 82)` | #e3b96a | 밝은 골드. 다크 배경 위 텍스트/그라데이션 |
-| `emerald` | `oklch(76% 0.09 168)` | — | 배경 앰비언트 전용 (단독 사용 금지) |
-| `navy` | `oklch(18.6% 0.048 268.7)` | #0a1128 | 다크 섹션 배경 (선교 히어로, CTA) |
+| 토큰 | OKLCH | 용도 |
+|---|---|---|
+| `primary` / `secondary` | `oklch(56.5% 0.186 258)` | 브랜드 블루(토스 계열). 링크, 활성 상태, CTA, 강조 텍스트 |
+| `primary-hover` / `secondary-hover` | `oklch(50.4% 0.18 258)` | 블루 호버 |
+| `primary-light` | `oklch(96.4% 0.019 255)` | 블루 칩/배지 배경 |
+| `accent` | `oklch(72.5% 0.133 232)` | 스카이. 다크 배경 위 라벨/포인트 (구 골드 토큰을 재정의) |
+| `accent-hover` | `oklch(66.5% 0.136 232)` | 스카이 호버 |
+| `accent-light` | `oklch(83.5% 0.093 225)` | 밝은 스카이. 다크 배경 위 보조 텍스트 |
+| `emerald` | `oklch(76% 0.09 205)` | 배경 앰비언트 전용 (단독 사용 금지) |
+| `navy` | `oklch(17.5% 0.045 266)` | 다크 섹션 배경 (선교 히어로, CTA) |
 
-사용 예: `text-secondary`, `bg-primary-light`, `text-accent`, `bg-navy`, `from-accent to-accent-light`
+사용 예: `text-secondary`, `bg-primary-light`, `text-accent`, `bg-navy`
+**골드는 폐기.** `accent`는 이름만 유지하고 값이 스카이 블루다 — 기존 컴포넌트의 `text-accent`가 자동으로 쿨톤을 따른다.
 
-### 그레이 스케일 (웜 그레이지)
+### 그레이 스케일 (쿨 블루-그레이)
 
-`gray-50`(98%) ~ `gray-900`(24%) — hue 84(웜 톤)로 통일된 그레이지 팔레트가 Tailwind 기본을 대체한다. 차가운 순수 회색을 쓰지 말 것.
+`gray-50`(98.4%) ~ `gray-900`(21%) — hue 264(쿨 톤)로 통일된 팔레트가 Tailwind 기본을 대체한다. 웜 그레이·베이지를 쓰지 말 것.
 - 본문 제목: `text-gray-900` / 본문: `text-gray-600~700` / 보조 설명: `text-gray-500` / 비활성: `text-gray-400`
 - 카드 배경: `bg-gray-50` / 호버 배경: `bg-gray-100` (유리 위에서는 `bg-gray-500/10`)
 
 ### 배경
 
-- 기본 배경(`background`)은 **거의 화이트에 가까운 웜 오프화이트** `oklch(98.8% 0.005 92)` — 바탕 자체를 노랗게 만들면 촌스러워진다. 따뜻함은 그라데이션에만 싣는다
-- `body` 상단에 샴페인 골드 글로우(알파 ~22%)가 빛이 내려앉듯 깔리고, 하단에 에메랄드가 아주 옅게(7%) 받친다 (`background-attachment: fixed`)
-- **페이지 루트에 `bg-white`를 깔지 말 것** — 앰비언트가 가려진다. 콘텐츠 대비가 필요하면 카드(`card-soft`, 순백 카드)로 해결 — 아이보리 배경 위 흰 카드가 고급스러운 대비를 만든다
+- 기본 배경(`background`)은 **거의 화이트의 쿨 오프화이트** `oklch(98.6% 0.003 255)`
+- `body` 상단에 스카이 블루가 아주 옅게(10% 이하) 내려앉는다 (`background-attachment: fixed`). 그 이상 진하게 만들지 말 것 — 토스식 절제가 기준
+- 홈 히어로(배너+퀵링크)는 `SkyBackdrop`(`.sky-canvas`)으로 감싼다: 옅은 블루 수직 그라데이션 + 하단 `.sky-fade`로 본문 배경에 녹는다. 라디얼로 구름을 흉내내지 말 것
+- **페이지 루트에 `bg-white`를 깔지 말 것** — 앰비언트가 가려진다. 콘텐츠 대비가 필요하면 순백 카드(`card-soft`, `shadow-feature`)로 — 쿨 오프화이트 위 흰 카드가 밝기 차로만 떠 보이게 한다
 - 헤더/전체 화면 오버레이는 `bg-background` 계열 사용 (`bg-white` 금지), 조정은 globals.css에서만
 
 ## 타이포그래피 (토스뱅크 기준)
 
-폰트: Noto Sans KR (`next/font/google`), `letter-spacing: -0.01em` 전역 적용.
+폰트: Noto Sans KR (`next/font/google`), `letter-spacing: -0.01em` 전역 적용. `body`에 `word-break: keep-all` + `overflow-wrap: break-word`가 걸려 있어 한글은 어절 단위로만 줄바꿈된다 — 개별 컴포넌트에서 `break-all`로 되돌리지 말 것.
 
 **최소 글씨 크기: 13px.** 어떤 요소도 13px 미만 금지 (clamp의 하한값 포함). 토스뱅크도 13px 아래로 내려가지 않는다.
 
@@ -60,7 +64,7 @@
 | 보조 설명·캡션·칩 | 13~14px | 13~14px |
 | 푸터 정보·저작권 | 13px | 13px |
 
-- 배너 안 텍스트는 배너 크기에 비례(cqw clamp)하되, **clamp 하한은 헤드라인 24px / 본문 14px / 라벨 13px 이상**으로 잡는다
+- 배너 안 텍스트는 배너 크기에 비례(cqw clamp)하되, **clamp 하한은 헤드라인 28px / 본문 16px / 라벨 15px 이상**, 상한은 헤드라인 56px / 본문 24px / 라벨 21px 정도로 잡는다 (2026-10 사용자 피드백: 배너 보조 텍스트가 너무 작았음)
 - 강조가 필요하면 크기보다 `font-bold`/색으로. 크기 단계는 위 표 안에서만 고른다
 
 ## 레이아웃
@@ -69,17 +73,25 @@
 - 섹션 세로 여백: `py-14 sm:py-20` (히어로는 `pt-20 sm:pt-28`)
 - 히어로 패턴: 중앙 정렬, 칩 배지 → 큰 헤드라인 → 회색 서브텍스트 순
 
+## 슬라이더 조작 버튼
+
+배너·갤러리의 좌우 화살표는 **그림자·테두리 없는 반투명 네이비 원**(`bg-navy/20 backdrop-blur-md`) + 흰 화살표, 36~40px, 기본 `opacity-80`, 호버 시 `bg-navy/35`로만 또렷해진다. 흰 반투명 유리 원은 밝은 배너(성회 슬라이드)에서 사라지고, 불투명 흰 원 + 그림자는 너무 튀어서 둘 다 폐기 (2026-10 사용자 피드백). 홈 `HeroSection`과 `pastor/FootprintSlider`가 기준.
+
+## 글래스 표 (GlassTable)
+
+연혁·사역 목록처럼 행 단위 데이터는 카드 여러 장이 아니라 `ui/GlassTable.tsx` 하나로 묶는다 — 패널보다 10~12px 큰 옅은 블루 그라데이션 띠 + `.glass-panel` 반투명 패널 + `divide-y` 가는 구분선. 제목과는 36~40px 띄울 것(띠가 제목에 닿으면 겹쳐 보임). 번호 배지가 있으면 행 세로 가운데(`items-center`). 해외성회 연혁, 교회소개 5대 중점 사역이 기준.
+
 ## 라운드 / 그림자
 
 | 요소 | 라운드 | 그림자 |
 |---|---|---|
-| 큰 카드 (섹션 카드) | `rounded-[24px]` | 없음 (배경색으로 구분: `bg-gray-50`) |
-| 드롭다운/팝오버 | `rounded-b-[20px]` (헤더에 붙는 상단은 직각) | `shadow-[0_0_1px_rgba(2,32,71,0.16),0_12px_40px_rgba(2,32,71,0.14)]` |
-| 카드 내 아이콘 박스 | `rounded-2xl bg-white` | `shadow-[0_1px_4px_rgba(2,32,71,0.06)]` |
-| 버튼/CTA | `rounded-full` | 강조 CTA: `shadow-[0_8px_24px_rgba(49,130,246,0.35)]` (블루 글로우) |
-| 작은 인터랙션 (네브 필, 리스트 호버) | `rounded-[10px]~[14px]` | 없음 |
+| 큰 카드 (섹션 카드, 배너 프레임) | `rounded-[24px]~[28px]` | `.shadow-feature` (넓고 옅은 확산) 또는 없음 (`bg-gray-50` 평면 구분) |
+| 드롭다운/팝오버 | `rounded-[20px]` | `shadow-[0_16px_44px_-10px_rgba(23,37,84,0.22)]` + `ring-1 ring-primary/10` |
+| 헤더 캡슐 | `rounded-[18px]` | `.glass-panel` (인셋 화이트 링 + 옅은 확산) |
+| 버튼/CTA | `rounded-full` | 없음 — 단색 배경과 호버 색 변화로만. 발광 그림자 금지 |
+| 작은 인터랙션 (네브 필, 리스트 호버) | `rounded-full` 또는 `rounded-[14px]` | 없음 |
 
-그림자 색은 검정 대신 네이비 계열 `rgba(2,32,71,…)`을 쓴다 — 더 차분하고 고급스럽다.
+그림자 색은 검정 대신 네이비 계열 `rgba(23,37,84,…)`을 쓴다 — 쿨 배경 위에서 탁해지지 않는다.
 
 ## 홈 배너 (정책 — 변경 금지)
 
@@ -90,9 +102,10 @@
 
 ## 헤더 / 메가 메뉴
 
-- 헤더: 글래스모피즘 — `bg-background/70 backdrop-blur-2xl backdrop-saturate-[1.8]`, 스크롤 시 `border-b + shadow`
-- 드롭다운 카드는 **불투명 `bg-background`** + 블루 헤어라인 링(`ring-primary/10`) + 블루 계열 그림자. 반투명으로 하면 페이지마다(어두운 배너 위 vs 밝은 본문 위) 카드 색이 달라져 일관성이 깨진다 — 헤더와의 통일감은 같은 배경 색조와 블루 액센트로 만든다
-- 드롭다운은 헤더 하단선에서 시작 (아이템 래퍼 `h-full` + `top-full`), 항목은 제목+설명 2줄 구조
+- 헤더는 풀폭 바가 아니라 **플로팅 캡슐** — `sticky` 래퍼 안에 `rounded-[18px]` 캡슐. 최상단에서는 투명(히어로 하늘 위에 얹힘), 스크롤/드롭다운/모바일 메뉴 시 `.glass-panel`로 떠오른다
+- 캡슐 오른쪽 끝에 pill CTA(온라인헌금, `bg-primary`) — 레퍼런스의 비대칭 균형
+- 드롭다운 카드는 **불투명 `bg-background`** + `ring-primary/10` + 네이비 계열 그림자, 캡슐에서 `pt-2` 떨어진 독립 카드. 반투명 금지 (페이지마다 카드 색이 달라진다)
+- 모바일 메뉴도 전체 화면 오버레이가 아니라 캡슐 아래 붙는 라운드 카드
 - 메뉴 데이터는 `src/lib/constants.ts`의 `NAV_ITEMS` (label/href/description)
 
 ## 모션
@@ -100,23 +113,29 @@
 - 등장: `animate-fade-up` (0.6s) 또는 framer-motion `initial/animate` + `y: 12~24, opacity: 0`
 - 드롭다운: `animate-dropdown-in` (0.18s, 살짝 떠오름)
 - 스크롤 등장: framer-motion `whileInView` + `viewport={{ once: true }}`
-- 숫자 강조: CountUp 패턴 (`src/components/mission/MissionHero.tsx` 참고)
+- 스크롤 등장 공용 래퍼: `src/components/ui/Reveal.tsx`
+- 숫자 강조: CountUp 패턴 (`src/components/mission/MissionHero.tsx`, `home/MissionStats.tsx`)
 - 지도/화려한 연출: `dotted-map` + framer-motion `pathLength` 애니메이션 (선교 히어로 참고)
 - 과한 모션 금지: duration 0.2~0.8s, 반복 애니메이션은 히어로 같은 특수 섹션에만
 
 ## 다크 섹션 (선교 히어로, CTA)
 
-- 다크 배경 위 포인트 컬러는 **토스 계열 블루** (Tailwind 기본 `blue-500`/`sky-300~400` — v4라서 이미 OKLCH). 골드는 다크 배경에서 올드해 보이므로 쓰지 않는다
-- 배경: `bg-navy` + 라디얼 글로우 (`bg-blue-600/25`, `bg-sky-400/10` + `blur-[100px~140px]`)
-- 텍스트: 흰색 제목, `text-slate-400` 본문, `text-sky-300` 포인트
-- 그라데이션 텍스트: `bg-gradient-to-r from-sky-300 via-blue-400 to-sky-300 bg-clip-text text-transparent`
-- CTA 버튼: `bg-gradient-to-r from-blue-500 to-sky-400` + 블루 글로우 그림자
-- 아래 밝은 섹션과의 연결: 하단에 `bg-gradient-to-b from-transparent to-white` 페이드
+- 배경: `bg-navy`. 사진을 쓰면 `opacity-20` + 네이비 그라데이션으로 질감만 남긴다
+- 텍스트: 흰색 제목, `text-slate-400` 본문, `text-sky-300` 라벨
+- 지표 그리드: `grid gap-px bg-white/10` — 1px 헤어라인으로 나눈 격자 (카드마다 박스 금지)
+- CTA 버튼: 흰 배경 pill(`bg-white text-gray-900`) + 고스트 pill(`border-white/25`). 그라데이션 버튼·발광 그림자 금지
+- 글로우/그라데이션 텍스트는 선교 히어로(MissionHero) 같은 특수 연출 1곳까지만
+
+## 소타이틀(eyebrow) 금지
+
+영문 트래킹 kicker(`WORLD MISSION`, `About`, `News` 같은 자간 벌린 소문구)는 쓰지 않는다 — 사용자가 "AI스럽다"고 지적한 대표 패턴. 섹션은 한국어 제목으로 바로 시작하고, 부가 정보는 제목 아래 본문 톤으로 붙인다.
 
 ## 금지 사항
 
 - 컴포넌트에 hex 하드코딩 (`text-[#2B5797]` ❌ → `text-secondary` ✅)
 - 페이지 루트 `bg-white` (앰비언트 그라데이션 차단)
-- 검정 그림자 (`rgba(0,0,0,…)` 대신 네이비 계열)
+- 검정 그림자 (`rgba(0,0,0,…)` 대신 네이비 계열 `rgba(23,37,84,…)`)
+- 장식용 발광 그림자·블러 오브·유리 타일·노이즈 텍스처·그라데이션 텍스트 남발 (다크 특수 섹션 1곳 예외)
+- 웜 톤(골드·베이지·아이보리) 복귀 — 2026-10 쿨톤 리뉴얼로 폐기
 - 드롭다운 불투명도를 80% 미만으로 낮추는 것 (가독성 저하)
 - 새 라이브러리 추가 전 기존 스택 확인: framer-motion, lucide-react, dotted-map, embla-carousel
