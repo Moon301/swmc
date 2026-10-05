@@ -13,6 +13,7 @@ import { MissionStats } from "@/components/home/MissionStats";
 import { NewsPreview } from "@/components/home/NewsPreview";
 import { ChurchJsonLd } from "@/components/seo/JsonLd";
 import { IntroLoader } from "@/components/home/IntroLoader";
+import { LiveWorshipPopup } from "@/components/home/LiveWorshipPopup";
 import { Reveal } from "@/components/ui/Reveal";
 
 export default async function HomePage() {
@@ -49,6 +50,8 @@ export default async function HomePage() {
         <ChurchJsonLd />
         <IntroLoader />
         <PopupOverlay popups={popupsRes.data ?? []} />
+        {/* 주일 09~12시·14~17시(KST)에만 뜨는 실시간 예배 안내 — 유튜브 라이브로 연결 */}
+        <LiveWorshipPopup />
 
         {/* 1~2. 배너 + 퀵링크는 같은 하늘 배경 위에 올린다 */}
         <SkyBackdrop>
