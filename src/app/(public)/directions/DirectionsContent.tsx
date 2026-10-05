@@ -27,7 +27,6 @@ export function DirectionsContent() {
 
         <div className="mt-6 text-center">
           <p className="text-[18px] font-bold text-gray-900">{CHURCH_INFO.name}</p>
-          <p className="mt-1 text-[13px] text-gray-500">{CHURCH_INFO.denomination}</p>
 
           <button
             onClick={copyAddress}
