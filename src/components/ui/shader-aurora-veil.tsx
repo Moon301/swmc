@@ -174,15 +174,16 @@ vec3 shaderColor(vec2 uv, vec2 p, float t, vec2 pointer, float intensity, float 
     },
     fragment: `
 vec3 shaderColor(vec2 uv, vec2 p, float t, vec2 pointer, float intensity, float isLight) {
+  /* 띠가 두껍고 파장이 길어 같은 속도면 흐름이 둔해 보여서 시간 계수를 1.5배 */
   vec2 q = p;
-  q.x += sin(q.y * 1.4 + t * 0.18) * 0.22;
-  q.y += cos(q.x * 0.9 - t * 0.14) * 0.16;
+  q.x += sin(q.y * 1.4 + t * 0.27) * 0.22;
+  q.y += cos(q.x * 0.9 - t * 0.21) * 0.16;
 
   /* smoothstep 폭을 키워 베일(띠)을 두껍게 — 기본 1.15/1.05 → 1.7/1.6.
      가로 주기(q.x 계수)는 기본 1.4/1.9 → 0.75/1.0 으로 낮춰 곡선 사이 좌우 간격을 넓힘 (사용자 피드백) */
-  float veilA = smoothstep(1.7, 0.0, abs(q.y + sin(q.x * 0.75 + t * 0.2) * 0.6));
-  float veilB = smoothstep(1.6, 0.0, abs(q.y * 0.7 - cos(q.x * 1.0 - t * 0.16) * 0.66));
-  float grain = fbm(q * 2.5 + t * 0.04);
+  float veilA = smoothstep(1.7, 0.0, abs(q.y + sin(q.x * 0.75 + t * 0.3) * 0.6));
+  float veilB = smoothstep(1.6, 0.0, abs(q.y * 0.7 - cos(q.x * 1.0 - t * 0.24) * 0.66));
+  float grain = fbm(q * 2.5 + t * 0.06);
 
   vec3 base = mix(vec3(0.045, 0.06, 0.14), vec3(0.955, 0.968, 0.99), isLight);
   /* 라이트 톤 채도를 올림 — 스카이 블루와 골드가 또렷하게 */
