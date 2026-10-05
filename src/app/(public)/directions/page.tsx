@@ -83,7 +83,7 @@ export default function DirectionsPage() {
                   href={`https://map.kakao.com/link/search/${encodeURIComponent(b.address)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-block rounded-full bg-[#FFCD00] px-4 py-1.5 text-[13px] font-medium text-black transition-colors hover:bg-[#f3ba00]"
+                  className="mt-3 inline-block rounded-full border border-[#FFCD00] bg-transparent px-4 py-1.5 text-[13px] font-medium text-gray-700 transition-colors hover:bg-[#FFCD00]/15"
                 >
                   카카오맵
                 </a>
