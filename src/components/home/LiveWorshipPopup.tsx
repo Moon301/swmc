@@ -4,50 +4,74 @@
  *
  * 한국 시간 기준 매주 일요일 09:00~12:00, 14:00~17:00 에만 홈에 뜬다 (방문자 시간대와 무관).
  * 누르면 유튜브 채널 라이브 페이지가 새 탭으로 열린다. 닫으면 그 세션 동안은 다시 안 뜬다.
- * 미리보기: 주소 뒤에 ?live-preview=1 을 붙이면 요일·시간과 상관없이 표시된다. */
+ * 09:00~10:30 / 14:00~14:30 은 "라이브 예정", 10:30~12:00 / 14:30~17:00 은 "지금 라이브 중".
+ * 미리보기: ?live-preview=1 (라이브 중) 또는 ?live-preview=upcoming (라이브 예정). */
 
 import { useEffect, useState } from "react";
 import { X, Youtube } from "lucide-react";
 import { CHURCH_INFO } from "@/lib/constants";
 
 const DISMISS_KEY = "swmc_live_popup_dismissed";
-const WINDOWS: Array<[number, number]> = [
-  [9, 12],
-  [14, 17],
+
+type LiveState = {
+  status: "upcoming" | "live";
+  service: string; // 예배 이름
+  time: string; // 예배 시작 시각 표기
+};
+
+/* 표시 구간(분 단위, KST) — 시작 30분 전부터 "라이브 예정", 시작 30분 전 지점부터 "라이브 중" */
+const WINDOWS = [
+  { from: 9 * 60, liveFrom: 10 * 60 + 30, until: 12 * 60, service: "주일 대예배", time: "오전 11시" },
+  { from: 14 * 60, liveFrom: 14 * 60 + 30, until: 17 * 60, service: "주일 저녁예배", time: "오후 3시" },
 ];
 
-function isLiveWindowKST(now = new Date()) {
+function liveStateKST(now = new Date()): LiveState | null {
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone: "Asia/Seoul",
     weekday: "short",
     hour: "numeric",
+    minute: "numeric",
     hour12: false,
   }).formatToParts(now);
   const weekday = parts.find((p) => p.type === "weekday")?.value;
+  if (weekday !== "Sun") return null;
   const hour = Number(parts.find((p) => p.type === "hour")?.value ?? -1) % 24;
-  if (weekday !== "Sun") return false;
-  return WINDOWS.some(([start, end]) => hour >= start && hour < end);
+  const minute = Number(parts.find((p) => p.type === "minute")?.value ?? 0);
+  const m = hour * 60 + minute;
+  const w = WINDOWS.find((x) => m >= x.from && m < x.until);
+  if (!w) return null;
+  return { status: m >= w.liveFrom ? "live" : "upcoming", service: w.service, time: w.time };
 }
 
 export function LiveWorshipPopup() {
-  const [open, setOpen] = useState(false);
+  const [state, setState] = useState<LiveState | null>(null);
 
   useEffect(() => {
-    const preview = new URLSearchParams(window.location.search).get("live-preview") === "1";
+    const params = new URLSearchParams(window.location.search);
+    const preview = params.get("live-preview"); // "1"|"live" → 라이브 중, "upcoming" → 라이브 예정
     const update = () => {
-      if (!preview && sessionStorage.getItem(DISMISS_KEY)) return setOpen(false);
-      setOpen(preview || isLiveWindowKST());
+      if (preview) {
+        setState(
+          preview === "upcoming"
+            ? { status: "upcoming", service: "주일 대예배", time: "오전 11시" }
+            : { status: "live", service: "주일 대예배", time: "오전 11시" }
+        );
+        return;
+      }
+      if (sessionStorage.getItem(DISMISS_KEY)) return setState(null);
+      setState(liveStateKST());
     };
     update();
     const timer = setInterval(update, 60_000);
     return () => clearInterval(timer);
   }, []);
 
-  if (!open) return null;
+  if (!state) return null;
+  const live = state.status === "live";
 
   const close = () => {
     sessionStorage.setItem(DISMISS_KEY, "1");
-    setOpen(false);
+    setState(null);
   };
 
   return (
@@ -66,23 +90,38 @@ export function LiveWorshipPopup() {
           <X className="h-4 w-4" strokeWidth={2} />
         </button>
 
+        {/* 상태 라벨 — 라이브 중은 빨간 점이 깜빡이고, 예정은 파란 점 */}
         <div className="flex items-center gap-2">
           <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-500 opacity-60" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-rose-500" />
+            {live && (
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-500 opacity-60" />
+            )}
+            <span className={`relative inline-flex h-2.5 w-2.5 rounded-full ${live ? "bg-rose-500" : "bg-primary"}`} />
           </span>
-          <span className="text-[13px] font-semibold text-rose-600">지금 예배 중</span>
+          <span className={`text-[13px] font-semibold ${live ? "text-rose-600" : "text-secondary"}`}>
+            {live ? "지금 라이브 중" : "라이브 예정"}
+          </span>
         </div>
 
         <h2 id="live-worship-title" className="mt-4 text-[24px] font-bold leading-snug text-gray-900 sm:text-[26px]">
-          실시간 주일예배에
-          <br />
-          함께하세요
+          {live ? (
+            <>
+              실시간 주일예배에
+              <br />
+              함께하세요
+            </>
+          ) : (
+            <>
+              {state.service}가
+              <br />
+              {state.time}에 시작됩니다
+            </>
+          )}
         </h2>
         <p className="mt-3 text-[15px] leading-[1.8] text-gray-600">
-          주일 대예배 오전 11시, 주일 저녁예배 오후 3시.
-          <br />
-          현장에 오지 못하시는 분들은 유튜브 생중계로 함께 예배드릴 수 있습니다.
+          {live
+            ? `${state.service}(${state.time})가 유튜브로 생중계되고 있습니다. 현장에 오지 못하시는 분들도 함께 예배드릴 수 있습니다.`
+            : "예배 시작에 맞춰 유튜브 채널에서 생중계가 시작됩니다. 미리 채널을 열어 두시면 편합니다."}
         </p>
 
         <a
@@ -93,7 +132,7 @@ export function LiveWorshipPopup() {
           className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-primary-hover"
         >
           <Youtube className="h-5 w-5" strokeWidth={2} />
-          유튜브로 실시간 예배 보기
+          {live ? "유튜브로 실시간 예배 보기" : "유튜브 채널 미리 열기"}
         </a>
         <button
           onClick={close}
