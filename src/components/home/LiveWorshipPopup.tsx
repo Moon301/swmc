@@ -8,6 +8,7 @@
  * 미리보기: ?live-preview=1 (라이브 중) 또는 ?live-preview=upcoming (라이브 예정). */
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { X, Youtube } from "lucide-react";
 import { CHURCH_INFO } from "@/lib/constants";
 
@@ -74,72 +75,77 @@ export function LiveWorshipPopup() {
     setState(null);
   };
 
+  const liveHref = `${CHURCH_INFO.youtube}/live`;
+
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-end justify-center bg-navy/40 p-4 backdrop-blur-sm sm:items-center"
+      className="fixed inset-0 z-[60] flex items-end justify-center bg-navy/45 p-4 backdrop-blur-sm sm:items-center"
       role="dialog"
       aria-modal="true"
       aria-labelledby="live-worship-title"
     >
-      <div className="relative w-full max-w-[420px] rounded-[28px] bg-background p-7 shadow-[0_24px_64px_rgba(10,16,40,0.28)] sm:p-9">
+      <div className="relative w-full max-w-[460px] overflow-hidden rounded-[28px] bg-background shadow-[0_24px_64px_rgba(10,16,40,0.3)]">
         <button
           onClick={close}
-          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition-colors hover:bg-gray-200 hover:text-gray-700"
+          className="absolute right-3.5 top-3.5 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur-md transition-colors hover:bg-black/50"
           aria-label="닫기"
         >
           <X className="h-4 w-4" strokeWidth={2} />
         </button>
 
-        {/* 상태 라벨 — 라이브 중은 빨간 점이 깜빡이고, 예정은 파란 점 */}
-        <div className="flex items-center gap-2">
-          <span className="relative flex h-2.5 w-2.5">
-            {live && (
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-500 opacity-60" />
-            )}
-            <span className={`relative inline-flex h-2.5 w-2.5 rounded-full ${live ? "bg-rose-500" : "bg-primary"}`} />
-          </span>
-          <span className={`text-[13px] font-semibold ${live ? "text-rose-600" : "text-secondary"}`}>
-            {live ? "지금 라이브 중" : "라이브 예정"}
-          </span>
-        </div>
-
-        <h2 id="live-worship-title" className="mt-4 text-[24px] font-bold leading-snug text-gray-900 sm:text-[26px]">
-          {live ? (
-            <>
-              실시간 주일예배에
-              <br />
-              함께하세요
-            </>
-          ) : (
-            <>
-              {state.service}가
-              <br />
-              {state.time}에 시작됩니다
-            </>
-          )}
-        </h2>
-        <p className="mt-3 text-[15px] leading-[1.8] text-gray-600">
-          {live
-            ? `${state.service}(${state.time})가 유튜브로 생중계되고 있습니다. 현장에 오지 못하시는 분들도 함께 예배드릴 수 있습니다.`
-            : "예배 시작에 맞춰 유튜브 채널에서 생중계가 시작됩니다. 미리 채널을 열어 두시면 편합니다."}
-        </p>
-
-        <a
-          href={`${CHURCH_INFO.youtube}/live`}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={close}
-          className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-primary-hover"
-        >
-          <Youtube className="h-5 w-5" strokeWidth={2} />
-          {live ? "유튜브로 실시간 예배 보기" : "유튜브 채널 미리 열기"}
+        {/* 썸네일 — 가운데, 전체 폭. 이미지 자체도 라이브 링크 */}
+        <a href={liveHref} target="_blank" rel="noopener noreferrer" onClick={close} className="block">
+          <div className="relative aspect-video w-full">
+            <Image
+              src="/images/live-worship.png"
+              alt="성은세계선교교회 주일예배 실시간 라이브, 나현숙 목사님"
+              fill
+              priority
+              sizes="(min-width: 640px) 460px, 100vw"
+              className="object-cover"
+            />
+            {/* 상태 배지 — 이미지 왼쪽 위 */}
+            <span
+              className={`absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-semibold text-white backdrop-blur-md ${
+                live ? "bg-rose-600/90" : "bg-navy/70"
+              }`}
+            >
+              <span className="relative flex h-2 w-2">
+                {live && <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-70" />}
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+              </span>
+              {live ? "LIVE" : "라이브 예정"}
+            </span>
+          </div>
         </a>
-        <button
-          onClick={close}
-          className="mt-3 w-full py-2 text-[14px] text-gray-500 transition-colors hover:text-gray-700"
-        >
-          다음에 볼게요
-        </button>
+
+        <div className="p-6 text-center sm:p-7">
+          <h2 id="live-worship-title" className="text-[19px] font-bold leading-snug text-gray-900 sm:text-[20px]">
+            {live ? `${state.service} 실시간 생중계 중` : `${state.service} ${state.time} 생중계 예정`}
+          </h2>
+          <p className="mt-2 text-[14px] leading-[1.75] text-gray-500">
+            {live
+              ? "현장에 오지 못하시는 분들도 유튜브로 함께 예배드릴 수 있습니다."
+              : "예배 시작에 맞춰 유튜브 채널에서 생중계가 시작됩니다."}
+          </p>
+
+          <a
+            href={liveHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={close}
+            className="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-primary-hover"
+          >
+            <Youtube className="h-5 w-5" strokeWidth={2} />
+            {live ? "유튜브로 실시간 예배 보기" : "유튜브 채널 미리 열기"}
+          </a>
+          <button
+            onClick={close}
+            className="mt-2.5 w-full py-2 text-[14px] text-gray-500 transition-colors hover:text-gray-700"
+          >
+            다음에 볼게요
+          </button>
+        </div>
       </div>
     </div>
   );
