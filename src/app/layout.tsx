@@ -42,6 +42,7 @@ export const metadata: Metadata = {
      네이버 값은 서치어드바이저에서 받으면 naver 키로 추가 */
   verification: {
     google: "soAbsvsv5fpiW05AO1UNcaeh8TZVOTSn_YO9QfKLr8w",
+    other: { "naver-site-verification": "e7ea6be6678cd3915152b756a2cdeb3cf881e29a" },
   },
 };
 
