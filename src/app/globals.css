@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: "Noto Sans KR", sans-serif;
-  --font-serif: var(--font-serif), "Noto Serif KR", serif;
+  --font-sans: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-serif: "Noto Serif KR", "Apple Myungjo", "Nanum Myeongjo", serif;
 
   /* 쿨 뉴트럴 — hue 264 블루-그레이. 브랜드 블루와 같은 계열이라 섞여도 탁해지지 않는다 */
   --color-gray-50: oklch(98.4% 0.002 264);

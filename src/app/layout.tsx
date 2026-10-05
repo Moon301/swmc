@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Noto_Sans_KR, Noto_Serif_KR } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { SupabaseProvider } from "@/components/providers/SupabaseProvider";
@@ -7,20 +6,12 @@ import { AuthProvider } from "@/components/providers/AuthProvider";
 import { ToastProvider } from "@/components/providers/ToastProvider";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
 
-const notoSansKR = Noto_Sans_KR({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-  variable: "--font-sans",
-});
-
-/* 명조 — 성회 배너 등 품격이 필요한 타이틀 전용 */
-const notoSerifKR = Noto_Serif_KR({
-  subsets: ["latin"],
-  weight: ["600", "700", "900"],
-  display: "swap",
-  variable: "--font-serif",
-});
+/* 폰트는 런타임에 Google Fonts 스타일시트로 불러온다.
+   next/font/google은 빌드 때 fonts.gstatic.com에서 파일을 내려받는데, Vercel 빌드 머신에서
+   그 다운로드가 실패하면 빌드 전체가 깨진다 (2026-10-05 실제 발생). 런타임 로드는 빌드와 무관하고
+   Google이 unicode-range로 한글 서브셋을 나눠 주므로 용량도 next/font와 같다. */
+const GOOGLE_FONTS_HREF =
+  "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@600;700;900&display=swap";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -53,7 +44,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko" className={`${notoSansKR.variable} ${notoSerifKR.variable}`}>
+    <html lang="ko">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="stylesheet" href={GOOGLE_FONTS_HREF} />
+      </head>
       <body className="font-sans antialiased">
         <SupabaseProvider>
           <AuthProvider>
