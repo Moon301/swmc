@@ -152,10 +152,12 @@ vec3 shaderColor(vec2 uv, vec2 p, float t, vec2 pointer, float intensity, float 
   vec3 sky = mix(vec3(0.26, 0.5, 0.95), vec3(0.57, 0.73, 0.97), isLight);
   vec3 gold = mix(vec3(0.95, 0.72, 0.3), vec3(0.96, 0.86, 0.64), isLight);
 
+  /* 파란 띠가 강한 곳에서는 금색을 눌러 두 색이 섞여 탁해지지 않게 (상세 페이지 프리셋과 동일 처리) */
+  float goldAmt = veilB * (1.0 - veilA * 0.75);
   vec3 color = base;
   color = mix(color, sky, veilA * mix(0.5, 0.54, isLight));
-  color = mix(color, gold, veilB * mix(0.3, 0.48, isLight));
-  color += (grain - 0.5) * 0.022;
+  color = mix(color, gold, goldAmt * mix(0.3, 0.48, isLight));
+  color += (grain - 0.5) * 0.01;
   return color * (0.9 + intensity * 0.14);
 }
 `,
