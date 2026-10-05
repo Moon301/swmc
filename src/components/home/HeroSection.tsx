@@ -114,7 +114,8 @@ function DefaultSlide3() {
               <div key={b.name}>
                 <p className="text-[clamp(16px,2cqw,22px)] font-semibold text-white">{b.short}</p>
                 <p className="mt-1 text-[clamp(14px,1.6cqw,18px)] text-white/80">{b.address}</p>
-                <p className="mt-0.5 text-[clamp(13px,1.4cqw,16px)] text-white/60">{b.subway}</p>
+                {/* 전철역은 모바일에서 숨긴다 — 4:3 배너에 글이 꽉 차서 */}
+                <p className="mt-0.5 hidden text-[clamp(13px,1.4cqw,16px)] text-white/60 sm:block">{b.subway}</p>
               </div>
             ))}
           </div>
