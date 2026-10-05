@@ -14,7 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency,
     priority,
   });
-  /* 공개 페이지 전부 — 메뉴(NAV)와 맞춘다. 갤러리·금주단상은 삭제됨 */
+  /* 공개 페이지 — 메뉴(NAV)와 맞춘다. 갤러리·금주단상은 삭제됨, /news 목록은 사용자 지시로 제외 */
   const staticPages = [
     page("", 1, "daily"),
     page("/about", 0.8, "monthly"),
@@ -27,7 +27,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     page("/missionaries", 0.7, "monthly"),
     page("/building", 0.6, "yearly"),
     page("/offering", 0.7, "yearly"),
-    page("/news", 0.8, "weekly"),
   ];
 
 
