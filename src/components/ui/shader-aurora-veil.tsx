@@ -148,13 +148,13 @@ vec3 shaderColor(vec2 uv, vec2 p, float t, vec2 pointer, float intensity, float 
   float grain = fbm(q * 2.5 + t * 0.04);
 
   vec3 base = mix(vec3(0.045, 0.06, 0.14), vec3(0.955, 0.968, 0.99), isLight);
-  /* 파스텔 톤 — 채도를 낮춰 은은하게 */
-  vec3 sky = mix(vec3(0.26, 0.5, 0.95), vec3(0.66, 0.78, 0.96), isLight);
-  vec3 gold = mix(vec3(0.95, 0.72, 0.3), vec3(0.97, 0.89, 0.74), isLight);
+  /* 홈 히어로용 — 파스텔보다 한 단계 진하게 (2026-10-06 사용자 요청). 상세 페이지는 bold 프리셋 */
+  vec3 sky = mix(vec3(0.26, 0.5, 0.95), vec3(0.57, 0.73, 0.97), isLight);
+  vec3 gold = mix(vec3(0.95, 0.72, 0.3), vec3(0.96, 0.86, 0.64), isLight);
 
   vec3 color = base;
-  color = mix(color, sky, veilA * mix(0.5, 0.42, isLight));
-  color = mix(color, gold, veilB * mix(0.3, 0.38, isLight));
+  color = mix(color, sky, veilA * mix(0.5, 0.54, isLight));
+  color = mix(color, gold, veilB * mix(0.3, 0.48, isLight));
   color += (grain - 0.5) * 0.022;
   return color * (0.9 + intensity * 0.14);
 }

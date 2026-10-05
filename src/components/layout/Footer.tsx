@@ -37,7 +37,6 @@ export function Footer() {
           </div>
 
           {/* 교회 안내 (바로가기 메뉴는 사용자 지시로 제거) */}
-          <div>
             <div>
               <p className="text-[13px] font-semibold tracking-wide text-gray-900">교회 안내</p>
               <ul className="mt-4 space-y-3 text-[13px] leading-relaxed text-gray-500">
