@@ -117,19 +117,28 @@
   }
 }
 
-/* 상세 페이지 히어로 하단 페이드 — 히어로가 낮아서 짧게 */
+/* 상세 페이지 히어로 하단 페이드 — 셰이더가 진해진 뒤 경계가 보여서, 길고 완만한 곡선(ease-out)으로.
+   모바일은 히어로가 낮아 상대적으로 더 길게 잡아 본문과 끊김 없이 이어지게 한다 */
 .page-hero-fade::after {
   content: "";
   position: absolute;
   inset-inline: 0;
   bottom: 0;
-  height: 4.5rem;
+  height: 9rem;
   pointer-events: none;
   background-image: linear-gradient(
     180deg,
     transparent 0%,
+    color-mix(in oklch, var(--color-background) 18%, transparent) 25%,
+    color-mix(in oklch, var(--color-background) 52%, transparent) 50%,
+    color-mix(in oklch, var(--color-background) 86%, transparent) 75%,
     var(--color-background) 100%
   );
+}
+@media (max-width: 639px) {
+  .page-hero-fade::after {
+    height: 11rem;
+  }
 }
 
 /* 하늘 → 본문 배경으로 떨어지는 페이드. 섹션 경계선을 지운다 */
