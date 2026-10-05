@@ -19,7 +19,7 @@ import {
 import { useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-export type WebsiteShaderId = "aurora-veil";
+export type WebsiteShaderId = "aurora-veil" | "aurora-veil-bold";
 
 export interface WebsiteShaderPreset {
   id: WebsiteShaderId;
@@ -155,6 +155,42 @@ vec3 shaderColor(vec2 uv, vec2 p, float t, vec2 pointer, float intensity, float 
   vec3 color = base;
   color = mix(color, sky, veilA * mix(0.5, 0.42, isLight));
   color = mix(color, gold, veilB * mix(0.3, 0.38, isLight));
+  color += (grain - 0.5) * 0.022;
+  return color * (0.9 + intensity * 0.14);
+}
+`,
+  },
+  {
+    /* 상세 페이지 히어로용 — 같은 움직임이지만 베일이 더 두껍고 블루·골드가 더 진하다 (사용자 지정).
+       홈 히어로(SkyBackdrop)는 기본 aurora-veil을 그대로 쓴다 */
+    id: "aurora-veil-bold",
+    title: "Aurora veil (bold)",
+    accent: "#4f8fe6",
+    interactive: false,
+    preview: {
+      dark: "radial-gradient(circle at 30% 24%, rgba(80,140,240,0.5), transparent 36%), radial-gradient(circle at 80% 72%, rgba(222,170,80,0.32), transparent 38%), linear-gradient(140deg, #0a1128, #101830 55%, #0a0f22)",
+      light:
+        "radial-gradient(circle at 34% 22%, rgba(80,140,240,0.4), transparent 38%), radial-gradient(circle at 76% 70%, rgba(226,176,84,0.32), transparent 40%), linear-gradient(180deg, #cfe3f9, #eef5fd 60%, #fafcfe)",
+    },
+    fragment: `
+vec3 shaderColor(vec2 uv, vec2 p, float t, vec2 pointer, float intensity, float isLight) {
+  vec2 q = p;
+  q.x += sin(q.y * 2.0 + t * 0.18) * 0.22;
+  q.y += cos(q.x * 1.7 - t * 0.14) * 0.16;
+
+  /* smoothstep 폭을 키워 베일(띠)을 두껍게 — 기본 1.15/1.05 → 1.7/1.6 */
+  float veilA = smoothstep(1.7, 0.0, abs(q.y + sin(q.x * 1.4 + t * 0.2) * 0.55));
+  float veilB = smoothstep(1.6, 0.0, abs(q.y * 0.7 - cos(q.x * 1.9 - t * 0.16) * 0.62));
+  float grain = fbm(q * 2.5 + t * 0.04);
+
+  vec3 base = mix(vec3(0.045, 0.06, 0.14), vec3(0.955, 0.968, 0.99), isLight);
+  /* 라이트 톤 채도를 올림 — 스카이 블루와 골드가 또렷하게 */
+  vec3 sky = mix(vec3(0.26, 0.5, 0.95), vec3(0.5, 0.68, 0.97), isLight);
+  vec3 gold = mix(vec3(0.95, 0.72, 0.3), vec3(0.96, 0.82, 0.55), isLight);
+
+  vec3 color = base;
+  color = mix(color, sky, veilA * mix(0.55, 0.62, isLight));
+  color = mix(color, gold, veilB * mix(0.35, 0.55, isLight));
   color += (grain - 0.5) * 0.022;
   return color * (0.9 + intensity * 0.14);
 }

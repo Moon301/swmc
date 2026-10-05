@@ -15,11 +15,12 @@ export function PageHero({
 }) {
   return (
     <div className="page-hero-fade relative -mt-[76px] overflow-hidden pt-[76px] sm:-mt-20 sm:pt-20">
+      {/* 홈보다 띠가 두껍고 색이 진한 bold 변형 (사용자 지정) */}
       <WebsiteShaderCanvas
-        preset="aurora-veil"
+        preset="aurora-veil-bold"
         tone="light"
-        intensity={1.2}
-        className="absolute inset-0 h-full w-full opacity-90"
+        intensity={1.3}
+        className="absolute inset-0 h-full w-full"
       />
       <div className="relative z-10 mx-auto max-w-[1100px] px-5 pb-14 pt-10 sm:pb-16 sm:pt-14">
         <h1 className="text-[36px] font-bold text-gray-900 sm:text-[44px]">{title}</h1>
