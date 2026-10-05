@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import { createClient } from "@/lib/supabase/server";
 import { generatePageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/layout/PageHero";
+import { GlassTable } from "@/components/ui/GlassTable";
 import { CHURCH_INFO, WORSHIP_TIMES } from "@/lib/constants";
 
 export const metadata = generatePageMetadata({
@@ -55,32 +56,25 @@ export default async function WorshipPage() {
             ].map((group) => (
               <section key={group.title}>
                 <h2 className="text-[20px] font-bold text-gray-900">{group.title}</h2>
-                <div className="card-soft mt-4 overflow-hidden">
-                  <table className="w-full text-left">
-                    <thead>
-                      <tr className="bg-primary text-white">
-                        <th className="px-5 py-3 text-[14px] font-semibold sm:px-6">예배</th>
-                        <th className="px-5 py-3 text-[14px] font-semibold sm:px-6">시간</th>
-                        <th className="px-5 py-3 text-[14px] font-semibold sm:px-6">장소</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100">
-                      {group.rows.map((row) => (
-                        <tr key={row.name}>
-                          <td className="px-5 py-3.5 text-[14px] font-medium text-gray-900 sm:px-6">
-                            {row.name}
-                          </td>
-                          <td className="px-5 py-3.5 text-[14px] text-gray-600 sm:px-6">
-                            {row.time}
-                          </td>
-                          <td className="px-5 py-3.5 text-[14px] text-gray-500 sm:px-6">
-                            {row.location}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                {/* 바탕과 구분되도록 글래스 표 (연혁·5대 사역과 같은 스타일) */}
+                <GlassTable
+                  className="mt-7"
+                  head={
+                    <div className="grid grid-cols-[1.3fr_1fr_1fr] gap-4">
+                      <p>예배</p>
+                      <p>시간</p>
+                      <p>장소</p>
+                    </div>
+                  }
+                >
+                  {group.rows.map((row) => (
+                    <div key={row.name} className="grid grid-cols-[1.3fr_1fr_1fr] items-center gap-4 px-6 py-4 sm:px-7">
+                      <p className="text-[15px] font-bold text-gray-900">{row.name}</p>
+                      <p className="text-[15px] font-semibold text-secondary">{row.time}</p>
+                      <p className="text-[14px] text-gray-600">{row.location}</p>
+                    </div>
+                  ))}
+                </GlassTable>
               </section>
             ))}
             <p className="text-[14px] text-gray-500">{WORSHIP_TIMES.note}</p>
