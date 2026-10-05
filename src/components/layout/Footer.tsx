@@ -1,15 +1,6 @@
-import Link from "next/link";
 import Image from "next/image";
 import { Youtube, MapPin, Phone } from "lucide-react";
 import { SITE_NAME, CHURCH_INFO, OFFERING_ACCOUNTS } from "@/lib/constants";
-
-const QUICK_LINKS = [
-  { label: "교회소개", href: "/about" },
-  { label: "예배안내", href: "/worship" },
-  { label: "설교말씀", href: CHURCH_INFO.youtube, external: true },
-  { label: "성회안내", href: "/revival-info" },
-  { label: "오시는길", href: "/directions" },
-];
 
 export function Footer() {
   return (
@@ -45,26 +36,8 @@ export function Footer() {
 
           </div>
 
-          {/* Links + info */}
-          <div className="grid gap-10 sm:grid-cols-2 sm:gap-16">
-            <div>
-              <p className="text-[13px] font-semibold tracking-wide text-gray-900">바로가기</p>
-              <ul className="mt-4 space-y-2.5">
-                {QUICK_LINKS.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      target={link.external ? "_blank" : undefined}
-                      rel={link.external ? "noopener noreferrer" : undefined}
-                      className="text-[14px] text-gray-500 transition-colors hover:text-primary"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
+          {/* 교회 안내 (바로가기 메뉴는 사용자 지시로 제거) */}
+          <div>
             <div>
               <p className="text-[13px] font-semibold tracking-wide text-gray-900">교회 안내</p>
               <ul className="mt-4 space-y-3 text-[13px] leading-relaxed text-gray-500">
@@ -86,7 +59,6 @@ export function Footer() {
                 </li>
               </ul>
             </div>
-          </div>
         </div>
 
         {/* 선교후원 계좌 — 원본 사이트 푸터 정보 */}
