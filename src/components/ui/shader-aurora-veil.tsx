@@ -176,24 +176,28 @@ vec3 shaderColor(vec2 uv, vec2 p, float t, vec2 pointer, float intensity, float 
 vec3 shaderColor(vec2 uv, vec2 p, float t, vec2 pointer, float intensity, float isLight) {
   /* 띠가 두껍고 파장이 길어 같은 속도면 흐름이 둔해 보여서 시간 계수를 1.5배 */
   vec2 q = p;
-  q.x += sin(q.y * 1.4 + t * 0.27) * 0.22;
-  q.y += cos(q.x * 0.9 - t * 0.21) * 0.16;
+  q.x += sin(q.y * 1.4 + t * 0.4) * 0.22;
+  q.y += cos(q.x * 0.9 - t * 0.32) * 0.16;
 
   /* smoothstep 폭을 키워 베일(띠)을 두껍게 — 기본 1.15/1.05 → 1.7/1.6.
      가로 주기(q.x 계수)는 기본 1.4/1.9 → 0.75/1.0 으로 낮춰 곡선 사이 좌우 간격을 넓힘 (사용자 피드백) */
-  float veilA = smoothstep(1.7, 0.0, abs(q.y + sin(q.x * 0.75 + t * 0.3) * 0.6));
-  float veilB = smoothstep(1.6, 0.0, abs(q.y * 0.7 - cos(q.x * 1.0 - t * 0.24) * 0.66));
+  float veilA = smoothstep(1.7, 0.0, abs(q.y + sin(q.x * 0.75 + t * 0.45) * 0.6));
+  float veilB = smoothstep(1.6, 0.0, abs(q.y * 0.7 - cos(q.x * 1.0 - t * 0.36) * 0.66));
   float grain = fbm(q * 2.5 + t * 0.06);
 
   vec3 base = mix(vec3(0.045, 0.06, 0.14), vec3(0.955, 0.968, 0.99), isLight);
   /* 라이트 톤 채도를 올림 — 스카이 블루와 골드가 또렷하게 */
-  vec3 sky = mix(vec3(0.26, 0.5, 0.95), vec3(0.5, 0.68, 0.97), isLight);
-  vec3 gold = mix(vec3(0.95, 0.72, 0.3), vec3(0.96, 0.82, 0.55), isLight);
+  vec3 sky = mix(vec3(0.26, 0.5, 0.95), vec3(0.46, 0.67, 0.98), isLight);
+  vec3 gold = mix(vec3(0.95, 0.72, 0.3), vec3(0.97, 0.84, 0.58), isLight);
 
+  /* 파랑 위에 금색이 그대로 섞이면 회색빛으로 탁해진다 — 파란 띠가 강한 곳에서는 금색을 눌러
+     두 색이 "겹치지" 않고 "나란히" 흐르게 (사용자 피드백: 파랑이 탁해지는 순간이 있음) */
+  float goldAmt = veilB * (1.0 - veilA * 0.75);
   vec3 color = base;
   color = mix(color, sky, veilA * mix(0.55, 0.62, isLight));
-  color = mix(color, gold, veilB * mix(0.35, 0.55, isLight));
-  color += (grain - 0.5) * 0.022;
+  color = mix(color, gold, goldAmt * mix(0.35, 0.55, isLight));
+  /* 입자 노이즈는 하단 페이드 구간에서 거친 줄무늬로 보여 절반으로 */
+  color += (grain - 0.5) * 0.01;
   return color * (0.9 + intensity * 0.14);
 }
 `,
