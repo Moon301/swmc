@@ -104,37 +104,38 @@ export function LiveWorshipPopup() {
               sizes="(min-width: 640px) 460px, 100vw"
               className="object-cover"
             />
-            {/* 상태 배지 — 이미지 왼쪽 위 */}
-            <span
-              className={`absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-semibold text-white backdrop-blur-md ${
-                live ? "bg-rose-600/90" : "bg-navy/70"
-              }`}
-            >
-              <span className="relative flex h-2 w-2">
-                {live && <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-70" />}
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
-              </span>
-              {live ? "LIVE" : "라이브 예정"}
-            </span>
           </div>
         </a>
 
         <div className="p-6 text-center sm:p-7">
-          <h2 id="live-worship-title" className="text-[19px] font-bold leading-snug text-gray-900 sm:text-[20px]">
+          {/* 상태 배지 — 내용 카드 안, 제목 위 (이미지 위에 얹으면 썸네일 글자와 겹침) */}
+          <span
+            className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[13px] font-semibold ${
+              live ? "bg-rose-50 text-rose-600" : "bg-primary-light text-secondary"
+            }`}
+          >
+            <span className="relative flex h-2 w-2">
+              {live && <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-500 opacity-60" />}
+              <span className={`relative inline-flex h-2 w-2 rounded-full ${live ? "bg-rose-500" : "bg-primary"}`} />
+            </span>
+            {live ? "LIVE" : "라이브 예정"}
+          </span>
+          <h2 id="live-worship-title" className="mt-3 text-[19px] font-bold leading-snug text-gray-900 sm:text-[20px]">
             {live ? `${state.service} 실시간 생중계 중` : `${state.service} ${state.time} 생중계 예정`}
           </h2>
           <p className="mt-2 text-[14px] leading-[1.75] text-gray-500">
             {live
-              ? "현장에 오지 못하시는 분들도 유튜브로 함께 예배드릴 수 있습니다."
+              ? "지금 이 시간, 어디에 계시든 함께 예배드리실 수 있습니다."
               : "예배 시작에 맞춰 유튜브 채널에서 생중계가 시작됩니다."}
           </p>
 
+          {/* 은은한 블루 그라데이션 버튼 — 팝업 내 유일한 강조 (사용자 지정, 다른 곳에 복제하지 말 것) */}
           <a
             href={liveHref}
             target="_blank"
             rel="noopener noreferrer"
             onClick={close}
-            className="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-primary-hover"
+            className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[oklch(52%_0.19_262)] via-[oklch(58%_0.185_255)] to-[oklch(66%_0.15_238)] px-6 py-3.5 text-[15px] font-semibold text-white shadow-[0_8px_24px_oklch(56.5%_0.186_258_/_0.32)] transition-[filter,transform] hover:brightness-105 active:scale-[0.99]"
           >
             <Youtube className="h-5 w-5" strokeWidth={2} />
             {live ? "유튜브로 실시간 예배 보기" : "유튜브 채널 미리 열기"}
