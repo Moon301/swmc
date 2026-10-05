@@ -101,10 +101,8 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="mt-14 border-t border-gray-200/70 pt-6">
-          <p className="text-[13px] text-gray-400">
-            &copy; {new Date().getFullYear()} {SITE_NAME} · {CHURCH_INFO.denomination} · 담임{" "}
-            {CHURCH_INFO.pastor}
-          </p>
+          {/* 원본 Wix 푸터의 저작권 표기 그대로 (사용자 지정) */}
+          <p className="text-[13px] text-gray-400">&copy;2023 by SeongEun Young Adult Midea Team Created</p>
         </div>
       </div>
     </footer>
