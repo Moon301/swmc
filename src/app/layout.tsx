@@ -38,6 +38,11 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: SITE_URL },
   robots: { index: true, follow: true },
+  /* 검색엔진 소유 확인 — 구글(도메인 속성은 DNS TXT로 확인하지만, URL 접두어 속성용으로도 넣어 둠).
+     네이버 값은 서치어드바이저에서 받으면 naver 키로 추가 */
+  verification: {
+    google: "soAbsvsv5fpiW05AO1UNcaeh8TZVOTSn_YO9QfKLr8w",
+  },
 };
 
 export default function RootLayout({
