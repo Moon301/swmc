@@ -62,7 +62,6 @@ export function DirectionsContent() {
           {[
             { label: "전화번호", value: `${CHURCH_INFO.phone} / ${CHURCH_INFO.phone2}` },
             { label: "팩스", value: CHURCH_INFO.fax },
-            { label: "담임목사", value: `${CHURCH_INFO.pastor} (${CHURCH_INFO.mobile})` },
             { label: "주소", value: `${CHURCH_INFO.address} ${CHURCH_INFO.addressDetail}` },
           ].map((item) => (
             <div key={item.label} className="card-soft px-5 py-4">
