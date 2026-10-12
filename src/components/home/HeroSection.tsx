@@ -146,7 +146,7 @@ function DefaultSlide0({ active = false }: { active?: boolean }) {
     const q = gsap.utils.selector(root);
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
-      tl.fromTo(q("[data-b-photo]"), { scale: 1.08 }, { scale: 1, duration: 2.6, ease: "power2.out" }, 0)
+      tl.fromTo(q("[data-b-sky]"), { scale: 1.1 }, { scale: 1, duration: 3.2, ease: "power2.out" }, 0)
         .fromTo(q("[data-b-ring]"), { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.4, stagger: 0.12, ease: "power2.out" }, 0)
         .fromTo(q("[data-b-motto]"), { yPercent: 110 }, { yPercent: 0, duration: 0.7, stagger: 0.12, ease: "power4.out" }, 0.15)
         .fromTo(q("[data-b-bar]"), { scaleY: 0 }, { scaleY: 1, duration: 0.4, stagger: 0.12 }, 0.4)
@@ -193,24 +193,24 @@ function DefaultSlide0({ active = false }: { active?: boolean }) {
       ref={ref}
       className="relative block aspect-[4/3] w-full overflow-hidden sm:aspect-video bg-[linear-gradient(180deg,oklch(99%_0.003_240)_0%,oklch(96%_0.02_236)_48%,oklch(85%_0.065_232)_100%)]"
     >
-      {/* ── 배경 사진 — 워싱턴 D.C. 국회의사당 (Unsplash, 무료 라이선스).
-           흑백 밝기만 남겨 하늘색 바탕에 녹이고, 위쪽은 투명하게 지워 타이틀 뒤를 비운다 ── */}
+      {/* 맨 뒤 — 파란 하늘에 선 십자가 (Unsplash, 무료 라이선스). 십자가가 오른쪽에 와서 타이틀을 가리지 않는다 */}
+      <div aria-hidden className="absolute inset-0 bg-[oklch(74%_0.11_245)]" />
       <div
         aria-hidden
-        data-b-photo
-        className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent_8%,black_62%)]"
+        data-b-sky
+        className="absolute inset-y-0 left-[24%] w-full [mask-image:linear-gradient(to_right,transparent,black_28%)]"
       >
         <Image
-          src="/images/banners/washington.jpg"
+          src="/images/banners/cross-sky.jpg"
           alt=""
           fill
           priority
           sizes="(min-width: 1100px) 1100px, 100vw"
-          className="object-cover object-[50%_40%] opacity-[0.42] mix-blend-luminosity"
+          className="origin-[45%_50%] scale-x-[1.22] object-cover object-[50%_30%] opacity-90"
         />
       </div>
       {/* 사진 위에 하늘색을 한 겹 — 원색을 눌러 배너 톤으로 */}
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-white/50 via-[oklch(92%_0.04_236)]/20 to-[oklch(70%_0.1_240)]/35" />
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-white/45 via-white/30 to-[oklch(70%_0.1_240)]/30" />
 
       {/* 수채 번짐 — 아래쪽에 고이는 블루 + 좌상단 보랏빛 한 방울 + 우측 골드 한 줄기 */}
       <div aria-hidden className="absolute -bottom-[32%] left-[6%] h-[70%] w-[55%] rounded-full bg-[oklch(76%_0.1_235)] opacity-45 blur-[70px]" />
@@ -249,7 +249,7 @@ function DefaultSlide0({ active = false }: { active?: boolean }) {
 
         <h2
           aria-label={TITLE}
-          className="relative mt-[0.3em] text-[clamp(34px,7.4cqw,92px)] font-black leading-[1.15] tracking-[-0.03em]"
+          className="relative mt-[0.3em] text-[clamp(34px,7.4cqw,92px)] font-black leading-[1.15] tracking-[-0.03em] [filter:drop-shadow(0_3px_10px_rgba(12,30,80,0.22))_drop-shadow(0_1px_1px_rgba(255,255,255,0.5))]"
         >
           {Array.from(TITLE).map((ch, i) =>
             ch === " " ? (
