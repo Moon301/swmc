@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -125,16 +126,92 @@ function DefaultSlide3() {
   );
 }
 
-/* 제23차 성령대부흥성회 — 1번 배너.
-   포스터 이미지가 사이트 톤과 안 맞아(사용자 피드백) 내용만 가져와 코드로 디자인:
-   수채 블루 그라데이션 + 명조 대형 타이틀, 포스터와 같은 중앙 구성. */
-function DefaultSlide0() {
+/* 미국 워싱턴 연합 성회 — 1번 배너.
+   수채 블루 하늘 + 명조 대형 타이틀. 이 슬라이드가 화면에 돌아올 때마다 모션그래픽으로 다시 그려진다:
+   링이 그려지고 → 표어 세 마디가 차례로 오르고 → 타이틀이 글자 단위로 마스크에서 솟고 →
+   금색 선이 가운데서 펼쳐지며 마름모가 돌아 앉고 → 날짜가 올라온다.
+   첫 로드에는 인트로가 걷힌 뒤 재생한다. 모션 축소 환경에서는 바로 완성 상태로 둔다. */
+const TITLE = "미국 워싱턴 연합 성회";
+const MOTTO = ["회개운동", "성령운동", "신부단장"];
+const GOLD_LINE = "bg-[oklch(75%_0.1_85)]";
+
+function DefaultSlide0({ active = false }: { active?: boolean }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
+
+  /* 타임라인은 한 번만 만들고, 활성화될 때마다 처음부터 재생한다 */
+  useLayoutEffect(() => {
+    const root = ref.current;
+    if (!root) return;
+    const q = gsap.utils.selector(root);
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
+      tl.fromTo(q("[data-b-photo]"), { scale: 1.08 }, { scale: 1, duration: 2.6, ease: "power2.out" }, 0)
+        .fromTo(q("[data-b-ring]"), { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.4, stagger: 0.12, ease: "power2.out" }, 0)
+        .fromTo(q("[data-b-motto]"), { yPercent: 110 }, { yPercent: 0, duration: 0.7, stagger: 0.12, ease: "power4.out" }, 0.15)
+        .fromTo(q("[data-b-bar]"), { scaleY: 0 }, { scaleY: 1, duration: 0.4, stagger: 0.12 }, 0.4)
+        .fromTo(q("[data-b-char]"), { yPercent: 115 }, { yPercent: 0, duration: 0.85, stagger: 0.045, ease: "power4.out" }, 0.45)
+        .fromTo(q("[data-b-line]"), { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.inOut" }, 1.1)
+        .fromTo(q("[data-b-gem]"), { scale: 0, rotation: -135 }, { scale: 1, rotation: 45, duration: 0.6, ease: "back.out(2)" }, 1.2)
+        .fromTo(q("[data-b-date]"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.7 }, 1.35);
+      tlRef.current = tl;
+    }, root);
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    const tl = tlRef.current;
+    if (!tl) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      tl.progress(1);
+      return;
+    }
+    if (!active) {
+      /* 슬라이드가 완전히 빠져나간 뒤 처음 상태로 되돌려 둔다 (빠지는 도중에 사라지지 않게) */
+      const t = setTimeout(() => tl.pause(0), 800);
+      return () => clearTimeout(t);
+    }
+    /* 인트로 오버레이가 덮고 있으면 걷힐 때까지 기다렸다가 재생 */
+    let raf = 0;
+    const start = performance.now();
+    const waitIntro = () => {
+      const introOn = document.querySelector("[data-ground]");
+      if (introOn && performance.now() - start < 16000) {
+        raf = requestAnimationFrame(waitIntro);
+        return;
+      }
+      tl.restart();
+    };
+    tl.pause(0);
+    raf = requestAnimationFrame(waitIntro);
+    return () => cancelAnimationFrame(raf);
+  }, [active]);
+
   return (
-    <Link
-      href="/revival-schedule"
+    /* 링크 없음 — 안내용 배너 (사용자 지시) */
+    <div
+      ref={ref}
       className="relative block aspect-[4/3] w-full overflow-hidden sm:aspect-video bg-[linear-gradient(180deg,oklch(99%_0.003_240)_0%,oklch(96%_0.02_236)_48%,oklch(85%_0.065_232)_100%)]"
     >
-      {/* ── 배경 오브젝트 ── */}
+      {/* ── 배경 사진 — 워싱턴 D.C. 국회의사당 (Unsplash, 무료 라이선스).
+           흑백 밝기만 남겨 하늘색 바탕에 녹이고, 위쪽은 투명하게 지워 타이틀 뒤를 비운다 ── */}
+      <div
+        aria-hidden
+        data-b-photo
+        className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent_8%,black_62%)]"
+      >
+        <Image
+          src="/images/banners/washington.jpg"
+          alt=""
+          fill
+          priority
+          sizes="(min-width: 1100px) 1100px, 100vw"
+          className="object-cover object-[50%_40%] opacity-[0.42] mix-blend-luminosity"
+        />
+      </div>
+      {/* 사진 위에 하늘색을 한 겹 — 원색을 눌러 배너 톤으로 */}
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-white/50 via-[oklch(92%_0.04_236)]/20 to-[oklch(70%_0.1_240)]/35" />
+
       {/* 수채 번짐 — 아래쪽에 고이는 블루 + 좌상단 보랏빛 한 방울 + 우측 골드 한 줄기 */}
       <div aria-hidden className="absolute -bottom-[32%] left-[6%] h-[70%] w-[55%] rounded-full bg-[oklch(76%_0.1_235)] opacity-45 blur-[70px]" />
       <div aria-hidden className="absolute -bottom-[28%] right-[4%] h-[60%] w-[46%] rounded-full bg-[oklch(80%_0.09_245)] opacity-50 blur-[60px]" />
@@ -143,10 +220,10 @@ function DefaultSlide0() {
       {/* 상단에서 내려오는 빛 */}
       <div aria-hidden className="absolute -top-[38%] left-1/2 h-[75%] w-[72%] -translate-x-1/2 rounded-full bg-white opacity-75 blur-[60px]" />
 
-      {/* 가는 링 — 타이틀 뒤에 겹치는 큰 원 장식 */}
-      <div aria-hidden className="absolute -right-[8%] top-1/2 aspect-square w-[42%] -translate-y-1/2 rounded-full border border-primary/15" />
-      <div aria-hidden className="absolute -left-[10%] top-[58%] aspect-square w-[36%] rounded-full border border-primary/10" />
-      <div aria-hidden className="absolute left-[16%] top-[18%] aspect-square w-[9%] rounded-full border border-[oklch(75%_0.1_85)]/25" />
+      {/* 가는 링 — 타이틀 뒤에 겹치는 큰 원 장식 (등장 시 퍼지며 그려진다) */}
+      <div aria-hidden data-b-ring className="absolute -right-[8%] top-[4%] aspect-square w-[42%] rounded-full border border-primary/15" />
+      <div aria-hidden data-b-ring className="absolute -left-[10%] top-[58%] aspect-square w-[36%] rounded-full border border-primary/10" />
+      <div aria-hidden data-b-ring className="absolute left-[16%] top-[18%] aspect-square w-[9%] rounded-full border border-[oklch(75%_0.1_85)]/25" />
 
       {/* 떠 있는 입자 */}
       <div aria-hidden className="absolute left-[22%] top-[30%] h-2.5 w-2.5 rounded-full bg-primary/30 blur-[1px]" />
@@ -157,34 +234,56 @@ function DefaultSlide0() {
 
       {/* ── 카피 ── */}
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 pb-8 text-center sm:pb-0">
-        <p className="text-[clamp(15px,2.1cqw,27px)] font-semibold text-rose-600">
-          깨어 일어나라!
-        </p>
-        <p className="mt-2 text-[clamp(16px,2.3cqw,30px)] font-medium tracking-[0.02em] text-gray-700 sm:mt-3.5">
-          <span className="font-bold text-gray-900">회개</span>운동{" "}
-          <span className="font-bold text-gray-900">성령</span>운동{" "}
-          <span className="font-bold text-gray-900">신부</span>단장
+        <p className="flex items-center gap-[0.7em] text-[clamp(15px,2.3cqw,28px)] font-semibold tracking-[0.04em] text-primary">
+          {MOTTO.map((m, i) => (
+            <span key={m} className="contents">
+              {i > 0 && <span aria-hidden data-b-bar className="h-[0.9em] w-px origin-center bg-primary/35" />}
+              <span className="inline-block overflow-hidden pb-[0.08em] align-bottom">
+                <span data-b-motto className="inline-block">
+                  {m}
+                </span>
+              </span>
+            </span>
+          ))}
         </p>
 
-        <p className="mt-3 text-[clamp(17px,2.5cqw,34px)] font-semibold text-primary-hover sm:mt-6">
-          제 23차
-        </p>
-        <h2 className="font-serif mt-1 bg-gradient-to-b from-[oklch(35%_0.13_260)] via-[oklch(50%_0.18_256)] to-[oklch(64%_0.16_238)] bg-clip-text pb-2 text-[clamp(34px,7.6cqw,96px)] font-black leading-[1.1] tracking-tight text-transparent">
-          성령대부흥성회
+        <h2
+          aria-label={TITLE}
+          className="relative mt-[0.3em] text-[clamp(34px,7.4cqw,92px)] font-black leading-[1.15] tracking-[-0.03em]"
+        >
+          {Array.from(TITLE).map((ch, i) =>
+            ch === " " ? (
+              <span key={i} className="inline-block w-[0.3em]" />
+            ) : (
+              <span key={i} aria-hidden className="inline-block overflow-hidden pb-[0.06em] align-bottom">
+                <span
+                  data-b-char
+                  className="inline-block bg-gradient-to-b from-[oklch(32%_0.14_264)] via-[oklch(45%_0.19_258)] to-[oklch(60%_0.17_240)] bg-clip-text text-transparent"
+                >
+                  {ch}
+                </span>
+              </span>
+            )
+          )}
         </h2>
 
-        <p className="mt-3 text-[clamp(18px,3.1cqw,40px)] font-bold text-gray-900 sm:mt-6">
-          26년 10월 9일<span className="font-medium text-gray-600">(금)</span> 오전 11:00
-        </p>
-        <p className="mt-1.5 text-[clamp(15px,2.3cqw,28px)] font-medium text-gray-600 sm:mt-2.5">
-          장소 <span className="mx-1 text-gray-400">|</span> 그랜드 워커힐 서울, 비스타홀
+        {/* 금색 헤어라인 + 마름모 */}
+        <div aria-hidden className="mt-[clamp(14px,2.4cqw,30px)] flex items-center gap-3">
+          <span data-b-line className={`h-px w-[clamp(36px,7cqw,90px)] origin-right ${GOLD_LINE}`} />
+          <span data-b-gem className="h-[7px] w-[7px] rotate-45 border border-[oklch(75%_0.1_85)]" />
+          <span data-b-line className={`h-px w-[clamp(36px,7cqw,90px)] origin-left ${GOLD_LINE}`} />
+        </div>
+
+        <p data-b-date className="mt-[clamp(14px,2.4cqw,30px)] text-[clamp(18px,3.1cqw,40px)] font-bold text-gray-900">
+          2026년 11월 2일<span className="mx-1.5 font-medium text-gray-600">~</span>6일
+          <span className="ml-2 font-medium text-gray-600">(월~금)</span>
         </p>
       </div>
-    </Link>
+    </div>
   );
 }
 
-const DEFAULT_SLIDES = [DefaultSlide0, DefaultSlide1, DefaultSlide2, DefaultSlide3];
+const DEFAULT_SLIDES: React.ComponentType<{ active?: boolean }>[] = [DefaultSlide0, DefaultSlide1, DefaultSlide2, DefaultSlide3];
 
 /* 배너 비율은 16:9 고정(DESIGN.md 정책). 폭으로만 조절해 배너+퀵링크가 첫 화면에 들어오게 한다 */
 const FRAME =
@@ -218,12 +317,32 @@ export function HeroSection({ banners }: HeroSectionProps) {
     if (!emblaApi) return;
     const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
     emblaApi.on("select", onSelect);
-    const interval = setInterval(() => emblaApi.scrollNext(), 6000);
+    /* 인트로가 덮고 있는 동안에는 자동 넘김을 시작하지 않는다 — 인트로가 걷히면 1번 배너부터 */
+    /* 머무는 시간 — 1번 배너는 모션그래픽(약 2초)이 끝난 뒤 충분히 읽히도록 8초, 나머지는 6초 */
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const dwell = (i: number) => (i === 0 && banners.length === 0 ? 8000 : 6000);
+    const schedule = () => {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => emblaApi.scrollNext(), dwell(emblaApi.selectedScrollSnap()));
+    };
+    const startAutoplay = () => {
+      emblaApi.scrollTo(0, true);
+      emblaApi.on("select", schedule);
+      schedule();
+    };
+    const waiter = setInterval(() => {
+      if (!document.querySelector("[data-ground]")) {
+        clearInterval(waiter);
+        startAutoplay();
+      }
+    }, 200);
     return () => {
-      clearInterval(interval);
+      clearInterval(waiter);
+      if (timer) clearTimeout(timer);
+      emblaApi.off("select", schedule);
       emblaApi.off("select", onSelect);
     };
-  }, [emblaApi]);
+  }, [emblaApi, banners.length]);
 
   /* Default slides carousel */
   if (banners.length === 0) {
@@ -234,7 +353,7 @@ export function HeroSection({ banners }: HeroSectionProps) {
             <div className="flex">
               {DEFAULT_SLIDES.map((Slide, i) => (
                 <div key={i} className="min-w-0 flex-[0_0_100%]">
-                  <Slide />
+                  <Slide active={i === selectedIndex} />
                 </div>
               ))}
             </div>

@@ -11,7 +11,7 @@ import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
    그 다운로드가 실패하면 빌드 전체가 깨진다 (2026-10-05 실제 발생). 런타임 로드는 빌드와 무관하고
    Google이 unicode-range로 한글 서브셋을 나눠 주므로 용량도 next/font와 같다. */
 const GOOGLE_FONTS_HREF =
-  "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@600;700;900&display=swap";
+  "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Noto+Serif+KR:wght@600;700;900&display=swap";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
